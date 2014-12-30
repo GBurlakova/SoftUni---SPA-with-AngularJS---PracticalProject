@@ -1,3 +1,19 @@
-<form action="">
-    login form
+<form action="" ng-controller="LoginController" class="form">
+    <div class="title">
+        Login
+    </div>
+    <div class="col-md-8 col-md-offset-2 login-input-wrapper">
+        <label for="username">Username: </label>
+        <input type="text"
+               id="username"
+               tabindex="1"/>
+        <label for="password">Password: </label>
+        <input type="password"
+               id="password"
+               tabindex="2"/>
+    </div>
+    <div class="col-md-8 col-md-offset-2 login-controls-wrapper">
+        <button class="register-button col-md-5 pull-left">Login</button>
+        <div class="col-md-5 pull-right login"><a href="#/login">Login here</a></div>
+    </div>
 </form>

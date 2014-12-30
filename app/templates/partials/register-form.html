@@ -1,3 +1,49 @@
-<form action="">
-    Register form
+<form action="" ng-controller="RegisterController" class="form">
+    <div class="title">
+        User Registration
+    </div>
+    <div class="col-md-12 no-padding">
+        <div class="col-md-6">
+            <label for="username">Username: </label>
+            <input type="text"
+                   id="username"
+                   tabindex="1"/>
+        </div>
+    </div>
+    <div class="col-md-6 left-half">
+        <label for="password">Password: </label>
+        <input type="password"
+               id="password"
+                tabindex="2"/>
+        <label for="name">Name: </label>
+        <input type="text"
+               id="name"
+                tabindex="3"/>
+        <label for="phone">Phone: </label>
+        <input type="text"
+               id="phone"
+                tabindex="4"/>
+    </div>
+    <div class="col-md-6 right-half">
+        <label for="confirm">Confirm password: </label>
+        <input type="password"
+               id="confirm"
+                tabindex="5"/>
+        <label for="email">Email: </label>
+        <input type="text"
+               id="email"
+                tabindex="6"/>
+        <label for="town">Town: </label>
+        <input type="text"
+               id="town"
+               list="towns"
+               name="town"/>
+        <datalist id="towns">
+            <option ng-repeat="town in towns">{{town.name}}</option>
+        </datalist>
+    </div>
+    <div class="col-md-12">
+        <button class="register-button col-md-3 pull-left">Register</button>
+        <div class="col-md-3 pull-right login"><a href="#/login">Login here</a></div>
+    </div>
 </form>

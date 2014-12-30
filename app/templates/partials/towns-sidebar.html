@@ -2,5 +2,8 @@
     Towns
 </h2>
 <ul ng-controller="TownsController">
-    <li ng-repeat="town in towns"><a href="">{{town.name}}</a></li>
+    <li><a href="" ng-click="townClicked('all')" ng-class="getClass('all')">All</a></li>
+    <li ng-repeat="town in towns"
+        ng-click="townClicked(town.id)"
+        ng-class="getClass(town.id)"><a href="">{{town.name}}</a></li>
 </ul>

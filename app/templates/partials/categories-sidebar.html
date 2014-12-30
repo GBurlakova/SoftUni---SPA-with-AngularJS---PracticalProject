@@ -2,5 +2,8 @@
     Categories
 </h2>
 <ul ng-controller="CategoriesController">
-    <li ng-repeat="category in categories"><a href="">{{category.name}}</a></li>
+    <li ng-click="categoryClicked('all')" ng-class="getClass('all')"><a>All</a></li>
+    <li ng-repeat="category in categories"
+        ng-click="categoryClicked(category.id)"
+        ng-class="getClass(category.id)"><a href="">{{category.name}}</a></li>
 </ul>
