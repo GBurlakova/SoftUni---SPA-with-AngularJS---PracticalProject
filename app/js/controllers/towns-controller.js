@@ -1,6 +1,6 @@
 app.controller('TownsController', function TownsController($scope, $townsData) {
-    // var baseUrl = 'http://softuni-ads.azurewebsites.net/api';
-    var baseUrl = 'http://localhost:1337/api';
+    var baseUrl = 'http://softuni-ads.azurewebsites.net/api';
+    // var baseUrl = 'http://localhost:1337/api';
 
     $townsData.getAll(baseUrl).then(
         function (data, status, headers, config) {

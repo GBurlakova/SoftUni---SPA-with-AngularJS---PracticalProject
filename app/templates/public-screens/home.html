@@ -1,4 +1,6 @@
-<aside ng-include="'templates/partials/authentication-sidebar.html'"></aside>
-<div ng-include="'templates/partials/all-ads.html'"></div>
-<aside ng-include="'templates/partials/categories-sidebar.html'"></aside>
-<aside ng-include="'templates/partials/towns-sidebar.html'"></aside>
+<aside ng-include="'templates/partials/authentication-sidebar.html'" class="col-md-2"></aside>
+<main ng-include="'templates/partials/all-ads.html'" class="col-md-8"></main>
+<div class="col-md-2">
+    <aside ng-include="'templates/partials/categories-sidebar.html'"></aside>
+    <aside ng-include="'templates/partials/towns-sidebar.html'"></aside>
+</div>
