@@ -1,7 +1,16 @@
+// Colors
+$blue: rgb(56, 96, 145);
+$blackFont: rgb(47, 56, 61);
+$lightGrey: rgb(227, 227, 227);
+$darkGrey: rgba(139, 149, 150, 0.5);
+// Sizes
+$footerSize: 80px;
+
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  word-wrap: break-word;
 }
 
 html{
@@ -11,37 +20,110 @@ html{
   body{
     width: 100%;
     height: 100%;
-    background-color: rgb(227, 227, 227);
-    color: rgb(47, 56, 61);
-    header{
-      .title{
-        text-align: center;
-        font-size: 3rem;
+    background-color: $lightGrey;
+    color: $blackFont;
+    #wrapper{
+      min-height:100%;
+      margin-bottom: -$footerSize;
+      &:after{
+        content: "";
+        display: block;
       }
-      padding: 1%;
-    } // header
-    main{
-      background-color: rgb(255, 255, 255);
-    } // main
-    aside{
+      header{
+        .title{
+          text-align: center;
+          font-size: 3rem;
+        }
+        padding: 1%;
+      } // header
+      main{
+        background-color: rgb(255, 255, 255);
+        padding: 2%;
+        margin-bottom: 2%;
+        .ad{
+          border: 1px solid $blue;
+          margin-bottom: 2%;
+          background-color: $lightGrey;
+          border-radius: 2px;
+          padding: 2%;
+          &:after{
+            content: ".";
+            visibility: hidden;
+            display: block;
+            height: 0;
+            clear: both;
+          }
+          .ad-title{
+            margin-bottom: 4%;
+            border-bottom: 1px solid $blue;
+            &:after{
+              content: ".";
+              visibility: hidden;
+              display: block;
+              height: 0;
+              clear: both;
+            }
+            div{
+              text-align: center;
+            }
+          }
+          .ad-main-content{
 
-      .sidebar-title{
-        font-size: 2.5rem;
-        border-bottom: 1px solid rgb(33, 33, 33);
-        margin: 0 0 2% 0;
-        text-align: center;
-        border-left: 3px solid rgb(56, 96, 145);
-      }
-      ul{
-        background-color: rgba(139, 149, 150, 0.5);
-        border-left: 3px solid rgb(56, 96, 145);
-        li{
-          list-style-type: none;
-          text-indent: 2%;
+          }
+          .ad-details{
+
+          }
+        }
+      } // main
+      aside{
+        .sidebar-title, p{
+          border-bottom: 1px solid rgb(33, 33, 33);
+          margin: 0 0 2% 0;
+          text-align: center;
+          border-left: 3px solid $blue
+        }
+        .sidebar-title{
+          font-size: 2.5rem;
+        }
+        p{
+          font-size: 1.7rem;
+        }
+        ul{
+          background-color: $darkGrey;
+          border-left: 3px solid $blue;
+          border-radius: 2px;
+          padding: 4%;
+          li{
+            border-radius: 2px;
+            padding: 2%;
+            list-style-type: none;
+            text-indent: 2%;
+            font-size: 1.5rem;
+            &:hover{
+              background-color: $lightGrey;
+            }
+            a{
+              display: block;
+              width: 100%;
+              height: 100%;
+              text-decoration: none;
+              font-size: 1.8rem;
+              color: $blackFont;
+            }
+          }
         }
       }
+      .bold{
+        font-weight: bold;
+      }
+    } // wrapper
+    footer, #wrapper:after {
+      height: $footerSize;
     }
     footer{
+      width:100%;
+      position:fixed;
+      bottom:0;
       text-align: center;
     }
   } // body

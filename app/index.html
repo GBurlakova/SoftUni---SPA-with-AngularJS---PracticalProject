@@ -5,15 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
-
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/app.css"/>
 </head>
 
 <body ng-app="adsApp">
-    <header ng-controller="HeaderController" ng-include="template.url"></header>
-    <div ng-view></div>
-    <footer class="navbar-fixed-bottom">
+    <div id="wrapper">
+        <header ng-controller="HeaderController" ng-include="template.url"></header>
+        <!--Main content-->
+        <div ng-view></div>
+    </div>
+    <footer class="col-md-12">
         <p>
             2014 by Software University Foundation, No Rights Reserved
         </p>

@@ -1,3 +1,30 @@
 <div ng-controller="AllAdsController">
-    <div ng-repeat="ad in ads">{{ad.title}}</div>
+    <div ng-repeat="ad in ads" class="ad">
+        <div class="ad-title">
+            <div class="col-lg-6">{{ad.title}}</div>
+            <div class="col-lg-6">{{ad.date}}</div>
+        </div>
+        <div class="ad-main-content">
+            <div class="col-md-5">
+                <img src="" alt="add-image" ng-src="{{ad.imageDataUrl}}"/>
+            </div>
+            <div class="ad-details col-md-6 col-md-offset-1">
+                <div>
+                    {{ad.text}}
+                </div>
+                <div>
+                    <div>Name: </div>
+                    <div>{{ad.ownerName}}</div>
+                </div>
+                <div>
+                    <div>Email: </div>
+                    <div><a href="{{ad.ownerEmail}}">{{ad.ownerEmail}}</a></div>
+                </div>
+                <div>
+                    <div>Tel.: </div>
+                    <div>{{ad.ownerPhone}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
