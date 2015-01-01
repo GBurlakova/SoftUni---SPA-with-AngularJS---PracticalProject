@@ -1,6 +1,6 @@
 app.controller('CategoriesController', function CategoriesController($scope, $rootScope, $categoriesData) {
-    // var baseUrl = 'http://softuni-ads.azurewebsites.net/api';
-    var baseUrl = 'http://localhost:1337/api';
+    var baseUrl = 'http://softuni-ads.azurewebsites.net/api';
+    // var baseUrl = 'http://localhost:1337/api';
     var currentCategorySelected = 'all';
 
     $categoriesData.getAll(baseUrl).then(

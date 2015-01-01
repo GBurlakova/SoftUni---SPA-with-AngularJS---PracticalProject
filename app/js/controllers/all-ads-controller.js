@@ -1,6 +1,6 @@
 app.controller('AllAdsController', function AllAdsController($scope, $rootScope, $adsData) {
-    // var baseUrl = 'http://softuni-ads.azurewebsites.net/api';
-    var baseUrl = 'http://localhost:1337/api';
+    var baseUrl = 'http://softuni-ads.azurewebsites.net/api';
+    // var baseUrl = 'http://localhost:1337/api';
     var NO_RESULTS_MESSAGE = 'No results to display';
     var categoryFilter = '';
     var townFilter = '';

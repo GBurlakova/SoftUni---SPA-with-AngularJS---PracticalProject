@@ -104,7 +104,7 @@ html {
               font-size: 2rem; }
               html body #wrapper main .form .login a:hover {
                 color: #2f383d; }
-          html body #wrapper main .form .register-button {
+          html body #wrapper main .form .enabled-button {
             font-size: 2rem;
             height: 35px;
             border-radius: 3px;
@@ -112,9 +112,9 @@ html {
             -moz-box-shadow: 3px 3px 1px 0 #386091;
             -webkit-shadow: 3px 3px 1px 0 #386091;
             border: 1px solid #2f383d; }
-            html body #wrapper main .form .register-button:active, html body #wrapper main .form .register-button:focus {
+            html body #wrapper main .form .enabled-button:active, html body #wrapper main .form .enabled-button:focus {
               outline: none; }
-            html body #wrapper main .form .register-button:active {
+            html body #wrapper main .form .enabled-button:active {
               position: relative;
               top: 3px;
               box-shadow: none;
@@ -124,10 +124,14 @@ html {
             margin-bottom: 2%; }
           html body #wrapper main .form .login-controls-wrapper {
             margin-top: 2%; }
-          html body #wrapper main .form label, html body #wrapper main .form input {
+          html body #wrapper main .form .required-field {
+            color: red;
+            font-weight: bold;
+            font-size: 1.5rem; }
+          html body #wrapper main .form label, html body #wrapper main .form input, html body #wrapper main .form select {
             display: block;
             width: 100%; }
-          html body #wrapper main .form input {
+          html body #wrapper main .form input, html body #wrapper main .form select {
             height: 35px; }
       html body #wrapper aside .sidebar-title, html body #wrapper aside p {
         border-bottom: 1px solid #212121;

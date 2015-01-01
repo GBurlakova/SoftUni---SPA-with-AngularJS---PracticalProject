@@ -1,4 +1,4 @@
-<form action="" ng-controller="RegisterController" class="form">
+<form action="" ng-controller="RegisterController" name="registerForm" class="form">
     <div class="title">
         User Registration
     </div>
@@ -6,44 +6,101 @@
         <div class="col-md-6">
             <label for="username">Username: </label>
             <input type="text"
+                   name="username"
+                   ng-model="registerData.username"
                    id="username"
-                   tabindex="1"/>
+                   tabindex="1"
+                   required/>
+            <div ng-show="registerForm.username.$error.required &&
+                registerForm.username.$dirty"
+                class="required-field">
+                Username is required!
+            </div>
         </div>
+
     </div>
     <div class="col-md-6 left-half">
         <label for="password">Password: </label>
         <input type="password"
+               name="password"
                id="password"
-                tabindex="2"/>
+               ng-model="registerData.password"
+               tabindex="2"
+               required/>
+        <div ng-show="registerForm.password.$error.required &&
+             registerForm.password.$dirty"
+             class="required-field">
+            Password is required!
+        </div>
         <label for="name">Name: </label>
         <input type="text"
+               name="name"
                id="name"
-                tabindex="3"/>
+               ng-model="registerData.name"
+               tabindex="3"
+               required/>
+        <div ng-show="registerForm.name.$error.required &&
+             registerForm.name.$dirty"
+             class="required-field">
+            Name is required!
+        </div>
         <label for="phone">Phone: </label>
         <input type="text"
+               name="phone"
+               ng-model="registerData.phone"
                id="phone"
-                tabindex="4"/>
+               tabindex="4"/>
     </div>
     <div class="col-md-6 right-half">
         <label for="confirm">Confirm password: </label>
         <input type="password"
+               name="confirm"
+               ng-model="registerData.confirmPassword"
                id="confirm"
-                tabindex="5"/>
+               tabindex="5"
+               required/>
+        <div ng-show="registerForm.confirm.$error.confirmPassword">
+            Fields are not equal!</div>
         <label for="email">Email: </label>
-        <input type="text"
+        <input type="email"
+               name="email"
                id="email"
-                tabindex="6"/>
+               ng-model="registerData.email"
+               tabindex="6"
+               required/>
+        <div ng-show="registerForm.email.$error.required &&
+             registerForm.email.$dirty"
+             class="required-field">
+            Email is required!
+        </div>
         <label for="town">Town: </label>
-        <input type="text"
+
+        <!--Towns with combobox-->
+        <!--<input type="text"-->
+               <!--name="town"-->
+               <!--id="town"-->
+               <!--ng-model="registerData.town"-->
+               <!--list="towns"/>-->
+        <!--<datalist id="towns">-->
+            <!--<option ng-repeat="town in towns">{{town.name}}</option>-->
+        <!--</datalist>-->
+
+        <!--Towns with select-->
+        <select name="town"
                id="town"
-               list="towns"
-               name="town"/>
-        <datalist id="towns">
-            <option ng-repeat="town in towns">{{town.name}}</option>
-        </datalist>
+               ng-model="registerData.town">
+            <option ng-repeat="town in towns" value="{{town.id}}">{{town.name}}</option>
+        </select>
     </div>
     <div class="col-md-12">
-        <button class="register-button col-md-3 pull-left">Register</button>
+        <button class="enabled-button col-md-3 pull-left"
+                name="register"
+                ng-model="register"
+                type="submit"
+                ng-disabled="registerForm.username.$error.required"
+                ng-click="registerUser(registerData)">
+            Register
+        </button>
         <div class="col-md-3 pull-right login"><a href="#/login">Login here</a></div>
     </div>
 </form>

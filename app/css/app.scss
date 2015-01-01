@@ -139,7 +139,7 @@ html{
               }
             }
           }
-          .register-button{
+          .enabled-button{
             font-size: 2rem;
             height: 35px;
             border-radius: 3px;
@@ -166,11 +166,16 @@ html{
           .login-controls-wrapper{
             margin-top: 2%;
           }
-          label, input{
+          .required-field{
+            color: red;
+            font-weight: bold;
+            font-size: 1.5rem;
+          }
+          label, input, select{
             display: block;
             width: 100%;
           }
-          input{
+          input, select{
             height: 35px;
           }
         }
