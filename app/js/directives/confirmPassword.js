@@ -1,31 +1,23 @@
-app.directive("confirmPassword", function() {
+app.directive('confirmPassword', [function () {
     return {
-        require: "ngModel",
-        scope: {
-            confirmPassword: '='
-        },
-        link: function(scope, element, attrs, ctrl) {
-            scope.$watch(function() {
-                var combined;
+        require: 'ngModel',
+        link: function (scope, elem, attrs, ctrl) {
+            var $passwordToBeConfirmed = $('#' + attrs.confirmPassword);
+            var $confirmPassword = $(elem);
 
-                if (scope.confirmPassword || ctrl.$viewValue) {
-                    combined = scope.confirmPassword + '_' + ctrl.$viewValue;
-                }
-                return combined;
-            }, function(value) {
-                if (value) {
-                    ctrl.$parsers.unshift(function(viewValue) {
-                        var origin = scope.confirmPassword;
-                        if (origin !== viewValue) {
-                            ctrl.$setValidity("confirmPassword", false);
-                            return undefined;
-                        } else {
-                            ctrl.$setValidity("confirmPassword", true);
-                            return viewValue;
-                        }
-                    });
-                }
+            $confirmPassword.on('input', function () {
+                scope.$apply(function () {
+                    var passwordsAreEqual = $confirmPassword.val() === $passwordToBeConfirmed.val();
+                    ctrl.$setValidity('passwordsNotMatch', passwordsAreEqual);
+                });
+            });
+
+            $passwordToBeConfirmed.on('input', function () {
+                scope.$apply(function () {
+                    var passwordsAreEqual = $confirmPassword.val() === $passwordToBeConfirmed.val();
+                    ctrl.$setValidity('passwordsNotMatch', passwordsAreEqual);
+                });
             });
         }
-    };
-});
+    }
+}]);

@@ -58,8 +58,9 @@
                ng-model="registerData.confirmPassword"
                id="confirm"
                tabindex="5"
-               required/>
-        <div ng-show="registerForm.confirm.$error.confirmPassword">
+               required
+               confirm-password="password"/>
+        <div ng-show="registerForm.confirm.$error.passwordsNotMatch">
             Fields are not equal!</div>
         <label for="email">Email: </label>
         <input type="email"
@@ -97,7 +98,7 @@
                 name="register"
                 ng-model="register"
                 type="submit"
-                ng-disabled="registerForm.username.$error.required"
+                ng-disabled="registerForm.username.$error.required || registerForm.confirm.$error.passwordsNotMatch"
                 ng-click="registerUser(registerData)">
             Register
         </button>
