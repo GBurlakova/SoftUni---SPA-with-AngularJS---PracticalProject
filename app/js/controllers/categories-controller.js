@@ -6,7 +6,6 @@ app.controller('CategoriesController', function CategoriesController($scope, $ro
     $categoriesData.getAll(baseUrl).then(
         function (data, status, headers, config) {
             $scope.categories = data;
-            console.log(data);
         },
         function (error, status, headers, config) {
             console.log(error, status);

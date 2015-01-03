@@ -13,7 +13,7 @@
                    required/>
             <div ng-show="registerForm.username.$error.required &&
                 registerForm.username.$dirty"
-                class="required-field">
+                class="error-info">
                 Username is required!
             </div>
         </div>
@@ -29,7 +29,7 @@
                required/>
         <div ng-show="registerForm.password.$error.required &&
              registerForm.password.$dirty"
-             class="required-field">
+             class="error-info">
             Password is required!
         </div>
         <label for="name">Name: </label>
@@ -41,7 +41,7 @@
                required/>
         <div ng-show="registerForm.name.$error.required &&
              registerForm.name.$dirty"
-             class="required-field">
+             class="error-info">
             Name is required!
         </div>
         <label for="phone">Phone: </label>
@@ -60,8 +60,9 @@
                tabindex="5"
                required
                confirm-password="password"/>
-        <div ng-show="registerForm.confirm.$error.passwordsNotMatch">
-            Fields are not equal!</div>
+        <div ng-show="registerForm.confirm.$error.passwordsNotMatch"
+             class="error-info">
+            Confirm password do not match!</div>
         <label for="email">Email: </label>
         <input type="email"
                name="email"
@@ -71,8 +72,14 @@
                required/>
         <div ng-show="registerForm.email.$error.required &&
              registerForm.email.$dirty"
-             class="required-field">
+             class="error-info">
             Email is required!
+        </div>
+        <div ng-show="registerForm.email.$invalid &&
+             registerForm.email.$dirty &&
+             !registerForm.email.$error.required"
+             class="error-info">
+            Email should be a valid one!
         </div>
         <label for="town">Town: </label>
 
@@ -98,7 +105,11 @@
                 name="register"
                 ng-model="register"
                 type="submit"
-                ng-disabled="registerForm.username.$error.required || registerForm.confirm.$error.passwordsNotMatch"
+                ng-disabled="registerForm.username.$error.required ||
+                registerForm.password.$error.required ||
+                registerForm.email.$error.required ||
+                registerForm.name.$error.required ||
+                registerForm.confirm.$error.passwordsNotMatch"
                 ng-click="registerUser(registerData)">
             Register
         </button>

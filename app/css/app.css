@@ -124,7 +124,7 @@ html {
             margin-bottom: 2%; }
           html body #wrapper main .form .login-controls-wrapper {
             margin-top: 2%; }
-          html body #wrapper main .form .required-field {
+          html body #wrapper main .form .error-info {
             color: red;
             font-weight: bold;
             font-size: 1.5rem; }

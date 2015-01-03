@@ -1,4 +1,4 @@
-<form action="" ng-controller="LoginController" class="form">
+<form action="" name="loginForm" ng-controller="LoginController" class="form">
     <div class="title">
         Login
     </div>
@@ -6,14 +6,18 @@
         <label for="username">Username: </label>
         <input type="text"
                id="username"
+               name="username"
+               ng-model="loginData.username"
                tabindex="1"/>
         <label for="password">Password: </label>
         <input type="password"
+               name="password"
+               ng-model="loginData.password"
                id="password"
                tabindex="2"/>
     </div>
     <div class="col-md-8 col-md-offset-2 login-controls-wrapper">
-        <button class="enabled-button col-md-5 pull-left">Login</button>
+        <button class="enabled-button col-md-5 pull-left" ng-click="login(loginData)">Login</button>
         <div class="col-md-5 pull-right login"><a href="#/login">Login here</a></div>
     </div>
 </form>

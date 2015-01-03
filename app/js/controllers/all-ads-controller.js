@@ -5,6 +5,8 @@ app.controller('AllAdsController', function AllAdsController($scope, $rootScope,
     var categoryFilter = '';
     var townFilter = '';
 
+    loadHomePage();
+
     $adsData.getAll(baseUrl).then(
         function (data, status, headers, config) {
             $scope.ads = data.ads;
@@ -23,6 +25,10 @@ app.controller('AllAdsController', function AllAdsController($scope, $rootScope,
         categoryFilter = (categorySelected === 'all') ? '' : categorySelected;
         filterByCategory();
     });
+
+    function loadHomePage() {
+        $rootScope.$broadcast('homePageLoaded');
+    }
 
     function filterByTown() {
         $adsData.getWithFilter(baseUrl, townFilter, categoryFilter).then(
