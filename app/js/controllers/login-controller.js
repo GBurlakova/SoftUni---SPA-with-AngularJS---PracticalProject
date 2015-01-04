@@ -13,17 +13,15 @@ app.controller('LoginController', function ($scope, $rootScope,  $usersData) {
                 function (data) {
                     var username = data['username'];
                     var accessToken = data['access_token'];
-                    var isAdmin;
+                    var permission;
                     if (data.hasOwnProperty('isAdmin')) {
-                        isAdmin = data['isAdmin'];
+                        permission = 'admin';
                     }else {
-                        isAdmin = false;
+                        permission = 'user';
                     }
-                    $usersData.saveUserData(username,accessToken, isAdmin);
-                    setTimeout(function () {
-                        window.location.href = "#/";
-                        logUser();
-                    }, 4000);
+                    $usersData.saveUserData(username, accessToken, permission);
+                    window.location.href = "#/user/home";
+                    logUser();
                 },
                 function (error) {
                     console.log(error);

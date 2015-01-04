@@ -30,13 +30,36 @@ html{
         display: block;
       }
       header{
+        padding: 1%;
+        margin-bottom: 4%;
+        &:after{
+          content: ".";
+          visibility: hidden;
+          display: block;
+          height: 0;
+          clear: both;
+        }
         .title{
           text-align: center;
           font-size: 3rem;
         }
-        padding: 1%;
-        margin-bottom: 4%;
-      } // header
+      }
+      .admin-header{
+        background-color: $blue;
+        color: $lightGrey;
+        .user-name, .logout{
+          font-size: 2rem;
+        }
+        .logout{
+          a{
+            text-decoration: none;
+            color: $blackFont;
+            &:hover{
+              color: $darkGrey;
+            }
+          }
+        }
+      }// header
       main{
         background-color: rgb(255, 255, 255);
         padding: 2%;

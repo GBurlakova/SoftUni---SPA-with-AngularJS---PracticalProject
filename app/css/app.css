@@ -22,9 +22,25 @@ html {
       html body #wrapper header {
         padding: 1%;
         margin-bottom: 4%; }
+        html body #wrapper header:after {
+          content: ".";
+          visibility: hidden;
+          display: block;
+          height: 0;
+          clear: both; }
         html body #wrapper header .title {
           text-align: center;
           font-size: 3rem; }
+      html body #wrapper .admin-header {
+        background-color: #386091;
+        color: #e3e3e3; }
+        html body #wrapper .admin-header .user-name, html body #wrapper .admin-header .logout {
+          font-size: 2rem; }
+        html body #wrapper .admin-header .logout a {
+          text-decoration: none;
+          color: #2f383d; }
+          html body #wrapper .admin-header .logout a:hover {
+            color: rgba(139, 149, 150, 0.5); }
       html body #wrapper main {
         background-color: white;
         padding: 2%;

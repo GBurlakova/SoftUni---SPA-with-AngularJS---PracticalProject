@@ -38,7 +38,7 @@ app.controller('RegisterController', function ($scope, $rootScope, $townsData, $
                 }
                 $usersData.saveUserData(username,accessToken, isAdmin);
                 setTimeout(function () {
-                    window.location.href = "#/";
+                    window.location.href = "#/user/home";
                     logUser();
                 }, 4000);
             },

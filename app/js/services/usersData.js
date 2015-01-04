@@ -9,18 +9,23 @@ app.factory('$usersData', function ($requester) {
         return $requester.post(serviceUrl, null, loginData);
     };
 
-    var saveUserData = function (username, accessToken, isAdmin) {
+    var saveUserData = function (username, accessToken, permission) {
         localStorage.clear();
         localStorage.setItem('username', username);
         localStorage.setItem('accessToken', accessToken);
-        localStorage.setItem('isAdmin', isAdmin);
+        localStorage.setItem('permission', permission);
+    };
+
+    var clearUserData = function () {
+        localStorage.clear();
+        localStorage.setItem('permission', 'guest');
     };
 
     var getUserData = function () {
         var userData = {
             username: localStorage.getItem('username'),
             accessToken: localStorage.getItem('accessToken'),
-            isAdmin: localStorage.getItem('isAdmin')
+            permission: localStorage.getItem('permission')
         };
 
         return userData;
@@ -30,6 +35,7 @@ app.factory('$usersData', function ($requester) {
         register: register,
         login: login,
         saveUserData: saveUserData,
+        clearUserData: clearUserData,
         getUserData: getUserData
     }
 });

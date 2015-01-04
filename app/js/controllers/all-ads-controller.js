@@ -1,4 +1,4 @@
-app.controller('AllAdsController', function AllAdsController($scope, $rootScope, $adsData) {
+app.controller('AllAdsController', function AllAdsController($scope, $rootScope, $adsData, $usersData) {
     var baseUrl = 'http://softuni-ads.azurewebsites.net/api';
     // var baseUrl = 'http://localhost:1337/api';
     var NO_RESULTS_MESSAGE = 'No results to display';
