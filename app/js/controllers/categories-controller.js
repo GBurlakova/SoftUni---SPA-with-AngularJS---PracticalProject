@@ -1,9 +1,10 @@
 app.controller('CategoriesController', function CategoriesController($scope, $rootScope, $categoriesData) {
-    var baseUrl = 'http://softuni-ads.azurewebsites.net/api';
-    // var baseUrl = 'http://localhost:1337/api';
+    var BASE_URL = 'http://softuni-ads.azurewebsites.net/api';
+    // var BASE_URL = 'http://localhost:1337/api';
+    var ACTIVE_CATEGORY_CLASS = 'active';
     var currentCategorySelected = 'all';
 
-    $categoriesData.getAll(baseUrl).then(
+    $categoriesData.getAll(BASE_URL).then(
         function (data, status, headers, config) {
             $scope.categories = data;
         },
@@ -11,14 +12,14 @@ app.controller('CategoriesController', function CategoriesController($scope, $ro
             console.log(error, status);
         });
 
-    $scope.categoryClicked = function (categorySelected) {
-        currentCategorySelected = categorySelected;
-        $rootScope.$broadcast('categoryFilterSelected', categorySelected);
+    $scope.categoryClicked = function (categoryClicked) {
+        currentCategorySelected = categoryClicked;
+        $rootScope.$broadcast('categoryFilterSelected', categoryClicked);
     };
 
     $scope.getClass = function (categoryId) {
         if (categoryId === currentCategorySelected) {
-        	return 'active';
+        	return ACTIVE_CATEGORY_CLASS;
         } else {
         	return '';
         }

@@ -1,4 +1,4 @@
-app.factory('permissions', function ($rootScope) {
+app.factory('$permissions', function ($rootScope) {
     var permissionList;
     return {
         setPermissions: function(permissions) {

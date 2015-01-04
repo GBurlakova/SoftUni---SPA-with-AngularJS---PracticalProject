@@ -1,11 +1,9 @@
 app.factory('$adsData', function ($requester) {
-    var getAll = function (baseUrl) {
-        var serviceUrl = baseUrl + '/ads';
-        return $requester.get(serviceUrl, null);
-    };
-
-    var getWithFilter = function (baseUrl, townIdFilter, categoryIdFilter){
-        var serviceUrl = baseUrl + '/ads?townid=' + townIdFilter + '&categoryid=' + categoryIdFilter;
+    var get = function (baseUrl, urlParams){
+        var serviceUrl = baseUrl + '/ads?townid=' + urlParams.townId +
+            '&categoryid=' + urlParams.categoryId +
+            '&startPage=' + urlParams.startPage +
+            '&pageSize=' + urlParams.pageSize;
         return $requester.get(serviceUrl, null);
     };
 
@@ -15,8 +13,7 @@ app.factory('$adsData', function ($requester) {
     };
 
     return {
-        getAll: getAll,
-        getWithFilter: getWithFilter,
+        get: get,
         getById: getById
     }
 });

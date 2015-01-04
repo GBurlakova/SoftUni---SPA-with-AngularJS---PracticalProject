@@ -1,0 +1,11 @@
+<ul class="pagination"  ng-show="showPager">
+    <li><a href="" ng-click="goToFirstPage()">««</a></li>
+    <li><a href="" ng-click="goToPreviousPage()">«</a></li>
+
+    <li ng-repeat="i in pagesArray track by $index" data-id="{{$index + 1}}">
+        <a href="" ng-click="goToPage($index+1)">{{$index + 1}}</a>
+    </li>
+
+    <li><a href="" ng-click="goToNextPage(pagesArray.length)">»</a></li>
+    <li><a href="" ng-click="goToLastPage(pagesArray.length)">»»</a></li>
+</ul>

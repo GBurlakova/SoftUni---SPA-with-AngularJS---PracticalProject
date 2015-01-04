@@ -1,4 +1,5 @@
 var app = angular.module('adsApp', ['ngRoute']);
+
 var permissionList = [
     'guest',
     'user',
@@ -28,6 +29,6 @@ app.config(function ($routeProvider) {
     });
 });
 
-app.run(function(permissions) {
-    permissions.setPermissions(permissionList);
+app.run(function($permissions) {
+    $permissions.setPermissions(permissionList);
 });

@@ -1,14 +1,16 @@
 app.controller('LoginController', function ($scope, $rootScope,  $usersData) {
-    var baseUrl = 'http://softuni-ads.azurewebsites.net/api';
-    // var baseUrl = 'http://localhost:1337/api';
+    var BASE_URL = 'http://softuni-ads.azurewebsites.net/api';
+    // var BASE_URL = 'http://localhost:1337/api';
 
     $scope.loginData = {
-        username: 'maria',
+        username: 'gaby',
         password: '123'
     };
 
+    loginPageLoaded();
+
     $scope.login = function (loginData) {
-        $usersData.login(baseUrl, loginData)
+        $usersData.login(BASE_URL, loginData)
             .then(
                 function (data) {
                     var username = data['username'];
@@ -21,20 +23,19 @@ app.controller('LoginController', function ($scope, $rootScope,  $usersData) {
                     }
                     $usersData.saveUserData(username, accessToken, permission);
                     window.location.href = "#/user/home";
-                    logUser();
+                    userLogged();
                 },
                 function (error) {
                     console.log(error);
                 });
     };
 
-    loadLoginPage();
-
-    function loadLoginPage() {
+    // Private functions
+    function loginPageLoaded() {
         $rootScope.$broadcast('loginPageLoaded');
     }
 
-    function logUser() {
+    function userLogged() {
         $rootScope.$broadcast('userLogged');
     }
 });

@@ -1,56 +1,50 @@
-app.controller('AllAdsController', function AllAdsController($scope, $rootScope, $adsData, $usersData) {
-    var baseUrl = 'http://softuni-ads.azurewebsites.net/api';
-    // var baseUrl = 'http://localhost:1337/api';
+app.controller('AllAdsController', function AllAdsController($scope, $rootScope, $adsData) {
+    var BASE_URL = 'http://softuni-ads.azurewebsites.net/api';
+    // var BASE_URL = 'http://localhost:1337/api';
     var NO_RESULTS_MESSAGE = 'No results to display';
-    var categoryFilter = '';
-    var townFilter = '';
+    var INITIAL_START_PAGE = 1;
+    var PAGE_SIZE = 10;
 
-    loadHomePage();
+    $scope.requestParams = {
+        townId: '',
+        categoryId: '',
+        startPage: INITIAL_START_PAGE,
+        pageSize: PAGE_SIZE};
 
-    $adsData.getAll(baseUrl).then(
-        function (data, status, headers, config) {
-            $scope.ads = data.ads;
-            checkForEmptyData(data.ads);
-        },
-        function (error, status, headers, config) {
-            console.log(error, status);
-        });
+    homePageLoaded();
 
+    $scope.loadAds = function (adsRequestParams) {
+        $adsData.get(BASE_URL, adsRequestParams).then(
+            function (data) {
+                $scope.ads = data.ads;
+                $scope.pagesArray = new Array(data.numPages);
+                $scope.showPager = data.numPages > 1;
+                checkForEmptyData(data.ads);
+            },
+            function (error, status, headers, config) {
+                console.log(error, status);
+            })
+    };
+
+    $scope.loadAds($scope.requestParams);
+
+    // Event handlers
     $scope.$on('townFilterSelected', function (event, townSelected) {
-        townFilter = (townSelected === 'all') ? '' : townSelected;
-        filterByTown();
+        $scope.requestParams.townId = (townSelected === 'all') ? '' : townSelected;
+        $scope.requestParams.startPage = 1;
+        $scope.loadAds($scope.requestParams);
     });
 
     $scope.$on('categoryFilterSelected', function (event, categorySelected) {
-        categoryFilter = (categorySelected === 'all') ? '' : categorySelected;
-        filterByCategory();
+        $scope.requestParams.categoryId = (categorySelected === 'all') ? '' : categorySelected;
+        $scope.requestParams.startPage = 1;
+        $scope.loadAds($scope.requestParams);
     });
 
-    function loadHomePage() {
+    // Private functions
+    function homePageLoaded() {
         $rootScope.$broadcast('homePageLoaded');
     }
-
-    function filterByTown() {
-        $adsData.getWithFilter(baseUrl, townFilter, categoryFilter).then(
-            function (data, status, headers, config) {
-                $scope.ads = data.ads;
-                checkForEmptyData(data.ads);
-            },
-            function (error, status, headers, config) {
-                console.log(error, status);
-            });
-    };
-
-    function filterByCategory() {
-        $adsData.getWithFilter(baseUrl, townFilter, categoryFilter).then(
-            function (data, status, headers, config) {
-                $scope.ads = data.ads;
-                checkForEmptyData(data.ads);
-            },
-            function (error, status, headers, config) {
-                console.log(error, status);
-            });
-    };
 
     function checkForEmptyData(data) {
         if (data.length === 0) {

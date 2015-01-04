@@ -1,6 +1,6 @@
 app.controller('RegisterController', function ($scope, $rootScope, $townsData, $usersData) {
-    var baseUrl = 'http://softuni-ads.azurewebsites.net/api';
-    // var baseUrl = 'http://localhost:1337/api';
+    var BASE_URL = 'http://softuni-ads.azurewebsites.net/api';
+    // var BASE_URL = 'http://localhost:1337/api';
     var USER_REGISTERED_SUCCESSFULLY = 'Successfully created user profile';
 
     $scope.registerData = {
@@ -13,9 +13,9 @@ app.controller('RegisterController', function ($scope, $rootScope, $townsData, $
         town: '1'
     };
 
-    loadRegisterPage();
+    registerPageLoaded();
 
-    $townsData.getAll(baseUrl).then(
+    $townsData.getAll(BASE_URL).then(
         function (data, status, headers, config) {
             $scope.towns = data;
         },
@@ -24,7 +24,7 @@ app.controller('RegisterController', function ($scope, $rootScope, $townsData, $
         });
 
     $scope.registerUser = function (registerData) {
-        $usersData.register(baseUrl, registerData)
+        $usersData.register(BASE_URL, registerData)
             .then(function (data, status, headers, config) {
                 showSuccessMessage(USER_REGISTERED_SUCCESSFULLY);
                 console.log(data);
@@ -47,7 +47,7 @@ app.controller('RegisterController', function ($scope, $rootScope, $townsData, $
             });
     };
 
-    function loadRegisterPage() {
+    function registerPageLoaded() {
         $rootScope.$broadcast('registerPageLoaded');
     }
 
