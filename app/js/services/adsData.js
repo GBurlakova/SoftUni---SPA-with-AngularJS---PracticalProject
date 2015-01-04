@@ -1,4 +1,4 @@
-app.factory('$adsData', function ($requester) {
+app.factory('$adsData', function ($requester, $usersData) {
     var get = function (baseUrl, urlParams){
         var serviceUrl = baseUrl + '/ads?townid=' + urlParams.townId +
             '&categoryid=' + urlParams.categoryId +
@@ -12,8 +12,20 @@ app.factory('$adsData', function ($requester) {
         return $requester.get(serviceUrl, null);
     };
 
+    var getUserAds = function (baseUrl, urlParams) {
+        var serviceUrl = baseUrl + '/user/ads?status=' + urlParams.status +
+            '&startPage=' + urlParams.startPage +
+            '&pageSize=' + urlParams.pageSize;
+        var authenticationData = {
+            Authorization: 'Bearer ' + $usersData.getUserData()['accessToken']
+        };
+
+        return $requester.get(serviceUrl, authenticationData);
+    };
+
     return {
         get: get,
-        getById: getById
+        getById: getById,
+        getUsersAds: getUserAds
     }
 });

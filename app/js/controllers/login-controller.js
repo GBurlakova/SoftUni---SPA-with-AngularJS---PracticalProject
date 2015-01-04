@@ -18,12 +18,13 @@ app.controller('LoginController', function ($scope, $rootScope,  $usersData) {
                     var permission;
                     if (data.hasOwnProperty('isAdmin')) {
                         permission = 'admin';
+                        window.location.href = "#/admin/home";
                     }else {
                         permission = 'user';
+                        window.location.href = "#/user/home";
                     }
                     $usersData.saveUserData(username, accessToken, permission);
-                    window.location.href = "#/user/home";
-                    userLogged();
+                    //userLogged();
                 },
                 function (error) {
                     console.log(error);

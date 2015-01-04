@@ -27,6 +27,17 @@ app.config(function ($routeProvider) {
         controller: '',
         permission: 'user'
     });
+    $routeProvider.when('/user/ads', {
+        templateUrl: 'templates/user-screens/user-ads.html',
+        controller: '',
+        permission: 'user'
+    });
+    // admin screens
+    $routeProvider.when('/admin/home', {
+        templateUrl: 'templates/admin-screens/admin-home.html',
+        controller: '',
+        permission: 'admin'
+    });
 });
 
 app.run(function($permissions) {
