@@ -32,6 +32,11 @@ app.config(function ($routeProvider) {
         controller: '',
         permission: 'user'
     });
+    $routeProvider.when('/user/ads/publish', {
+        templateUrl: 'templates/user-screens/publish-new-ad.html',
+        controller: '',
+        permission: 'user'
+    });
     // admin screens
     $routeProvider.when('/admin/home', {
         templateUrl: 'templates/admin-screens/admin-home.html',

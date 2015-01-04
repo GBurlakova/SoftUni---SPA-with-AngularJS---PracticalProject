@@ -1,4 +1,4 @@
-app.controller('LoginController', function ($scope, $rootScope,  $usersData) {
+app.controller('LoginController', function ($scope, $rootScope,  $usersData, $notifications) {
     var BASE_URL = 'http://softuni-ads.azurewebsites.net/api';
     // var BASE_URL = 'http://localhost:1337/api';
 

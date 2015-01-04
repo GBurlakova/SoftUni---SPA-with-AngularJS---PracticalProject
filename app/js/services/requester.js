@@ -8,12 +8,12 @@ app.factory('$requester', function ($q, $http) {
             headers: headers,
             data: data
         })
-        .success(function (data) {
-            deferred.resolve(data);
-        })
-        .error(function (error) {
-            deferred.reject(error);
-        });
+            .success(function (data) {
+                deferred.resolve(data);
+            })
+            .error(function (error) {
+                deferred.reject(error);
+            });
 
         return deferred.promise;
     };

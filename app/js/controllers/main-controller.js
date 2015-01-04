@@ -1,5 +1,6 @@
 app.controller('MainController', function ($scope, $usersData, $location, $permissions) {
     var ADMIN_HEADER_CLASS = 'admin-header';
+    var USER_HEADER_CLASS = 'user-header';
     var userIsLogged;
     var headerTemplates = {
         headerPublic: 'templates/partials/header-public.html',
@@ -55,6 +56,8 @@ app.controller('MainController', function ($scope, $usersData, $location, $permi
         var headerStyle = '';
         if (userIsAdmin) {
         	headerStyle = ADMIN_HEADER_CLASS;
+        } else {
+        	headerStyle = USER_HEADER_CLASS;
         }
 
         return headerStyle;

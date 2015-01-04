@@ -44,9 +44,7 @@ html{
           font-size: 3rem;
         }
       }
-      .admin-header{
-        background-color: $blue;
-        color: $lightGrey;
+      .admin-header, .user-header{
         .user-name, .logout{
           font-size: 2rem;
         }
@@ -59,6 +57,14 @@ html{
             }
           }
         }
+      }
+      .user-header{
+        color: $blackFont;
+        background-color: rgb(255, 255, 255);
+      }
+      .admin-header{
+        color: $lightGrey;
+        background-color: $blue;
       }// header
       main{
         background-color: rgb(255, 255, 255);

@@ -4,4 +4,8 @@
            ng-controller="UserAdsNavigationController"
            ng-show="showUserAdsNavigation"></aside>
 </div>
-<main ng-include="'templates/partials/all-ads.html'" class="col-md-8 col-md-offset-1"></main>
+<main ng-include="'templates/partials/all-ads.html'" class="col-md-8"></main>
+<div class="col-md-2">
+    <aside ng-include="'templates/partials/categories-sidebar.html'"></aside>
+    <aside ng-include="'templates/partials/towns-sidebar.html'"></aside>
+</div>
