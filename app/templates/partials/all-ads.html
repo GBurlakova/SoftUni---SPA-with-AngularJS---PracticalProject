@@ -1,5 +1,7 @@
 <div ng-controller="AllAdsController">
     <div class="result-message bold">{{resultMessage}}</div>
+    <img src="images/loading.gif" class="loading-image" ng-show="!adsLoaded" alt=""/>
+
     <div ng-repeat="ad in ads" class="ad">
         <div class="ad-title">
             <div class="col-lg-6">{{ad.title}}</div>
