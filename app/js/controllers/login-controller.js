@@ -1,6 +1,7 @@
 app.controller('LoginController', function ($scope, $rootScope,  $usersData, $notifications) {
-    var BASE_URL = 'http://softuni-ads.azurewebsites.net/api';
-    // var BASE_URL = 'http://localhost:1337/api';
+    var INVALID_LOGIN_DATA_MESSAGE = 'Username or password is incorrect. Please try again!';
+    var INVALID_LOGIN_DATA_PATTERN = '^The user name or password is incorrect.$';
+    var invalidLoginDataRegexp = new RegExp(INVALID_LOGIN_DATA_PATTERN);
 
     $scope.loginData = {
         username: 'gaby',
@@ -10,7 +11,7 @@ app.controller('LoginController', function ($scope, $rootScope,  $usersData, $no
     loginPageLoaded();
 
     $scope.login = function (loginData) {
-        $usersData.login(BASE_URL, loginData)
+        $usersData.login(loginData)
             .then(
                 function (data) {
                     var username = data['username'];
@@ -24,19 +25,19 @@ app.controller('LoginController', function ($scope, $rootScope,  $usersData, $no
                         window.location.href = "#/user/home";
                     }
                     $usersData.saveUserData(username, accessToken, permission);
-                    //userLogged();
                 },
                 function (error) {
                     console.log(error);
+                    var errorMessage = error.error_description;
+                    var isInvalidLoginData = invalidLoginDataRegexp.test(errorMessage);
+                    if (isInvalidLoginData) {
+                    	$notifications.error(INVALID_LOGIN_DATA_MESSAGE);
+                    }
                 });
     };
 
     // Private functions
     function loginPageLoaded() {
         $rootScope.$broadcast('loginPageLoaded');
-    }
-
-    function userLogged() {
-        $rootScope.$broadcast('userLogged');
     }
 });

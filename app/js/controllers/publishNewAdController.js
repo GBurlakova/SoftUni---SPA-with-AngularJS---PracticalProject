@@ -1,6 +1,7 @@
-app.controller('PublishNewAdController', function ($scope, $categoriesData, $townsData, $notifications) {
-    var BASE_URL = 'http://softuni-ads.azurewebsites.net/api';
-    // var BASE_URL = 'http://localhost:1337/api';
+app.controller('PublishNewAdController', function ($scope, $rootScope, $categoriesData, $townsData, $notifications) {
+    var DEFAULT_AD_IMAGE = 'http://www.agetruck.com/truck_img/default.gif';
+
+    $scope.adImage = DEFAULT_AD_IMAGE;
 
     $scope.newAdData = {
         adTitle: '',
@@ -10,7 +11,9 @@ app.controller('PublishNewAdController', function ($scope, $categoriesData, $tow
         town: ''
     };
 
-    $townsData.getAll(BASE_URL).then(
+    publishNewAdPageLoaded();
+
+    $townsData.getAll().then(
         function (data, status, headers, config) {
             $scope.towns = data;
         },
@@ -18,7 +21,7 @@ app.controller('PublishNewAdController', function ($scope, $categoriesData, $tow
             console.log(error, status);
         });
 
-    $categoriesData.getAll(BASE_URL).then(
+    $categoriesData.getAll().then(
         function (data, status, headers, config) {
             $scope.categories = data;
         },
@@ -32,16 +35,21 @@ app.controller('PublishNewAdController', function ($scope, $categoriesData, $tow
         if (file.type.match(/image\/.*/)) {
             var reader = new FileReader();
             reader.onload = function() {
-                $scope.newAdData.imageDataUrl = reader.result;
-                $(".image-box").html("<img src='" + reader.result + "'>");
+                var image = reader.result;
+                $scope.newAdData.imageDataUrl = image;
+                $scope.adImage = image;
             };
             reader.readAsDataURL(file);
         } else {
-            $(".image-box").html("<p>File type not supported!</p>");
+            $("#ad-image").html("<p>File type not supported!</p>");
         }
     };
 
     $scope.publish = function (newAdData) {
         console.log(data);
+    };
+
+    function publishNewAdPageLoaded() {
+        $rootScope.$broadcast('publishNewAdPageLoaded');
     }
 });

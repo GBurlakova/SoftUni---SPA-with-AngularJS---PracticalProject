@@ -1,11 +1,11 @@
-app.factory('$usersData', function ($requester) {
-    var register = function (baseUrl, registerData) {
-        var serviceUrl = baseUrl + '/user/register';
+app.factory('$usersData', function ($requester, BASE_URL) {
+    var register = function (registerData) {
+        var serviceUrl = BASE_URL + '/user/register';
         return $requester.post(serviceUrl, null, registerData);
     };
 
-    var login = function (baseUrl, loginData) {
-        var serviceUrl = baseUrl + '/user/login';
+    var login = function (loginData) {
+        var serviceUrl = BASE_URL + '/user/login';
         return $requester.post(serviceUrl, null, loginData);
     };
 

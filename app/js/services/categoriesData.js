@@ -1,6 +1,6 @@
-app.factory('$categoriesData', function ($requester) {
-    var getAll = function (baseUrl) {
-        var serviceUrl = baseUrl + '/categories';
+app.factory('$categoriesData', function ($requester, BASE_URL) {
+    var getAll = function () {
+        var serviceUrl = BASE_URL + '/categories';
         return $requester.get(serviceUrl, null);
     };
 

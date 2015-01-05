@@ -8,16 +8,29 @@
                id="username"
                name="username"
                ng-model="loginData.username"
-               tabindex="1"/>
+               tabindex="1"
+               required/>
+        <div class="error-info"
+             ng-show="loginForm.username.$error.required && loginForm.$dirty">
+            Username is required
+        </div>
         <label for="password">Password: </label>
         <input type="password"
                name="password"
                ng-model="loginData.password"
                id="password"
-               tabindex="2"/>
+               tabindex="2"
+               required/>
+        <div class="error-info"
+             ng-show="loginForm.password.$error.required && loginForm.$dirty">
+            Password is required
+        </div>
     </div>
     <div class="col-md-8 col-md-offset-2 login-controls-wrapper">
-        <button class="enabled-button col-md-5 pull-left" ng-click="login(loginData)">Login</button>
+        <button class="enabled-button col-md-5 pull-left"
+                ng-click="login(loginData)"
+                ng-disabled="loginForm.username.$error.required ||
+                loginForm.password.$error.required">Login</button>
         <div class="col-md-5 pull-right login"><a href="#/login">Login here</a></div>
     </div>
 </form>

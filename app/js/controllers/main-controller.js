@@ -12,7 +12,9 @@ app.controller('MainController', function ($scope, $usersData, $location, $permi
         home: 'Home',
         // public
         login: 'Login',
-        register: 'Register'
+        register: 'Register',
+        // user
+        publishNewAd: 'Publish New Ad'
     };
 
     $scope.$on('$routeChangeStart', function(scope, next) {
@@ -43,12 +45,8 @@ app.controller('MainController', function ($scope, $usersData, $location, $permi
         $scope.title = headerTitle.home;
     });
 
-    $scope.$on('userLogged', function () {
-        $scope.template = {
-            url: headerTemplates.headerUser
-        };
-        var username = $usersData.getUserData()['username'];
-        $scope.username = username;
+    $scope.$on('publishNewAdPageLoaded', function () {
+        $scope.title = headerTitle.publishNewAd;
     });
 
     $scope.setHeaderStyle = function () {

@@ -1,6 +1,4 @@
 app.controller('AllAdsController', function AllAdsController($scope, $rootScope, $adsData) {
-    var BASE_URL = 'http://softuni-ads.azurewebsites.net/api';
-    // var BASE_URL = 'http://localhost:1337/api';
     var NO_RESULTS_MESSAGE = 'No results to display';
     var INITIAL_START_PAGE = 1;
     var PAGE_SIZE = 10;
@@ -11,10 +9,12 @@ app.controller('AllAdsController', function AllAdsController($scope, $rootScope,
         startPage: INITIAL_START_PAGE,
         pageSize: PAGE_SIZE};
 
+    $scope.defaultImage = 'http://www.agetruck.com/truck_img/default.gif';
+
     homePageLoaded();
 
     $scope.loadAds = function (adsRequestParams) {
-        $adsData.get(BASE_URL, adsRequestParams).then(
+        $adsData.get(adsRequestParams).then(
             function (data) {
                 $scope.ads = data.ads;
                 $scope.pagesArray = new Array(data.numPages);

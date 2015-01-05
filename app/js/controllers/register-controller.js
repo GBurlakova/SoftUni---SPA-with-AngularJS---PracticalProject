@@ -1,7 +1,13 @@
-app.controller('RegisterController', function ($scope, $rootScope, $townsData, $usersData) {
-    var BASE_URL = 'http://softuni-ads.azurewebsites.net/api';
-    // var BASE_URL = 'http://localhost:1337/api';
+app.controller('RegisterController', function ($scope, $rootScope, $townsData, $usersData, $notifications) {
     var USER_REGISTERED_SUCCESSFULLY = 'Successfully created user profile';
+    var EMAIL_IS_TAKEN_PATTERN = '^Email (.+) is already taken.$';
+    var USERNAME_IS_TAKEN_PATTERN = '^Name (.+) is already taken.$';
+
+    var emailRegex = new RegExp(EMAIL_IS_TAKEN_PATTERN);
+    var usernameRegex = new RegExp(USERNAME_IS_TAKEN_PATTERN);
+
+    $scope.emailIsTaken = false;
+    $scope.usernameIsTaken = false;
 
     $scope.registerData = {
         username: 'maria',
@@ -15,7 +21,7 @@ app.controller('RegisterController', function ($scope, $rootScope, $townsData, $
 
     registerPageLoaded();
 
-    $townsData.getAll(BASE_URL).then(
+    $townsData.getAll().then(
         function (data, status, headers, config) {
             $scope.towns = data;
         },
@@ -24,7 +30,7 @@ app.controller('RegisterController', function ($scope, $rootScope, $townsData, $
         });
 
     $scope.registerUser = function (registerData) {
-        $usersData.register(BASE_URL, registerData)
+        $usersData.register(registerData)
             .then(function (data, status, headers, config) {
                 showSuccessMessage(USER_REGISTERED_SUCCESSFULLY);
                 console.log(data);
@@ -44,6 +50,20 @@ app.controller('RegisterController', function ($scope, $rootScope, $townsData, $
             },
             function (error, status, headers, config) {
                 console.log(error);
+                var errorModelState = error.modelState[""];
+                console.log(errorModelState);
+                for (var i = 0; i < errorModelState.length; i++) {
+                    var errorMessage = errorModelState[i];
+                    var emailTaken = emailRegex.test(errorMessage);
+                    var usernameTaken = usernameRegex.test(errorMessage);
+                    if (emailTaken) {
+                    	$scope.emailIsTaken = true;
+                    }
+
+                    if (usernameTaken) {
+                    	$scope.usernameIsTaken  = true;
+                    }
+                }
             });
     };
 

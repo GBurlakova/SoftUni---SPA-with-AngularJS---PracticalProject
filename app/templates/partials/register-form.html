@@ -16,6 +16,10 @@
                 class="error-info">
                 Username is required!
             </div>
+            <div ng-show="usernameIsTaken && !registerForm.username.$error.required"
+                 class="error-info">
+                Username is already taken!
+            </div>
         </div>
     </div>
     <div class="col-md-6 left-half">
@@ -73,6 +77,10 @@
              registerForm.email.$dirty"
              class="error-info">
             Email is required!
+        </div>
+        <div ng-show="emailIsTaken && !registerForm.email.$error.required"
+             class="error-info">
+            Email is already taken!
         </div>
         <div ng-show="registerForm.email.$invalid &&
              registerForm.email.$dirty &&
