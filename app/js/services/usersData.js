@@ -31,11 +31,24 @@ app.factory('$usersData', function ($requester, BASE_URL) {
         return userData;
     };
 
+    var getAuthorizationHeader = function () {
+        var authorizationHeader = { Authorization: 'Bearer ' + getUserData()['accessToken'] };
+        return authorizationHeader;
+    };
+
+    var publishAd = function (newAdData) {
+        var serviceUrl = BASE_URL + '/user/ads';
+        var authorizationHeader = getAuthorizationHeader();
+        return $requester.post(serviceUrl, authorizationHeader, newAdData);
+    };
+
     return{
         register: register,
         login: login,
         saveUserData: saveUserData,
         clearUserData: clearUserData,
-        getUserData: getUserData
+        getUserData: getUserData,
+        getAuthorizationHeader: getAuthorizationHeader,
+        publish: publishAd
     }
 });

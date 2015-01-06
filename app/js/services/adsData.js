@@ -16,11 +16,8 @@ app.factory('$adsData', function ($requester, $usersData, BASE_URL) {
         var serviceUrl = BASE_URL + '/user/ads?status=' + urlParams.status +
             '&startPage=' + urlParams.startPage +
             '&pageSize=' + urlParams.pageSize;
-        var authenticationData = {
-            Authorization: 'Bearer ' + $usersData.getUserData()['accessToken']
-        };
-
-        return $requester.get(serviceUrl, authenticationData);
+        var authenticationHeader = $usersData.getAuthorizationHeader();
+        return $requester.get(serviceUrl, authenticationHeader);
     };
 
     return {

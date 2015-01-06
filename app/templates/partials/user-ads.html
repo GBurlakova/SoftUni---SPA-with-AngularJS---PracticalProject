@@ -1,1 +1,30 @@
-<div ng-controller="UserAdsController"></div>
+<div ng-controller="UserAdsController">
+    <div ng-repeat="ad in ads">
+        <div>
+            <div>
+                <div>{{ad.title}}</div>
+                <div>{{ad.date | date: 'd-MMM-yyyy'}}</div>
+            </div>
+            <div>
+                <img src="" alt="" ng-src="{{ad.imageDataUrl || defaultImage}}"/>
+            </div>
+            <div>
+                {{ad.text}}
+            </div>
+            <div>
+                <span>Category:</span>
+                <div>{{ad.category}}</div>
+                <span>Town:</span>
+                <div>{{ad.townName}}</div>
+            </div>
+        </div>
+        <div>
+            <div>Status:</div>
+            <div>{{ad.status}}</div>
+            <button ng-show="ad.status === 'WaitingApproval' || ad.status === 'Published'">Deactivate</button>
+            <button ng-show="ad.status === 'Inactive'">Edit</button>
+            <button ng-show="ad.status === 'Inactive'">Publish again</button>
+            <button ng-show="ad.status === 'Inactive'">Delete</button>
+        </div>
+    </div>
+</div>

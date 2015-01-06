@@ -5,27 +5,39 @@
     <div class="col-lg-8">
         <div class="col-md-12">
             <label for="adTitle"
-                   class="col-md-3">Title</label>
+                   class="col-md-3">Title*</label>
             <input type="text"
                    id="adTitle"
                    name="adTitle"
-                   ng-model="newAdData.adTitle"
-                   class="col-md-9"/>
+                   ng-model="newAdData.title"
+                   class="col-md-9"
+                   required/>
+            <div class="error-info col-md-9 col-md-offset-3 no-padding"
+                 ng-show="newAdForm.title.$error.required &&
+                 newAdForm.title.$dirty">
+                Title is required
+            </div>
         </div>
         <div class="col-md-12">
             <label for="adText"
-                   class="col-md-3">Text</label>
+                   class="col-md-3">Text*</label>
             <textarea name="adText"
                       id="adText"
-                      ng-model="newAdData.adText"
-                      class="col-md-9"></textarea>
+                      ng-model="newAdData.text"
+                      class="col-md-9"
+                      required></textarea>
+            <div class="error-info col-md-9 col-md-offset-3 no-padding"
+                 ng-show="newAdForm.text.$error.required &&
+                 newAdForm.text.$dirty">
+                Text is required
+            </div>
         </div>
         <div class="col-md-12">
             <label for="category"
                    class="col-md-3">Category: </label>
             <select name="category"
                     id="category"
-                    ng-model="newAdData.category"
+                    ng-model="newAdData.categoryId"
                     class="col-md-9">
                 <option ng-repeat="category in categories" value="{{category.id}}">{{category.name}}</option>
             </select>
@@ -35,7 +47,7 @@
                    class="col-md-3">Town: </label>
             <select name="town"
                     id="town"
-                    ng-model="newAdData.town"
+                    ng-model="newAdData.townId"
                     class="col-md-9">
                 <option ng-repeat="town in towns" value="{{town.id}}">{{town.name}}</option>
             </select>
@@ -52,10 +64,13 @@
         </div>
     </div>
     <div id="ad-image" class="ad-image col-lg-4">
-        <img src="" alt="ad-image"
+        <img alt="ad-image"
              ng-src="{{adImage}}"/>
     </div>
     <div class="col-md-12 text-center">
-        <button class="enabled-button" ng-click="publish(newAdData)">Publish ad</button>
+        <button class="enabled-button"
+                ng-click="publish(newAdData)"
+                ng-disabled="newAdForm.title.$error.required ||
+                newAdForm.text.$error.required">Publish ad</button>
     </div>
 </form>

@@ -14,7 +14,9 @@ app.controller('MainController', function ($scope, $usersData, $location, $permi
         login: 'Login',
         register: 'Register',
         // user
-        publishNewAd: 'Publish New Ad'
+        publishNewAd: 'Publish New Ad',
+        myAds: 'My Ads',
+        editProfile: 'Edit Profile'
     };
 
     $scope.$on('$routeChangeStart', function(scope, next) {
@@ -47,6 +49,10 @@ app.controller('MainController', function ($scope, $usersData, $location, $permi
 
     $scope.$on('publishNewAdPageLoaded', function () {
         $scope.title = headerTitle.publishNewAd;
+    });
+
+    $scope.$on('userAdsPageLoaded', function () {
+        $scope.title = headerTitle.myAds;
     });
 
     $scope.setHeaderStyle = function () {

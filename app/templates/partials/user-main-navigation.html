@@ -2,8 +2,8 @@
     Navigation
 </h2>
 <ul ng-controller="UserMainNavigationController">
-    <li><a href="#/user/home">Home</a></li>
-    <li><a href="#/user/ads">My ads</a></li>
-    <li><a href="#/user/ads/publish">Publish new ad</a></li>
-    <li><a href="#/user/profile">Edit profile</a></li>
+    <li ng-class="getClass('/user/home')"><a href="#/user/home">Home</a></li>
+    <li ng-class="getClass('/user/ads')"><a href="#/user/ads">My ads</a></li>
+    <li ng-class="getClass('/user/ads/publish')"><a href="#/user/ads/publish">Publish new ad</a></li>
+    <li ng-class="getClass('/user/profile')"><a href="#/user/profile">Edit profile</a></li>
 </ul>
