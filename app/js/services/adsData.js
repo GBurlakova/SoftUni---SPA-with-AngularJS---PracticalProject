@@ -20,9 +20,16 @@ app.factory('$adsData', function ($requester, $usersData, BASE_URL) {
         return $requester.get(serviceUrl, authenticationHeader);
     };
 
+    var getUserAdById = function (adId) {
+        var serviceUrl = BASE_URL + '/user/ads/' + adId;
+        var authenticationHeader = $usersData.getAuthorizationHeader();
+        return $requester.get(serviceUrl, authenticationHeader);
+    };
+
     return {
         get: get,
         getById: getById,
-        getUsersAds: getUserAds
+        getUsersAds: getUserAds,
+        getUserAdById: getUserAdById
     }
 });

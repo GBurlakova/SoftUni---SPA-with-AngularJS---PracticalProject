@@ -2,9 +2,14 @@
     My Ads
 </h2>
 <ul>
-    <li ng-click="selectAdStatus('')"><a href="">All</a></li>
-    <li ng-click="selectAdStatus('Published')"><a href="">Published</a></li>
-    <li ng-click="selectAdStatus('WaitingApproval')"><a href="">Waiting Approval</a></li>
-    <li ng-click="selectAdStatus('Inactive')"><a href="">Inactive</a></li>
-    <li ng-click="selectAdStatus('Rejected')"><a href="">Rejected</a></li>
+    <li ng-click="selectAdStatus('')"
+        ng-class="getClass('All')"><a href="">All</a></li>
+    <li ng-click="selectAdStatus('Published')"
+        ng-class="getClass('Published')"><a href="">Published</a></li>
+    <li ng-click="selectAdStatus('WaitingApproval')"
+        ng-class="getClass('WaitingApproval')"><a href="">Waiting Approval</a></li>
+    <li ng-click="selectAdStatus('Inactive')"
+        ng-class="getClass('Inactive')"><a href="">Inactive</a></li>
+    <li ng-click="selectAdStatus('Rejected')"
+        ng-class="getClass('Rejected')"><a href="">Rejected</a></li>
 </ul>

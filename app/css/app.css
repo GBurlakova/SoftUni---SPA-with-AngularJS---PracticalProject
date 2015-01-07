@@ -111,6 +111,11 @@ html {
               box-shadow: none;
               -moz-box-shadow: none;
               -webkit-shadow: none; }
+            html body #wrapper main .ad .enabled-button a {
+              display: block;
+              width: 100%;
+              text-decoration: none;
+              color: inherit; }
           html body #wrapper main .ad .status {
             width: 50%;
             padding: 2%;

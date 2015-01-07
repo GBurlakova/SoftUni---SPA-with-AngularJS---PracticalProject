@@ -1,6 +1,6 @@
-<form action="" ng-controller="PublishNewAdController" name="newAdForm" class="publish-new-ad-form">
+<form action="" ng-controller="EditAdController" name="editAdForm" class="publish-new-ad-form">
     <div class="title">
-        Publish New Ad
+        Edit Ad
     </div>
     <div class="col-lg-8">
         <div class="col-md-12">
@@ -9,12 +9,12 @@
             <input type="text"
                    id="adTitle"
                    name="adTitle"
-                   ng-model="newAdData.title"
-                   class="col-md-9"
+                   ng-model="updatedAdData.title"
+                   class="col-md-9 col-sm-12 col-xs-12"
                    required/>
             <div class="error-info col-md-9 col-md-offset-3 no-padding"
-                 ng-show="newAdForm.title.$error.required &&
-                 newAdForm.title.$dirty">
+                 ng-show="editAdForm.title.$error.required &&
+                 editAdForm.title.$dirty">
                 Title is required
             </div>
         </div>
@@ -23,33 +23,33 @@
                    class="col-md-3">Text*</label>
             <textarea name="adText"
                       id="adText"
-                      ng-model="newAdData.text"
-                      class="col-md-9"
+                      ng-model="updatedAdData.text"
+                      class="col-md-9 col-sm-12 col-xs-12"
                       required></textarea>
             <div class="error-info col-md-9 col-md-offset-3 no-padding"
-                 ng-show="newAdForm.text.$error.required &&
-                 newAdForm.text.$dirty">
+                 ng-show="editAdForm.text.$error.required &&
+                 editAdForm.text.$dirty">
                 Text is required
             </div>
         </div>
         <div class="col-md-12">
             <label for="category"
-                   class="col-md-3">Category: </label>
+                   class="col-md-3 col-sm-12 col-xs-12">Category: </label>
             <select name="category"
                     id="category"
-                    ng-model="newAdData.categoryId"
-                    class="col-md-9">
-                <option value="{{null}}">Null</option>
+                    ng-model="updatedAdData.categoryId"
+                    class="col-md-9 col-sm-12 col-xs-12">
                 <option ng-repeat="category in categories" value="{{category.id}}">{{category.name}}</option>
             </select>
         </div>
         <div class="col-md-12">
             <label for="town"
-                   class="col-md-3">Town: </label>
+                   class="col-md-3 col-sm-12 col-xs-12">Town: </label>
             <select name="town"
                     id="town"
-                    ng-model="newAdData.townId"
-                    class="col-md-9">
+                    ng-model="updatedAdData.townId"
+                    class="col-md-9 col-sm-12 col-xs-12">
+                <option value="{{null}}">Null</option>
                 <option ng-repeat="town in towns" value="{{town.id}}">{{town.name}}</option>
             </select>
         </div>
@@ -59,19 +59,29 @@
             <input type="file"
                    id="imageUrl"
                    name="imageUrl"
-                   ng-model="newAdData.imageDataUrl"
+                   ng-model="updatedAdData.imageDataUrl"
                    class="col-md-9"
                    onchange="angular.element(this).scope().fileSelected(this)"/>
         </div>
     </div>
-    <div id="ad-image" class="ad-image col-lg-4">
+    <div id="ad-image" class="ad-image col-lg-4 text-center">
+        <img src="images/loading.gif"  ng-show="!updatedAdData.imageDataUrl" alt=""/>
         <img alt="ad-image"
-             ng-src="{{adImage}}"/>
+             ng-src="{{updatedAdData.imageDataUrl}}"
+             ng-show="updatedAdData.imageDataUrl"/>
+        <div class="text-center">
+            <button class="change-image-button">Change image</button>
+            <button class="delete-image-button">Delete image</button>
+        </div>
     </div>
     <div class="col-md-12 text-center">
         <button class="enabled-button"
-                ng-click="publish(newAdData)"
-                ng-disabled="newAdForm.title.$error.required ||
-                newAdForm.text.$error.required">Publish ad</button>
+                ng-click="editAd(updatedAdData)"
+                ng-disabled="editAdForm.title.$error.required ||
+                editAdForm.text.$error.required">Edit</button>
+        <button class="enabled-button"
+                ng-click="editAd(updatedAdData)"
+                ng-disabled="editAdForm.title.$error.required ||
+                editAdForm.text.$error.required">Cancel</button>
     </div>
 </form>

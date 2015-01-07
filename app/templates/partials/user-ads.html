@@ -14,7 +14,7 @@
                 <div class="col-lg-6">Category:</div>
                 <div class="bordered text-center col-lg-6">{{ad.categoryName || 'Unknown'}}</div>
                 <div class="col-lg-6">Town:</div>
-                <div class="bordered text-center col-lg-6">{{ad.townName}}</div>
+                <div class="bordered text-center col-lg-6">{{ad.townName || 'Unknown'}}</div>
             </div>
         </div>
         <div class="col-lg-4">
@@ -25,7 +25,8 @@
                         ng-click="deactivateAd(ad.id)"
                         class="enabled-button">Deactivate</button>
                 <button ng-show="ad.status === 'Inactive'"
-                        class="enabled-button">Edit</button>
+                        class="enabled-button">
+                    <a ng-href="#/user/ads/edit/{{ad.id}}">Edit</a></button>
                 <button ng-show="ad.status === 'Inactive'"
                         ng-click="publishAdAgain(ad.id)"
                         class="enabled-button">Publish again</button>

@@ -148,6 +148,12 @@ html{
               -moz-box-shadow: none;
               -webkit-shadow: none;
             }
+            a{
+              display: block;
+              width: 100%;
+              text-decoration: none;
+              color: inherit;
+            }
           }
           .status{
             width: 50%;

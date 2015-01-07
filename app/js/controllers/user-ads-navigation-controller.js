@@ -1,5 +1,6 @@
 app.controller('UserAdsNavigationController', function ($scope, $rootScope, $location) {
     $scope.showUserAdsNavigation = true;
+    var currentStatusSelected = 'All';
 
     $scope.$watch(function(){
         return $location.path();
@@ -11,7 +12,16 @@ app.controller('UserAdsNavigationController', function ($scope, $rootScope, $loc
         }
     });
 
-    $scope.selectAdStatus = function (status) {
-        $rootScope.$broadcast('adStatusSelected', status);
+    $scope.selectAdStatus = function (adStatus) {
+        $rootScope.$broadcast('adStatusSelected', adStatus);
+        currentStatusSelected = adStatus;
+    };
+
+    $scope.getClass = function (adStatus) {
+        if (adStatus === currentStatusSelected) {
+            return 'active';
+        } else {
+            return '';
+        }
     }
 });
