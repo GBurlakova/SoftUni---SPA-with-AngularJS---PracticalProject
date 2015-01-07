@@ -120,12 +120,41 @@ html{
             div{
               margin-bottom: 2%;
             }
-            .bordered{
-              border: 1px solid $blue;
-              background-color: rgb(210, 210, 210);
-              padding: 2%;
-              border-radius: 2px;
+          }
+          .bordered{
+            border: 1px solid $blue;
+            background-color: rgb(210, 210, 210);
+            padding: 2%;
+            border-radius: 2px;
+          }
+          .enabled-button{
+            display: block;
+            width: 50%;
+            margin: 2% auto 0 auto;
+            font-size: 1.5rem;
+            height: 25px;
+            border-radius: 3px;
+            box-shadow: 3px 3px 1px 0 $blue;
+            -moz-box-shadow:  3px 3px 1px 0 $blue;
+            -webkit-shadow:  3px 3px 1px 0 $blue;
+            border: 1px solid $blackFont;
+            &:active, &:focus{
+              outline: none;
             }
+            &:active{
+              position: relative;
+              top: 3px;
+              box-shadow: none;
+              -moz-box-shadow: none;
+              -webkit-shadow: none;
+            }
+          }
+          .status{
+            width: 50%;
+            padding: 2%;
+            border: 2px solid $lightGrey;
+            border-bottom: 1px solid $blue;
+            margin: 0 auto 2% auto;
           }
         } // add
         .form, .publish-new-ad-form {

@@ -1,25 +1,75 @@
-app.controller('UserAdsController', function ($scope, $rootScope, $adsData) {
+app.controller('UserAdsController', function ($scope, $rootScope, $adsData, $usersData, $notifications) {
+    var NO_RESULTS_MESSAGE = 'No results to display';
     var INITIAL_START_PAGE = 1;
     var PAGE_SIZE = 10;
-
-    userAdsPageLoaded();
 
     $scope.urlParams = {
         status: '',
         startPage: INITIAL_START_PAGE,
         pageSize: PAGE_SIZE};
 
-    $adsData.getUsersAds($scope.urlParams)
-        .then(
+    userAdsPageLoaded();
+    getUserAds();
+
+    // Scope functions
+    $scope.deactivateAd = function (adId) {
+        $usersData.deactivateAd(adId)
+            .then(function () {
+                $notifications.success('Ad deactivated successfully');
+                getUserAds();
+            }, function () {
+
+            });
+    };
+
+    $scope.publishAdAgain = function (adId) {
+        $usersData.publishAdAgain(adId)
+            .then(function () {
+                $notifications.success('Ad published again successfully');
+                getUserAds();
+            }, function () {
+
+            });
+    };
+
+    $scope.deleteAd = function (adId) {
+        $usersData.deleteAd(adId)
+            .then(function () {
+                $notifications.success('Ad deleted successfully');
+                getUserAds();
+            }, function () {
+
+            });
+    };
+
+    // Private functions
+    function getUserAds() {
+        $adsData.getUsersAds($scope.urlParams)
+            .then(
             function (data) {
                 $scope.ads = data.ads;
-                console.log(data);
+                checkForEmptyData(data.ads);
             },
             function (error) {
                 console.log(error);
             });
+    }
 
     function userAdsPageLoaded() {
         $rootScope.$broadcast('userAdsPageLoaded');
     }
+
+    function checkForEmptyData(data) {
+        if (data.length === 0) {
+            $scope.resultMessage = NO_RESULTS_MESSAGE;
+        } else {
+            $scope.resultMessage = '';
+        }
+    }
+
+    // Events
+    $scope.$on('adStatusSelected', function (event, status) {
+        $scope.urlParams.status = status;
+        getUserAds();
+    })
 });

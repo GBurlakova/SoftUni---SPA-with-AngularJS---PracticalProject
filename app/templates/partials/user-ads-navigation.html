@@ -2,9 +2,9 @@
     My Ads
 </h2>
 <ul>
-    <li><a href="">All</a></li>
-    <li><a href="">Published</a></li>
-    <li><a href="">Waiting Approval</a></li>
-    <li><a href="">Inactive</a></li>
-    <li><a href="">Rejected</a></li>
+    <li ng-click="selectAdStatus('')"><a href="">All</a></li>
+    <li ng-click="selectAdStatus('Published')"><a href="">Published</a></li>
+    <li ng-click="selectAdStatus('WaitingApproval')"><a href="">Waiting Approval</a></li>
+    <li ng-click="selectAdStatus('Inactive')"><a href="">Inactive</a></li>
+    <li ng-click="selectAdStatus('Rejected')"><a href="">Rejected</a></li>
 </ul>

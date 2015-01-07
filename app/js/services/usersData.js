@@ -42,6 +42,24 @@ app.factory('$usersData', function ($requester, BASE_URL) {
         return $requester.post(serviceUrl, authorizationHeader, newAdData);
     };
 
+    var deactivateAd = function (adId) {
+        var serviceUrl = BASE_URL + '/user/ads/deactivate/' + adId;
+        var authorizationHeader = getAuthorizationHeader();
+        return $requester.put(serviceUrl, authorizationHeader, null);
+    };
+
+    var publishAdAgain = function (adId) {
+        var serviceUrl = BASE_URL + '/user/ads/publishagain/' + adId;
+        var authorizationHeader = getAuthorizationHeader();
+        return $requester.put(serviceUrl, authorizationHeader, null);
+    };
+
+    var deleteAd = function (adId) {
+        var serviceUrl = BASE_URL + '/user/ads/' + adId;
+        var authorizationHeader = getAuthorizationHeader();
+        return $requester.delete(serviceUrl, authorizationHeader, null);
+    };
+
     return{
         register: register,
         login: login,
@@ -49,6 +67,9 @@ app.factory('$usersData', function ($requester, BASE_URL) {
         clearUserData: clearUserData,
         getUserData: getUserData,
         getAuthorizationHeader: getAuthorizationHeader,
-        publish: publishAd
+        publish: publishAd,
+        deactivateAd: deactivateAd,
+        publishAdAgain: publishAdAgain,
+        deleteAd: deleteAd
     }
 });

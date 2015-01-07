@@ -1,4 +1,4 @@
-app.controller('UserAdsNavigationController', function ($scope, $location) {
+app.controller('UserAdsNavigationController', function ($scope, $rootScope, $location) {
     $scope.showUserAdsNavigation = true;
 
     $scope.$watch(function(){
@@ -9,5 +9,9 @@ app.controller('UserAdsNavigationController', function ($scope, $location) {
         } else {
             $scope.showUserAdsNavigation = false;
         }
-    })
+    });
+
+    $scope.selectAdStatus = function (status) {
+        $rootScope.$broadcast('adStatusSelected', status);
+    }
 });

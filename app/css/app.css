@@ -87,11 +87,36 @@ html {
             max-height: 100%; }
           html body #wrapper main .ad .ad-details div {
             margin-bottom: 2%; }
-          html body #wrapper main .ad .ad-details .bordered {
+          html body #wrapper main .ad .bordered {
             border: 1px solid #386091;
             background-color: #d2d2d2;
             padding: 2%;
             border-radius: 2px; }
+          html body #wrapper main .ad .enabled-button {
+            display: block;
+            width: 50%;
+            margin: 2% auto 0 auto;
+            font-size: 1.5rem;
+            height: 25px;
+            border-radius: 3px;
+            box-shadow: 3px 3px 1px 0 #386091;
+            -moz-box-shadow: 3px 3px 1px 0 #386091;
+            -webkit-shadow: 3px 3px 1px 0 #386091;
+            border: 1px solid #2f383d; }
+            html body #wrapper main .ad .enabled-button:active, html body #wrapper main .ad .enabled-button:focus {
+              outline: none; }
+            html body #wrapper main .ad .enabled-button:active {
+              position: relative;
+              top: 3px;
+              box-shadow: none;
+              -moz-box-shadow: none;
+              -webkit-shadow: none; }
+          html body #wrapper main .ad .status {
+            width: 50%;
+            padding: 2%;
+            border: 2px solid #e3e3e3;
+            border-bottom: 1px solid #386091;
+            margin: 0 auto 2% auto; }
         html body #wrapper main .form, html body #wrapper main .publish-new-ad-form {
           border: 1px solid #386091;
           background-color: #e3e3e3;

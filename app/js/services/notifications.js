@@ -10,7 +10,7 @@ app.factory('$notifications', function () {
         );
     };
 
-    var showSuccessMessage = function (MSG) {
+    var showSuccessMessage = function (msg) {
         noty({
                 text: msg,
                 type: 'success',

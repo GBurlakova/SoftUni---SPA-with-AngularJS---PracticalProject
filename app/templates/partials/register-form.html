@@ -78,7 +78,9 @@
              class="error-info">
             Email is required!
         </div>
-        <div ng-show="emailIsTaken && !registerForm.email.$error.required"
+        <div ng-show="emailIsTaken &&
+            !registerForm.email.$error.required &&
+            registerForm.email.$valid"
              class="error-info">
             Email is already taken!
         </div>

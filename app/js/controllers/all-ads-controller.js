@@ -3,8 +3,6 @@ app.controller('AllAdsController', function AllAdsController($scope, $rootScope,
     var INITIAL_START_PAGE = 1;
     var PAGE_SIZE = 10;
 
-    $scope.adsLoaded = false;
-
     $scope.requestParams = {
         townId: '',
         categoryId: '',
@@ -18,7 +16,6 @@ app.controller('AllAdsController', function AllAdsController($scope, $rootScope,
     $scope.loadAds = function (adsRequestParams) {
         $adsData.get(adsRequestParams).then(
             function (data) {
-                $scope.adsLoaded = true;
                 $scope.ads = data.ads;
                 $scope.pagesArray = new Array(data.numPages);
                 $scope.showPager = data.numPages > 1;
