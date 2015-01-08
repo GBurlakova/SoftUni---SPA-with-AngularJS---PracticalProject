@@ -1,4 +1,4 @@
-app.factory('$usersData', function ($requester, BASE_URL) {
+app.factory('usersData', function ($requester, BASE_URL) {
     var register = function (registerData) {
         var serviceUrl = BASE_URL + '/user/register';
         return $requester.post(serviceUrl, null, registerData);
@@ -60,6 +60,18 @@ app.factory('$usersData', function ($requester, BASE_URL) {
         return $requester.delete(serviceUrl, authorizationHeader, null);
     };
 
+    var editProfile = function (updatedUserProfileData) {
+        var serviceUrl = BASE_URL + 'user/profile';
+        var authorizationHeader = getAuthorizationHeader();
+        return $requester.put(serviceUrl, authorizationHeader, updatedUserProfileData);
+    };
+
+    var changePassword = function (updatedUserPasswordData) {
+        var serviceUrl = BASE_URL + 'user/changepassword';
+        var authorizationHeader = getAuthorizationHeader();
+        return $requester.put(serviceUrl, authorizationHeader, updatedUserPasswordData);
+    };
+
     return{
         register: register,
         login: login,
@@ -70,6 +82,8 @@ app.factory('$usersData', function ($requester, BASE_URL) {
         publish: publishAd,
         deactivateAd: deactivateAd,
         publishAdAgain: publishAdAgain,
-        deleteAd: deleteAd
+        deleteAd: deleteAd,
+        editProfile: editProfile,
+        changePassword: changePassword
     }
 });

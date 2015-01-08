@@ -1,4 +1,4 @@
-app.controller('PublishNewAdController', function ($scope, $rootScope, $categoriesData, $townsData, $usersData, $notifications) {
+app.controller('PublishNewAdController', function ($scope, $rootScope, $categoriesData, $townsData, usersData, $notifications) {
     var DEFAULT_AD_IMAGE = 'http://www.agetruck.com/truck_img/default.gif';
 
     $scope.adImage = DEFAULT_AD_IMAGE;
@@ -46,7 +46,7 @@ app.controller('PublishNewAdController', function ($scope, $rootScope, $categori
     };
 
     $scope.publish = function (newAdData) {
-        $usersData.publish(newAdData).then(function (data) {
+        usersData.publish(newAdData).then(function (data) {
             console.log(data);
         }, function (error) {
             console.log(error);

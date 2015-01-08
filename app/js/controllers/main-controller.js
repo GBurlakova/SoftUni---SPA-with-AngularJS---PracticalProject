@@ -1,4 +1,4 @@
-app.controller('MainController', function ($scope, $usersData, $location, $permissions) {
+app.controller('MainController', function ($scope, usersData, $location, $permissions) {
     var ADMIN_HEADER_CLASS = 'admin-header';
     var USER_HEADER_CLASS = 'user-header';
     var userIsLogged;
@@ -22,9 +22,9 @@ app.controller('MainController', function ($scope, $usersData, $location, $permi
 
     $scope.$on('$routeChangeStart', function(scope, next) {
         authorizeUserAccess(next);
-        userIsLogged = $usersData.getUserData()['username'];
+        userIsLogged = usersData.getUserData()['username'];
         if (userIsLogged) {
-            var username = $usersData.getUserData()['username'];
+            var username = usersData.getUserData()['username'];
             $scope.username = username;
             $scope.template = {
                 url: headerTemplates.headerUser
@@ -61,7 +61,7 @@ app.controller('MainController', function ($scope, $usersData, $location, $permi
     });
 
     $scope.setHeaderStyle = function () {
-        var userIsAdmin = $usersData.getUserData()['permission'] === 'admin';
+        var userIsAdmin = usersData.getUserData()['permission'] === 'admin';
         var headerStyle = '';
         if (userIsAdmin) {
         	headerStyle = ADMIN_HEADER_CLASS;
@@ -74,17 +74,17 @@ app.controller('MainController', function ($scope, $usersData, $location, $permi
 
     $scope.logout = function () {
         $location.path('/');
-        $usersData.clearUserData();
+        usersData.clearUserData();
     };
 
     function authorizeUserAccess(next) {
         var permission = next.$$route.permission;
         var unknownPermission = !$permissions.hasPermission(permission);
-        var forbiddenAccess = (permission !== $usersData.getUserData()['permission']);
+        var forbiddenAccess = (permission !== usersData.getUserData()['permission']);
         var isUnauthorizedAccess =  unknownPermission || forbiddenAccess;
         if(isUnauthorizedAccess){
             $location.path('/');
-            $usersData.clearUserData();
+            usersData.clearUserData();
         }
     }
 });

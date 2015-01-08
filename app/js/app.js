@@ -42,6 +42,11 @@ app.config(function ($routeProvider) {
         controller: '',
         permission: 'user'
     });
+    $routeProvider.when('/user/profile', {
+        templateUrl: 'templates/user-screens/edit-user-profile.html',
+        controller: '',
+        permission: 'user'
+    });
     // admin screens
     $routeProvider.when('/admin/home', {
         templateUrl: 'templates/admin-screens/admin-home.html',

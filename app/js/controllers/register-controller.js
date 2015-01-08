@@ -1,4 +1,4 @@
-app.controller('RegisterController', function ($scope, $rootScope, $townsData, $usersData, $notifications) {
+app.controller('RegisterController', function ($scope, $rootScope, $townsData, usersData, $notifications) {
     var USER_REGISTERED_SUCCESSFULLY = 'Successfully created user profile';
     var EMAIL_IS_TAKEN_PATTERN = '^Email (.+) is already taken.$';
     var USERNAME_IS_TAKEN_PATTERN = '^Name (.+) is already taken.$';
@@ -30,7 +30,7 @@ app.controller('RegisterController', function ($scope, $rootScope, $townsData, $
         });
 
     $scope.registerUser = function (registerData) {
-        $usersData.register(registerData)
+        usersData.register(registerData)
             .then(function (data, status, headers, config) {
                 showSuccessMessage(USER_REGISTERED_SUCCESSFULLY);
                 console.log(data);
@@ -42,7 +42,7 @@ app.controller('RegisterController', function ($scope, $rootScope, $townsData, $
                 }else {
                 	isAdmin = false;
                 }
-                $usersData.saveUserData(username,accessToken, isAdmin);
+                usersData.saveUserData(username,accessToken, isAdmin);
                 setTimeout(function () {
                     window.location.href = "#/user/home";
                     logUser();

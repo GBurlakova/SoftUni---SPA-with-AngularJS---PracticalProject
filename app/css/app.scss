@@ -184,7 +184,7 @@ html{
             border-bottom: 1px solid $blue;
             margin-bottom: 2%;
           }
-          .enabled-button{
+          .enabled-button, .change-button, .delete-button{
             font-size: 2rem;
             height: 35px;
             border-radius: 3px;
@@ -252,6 +252,13 @@ html{
             width: 150px;
             height: 50px;
             padding: 1%;
+          }
+          .change-button, .delete-button{
+            height: 50px;
+            padding: 1%;
+            font-size: 1.4rem;
+            margin: 4% 0 10% 0;
+            background-color: rgb(180, 180, 180);
           }
           .ad-image{
             img {

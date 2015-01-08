@@ -1,8 +1,10 @@
-app.controller('UserAdsController', function ($scope, $rootScope, $adsData, $usersData, $notifications) {
+app.controller('UserAdsController', function ($scope, $rootScope, $adsData, usersData, $notifications) {
+    var DEFAULT_AD_IMAGE = 'http://www.agetruck.com/truck_img/default.gif';
     var NO_RESULTS_MESSAGE = 'No results to display';
     var INITIAL_START_PAGE = 1;
     var PAGE_SIZE = 10;
 
+    $scope.defaultImage = DEFAULT_AD_IMAGE;
     $scope.urlParams = {
         status: '',
         startPage: INITIAL_START_PAGE,
@@ -13,7 +15,7 @@ app.controller('UserAdsController', function ($scope, $rootScope, $adsData, $use
 
     // Scope functions
     $scope.deactivateAd = function (adId) {
-        $usersData.deactivateAd(adId)
+        usersData.deactivateAd(adId)
             .then(function () {
                 $notifications.success('Ad deactivated successfully');
                 getUserAds();
@@ -23,7 +25,7 @@ app.controller('UserAdsController', function ($scope, $rootScope, $adsData, $use
     };
 
     $scope.publishAdAgain = function (adId) {
-        $usersData.publishAdAgain(adId)
+        usersData.publishAdAgain(adId)
             .then(function () {
                 $notifications.success('Ad published again successfully');
                 getUserAds();
@@ -33,7 +35,7 @@ app.controller('UserAdsController', function ($scope, $rootScope, $adsData, $use
     };
 
     $scope.deleteAd = function (adId) {
-        $usersData.deleteAd(adId)
+        usersData.deleteAd(adId)
             .then(function () {
                 $notifications.success('Ad deleted successfully');
                 getUserAds();
@@ -49,6 +51,7 @@ app.controller('UserAdsController', function ($scope, $rootScope, $adsData, $use
             function (data) {
                 $scope.ads = data.ads;
                 checkForEmptyData(data.ads);
+                console.log(data.ads);
             },
             function (error) {
                 console.log(error);

@@ -1,4 +1,4 @@
-app.controller('LoginController', function ($scope, $rootScope,  $usersData, $notifications) {
+app.controller('LoginController', function ($scope, $rootScope,  usersData, $notifications) {
     var INVALID_LOGIN_DATA_MESSAGE = 'Username or password is incorrect. Please try again!';
     var INVALID_LOGIN_DATA_PATTERN = '^The user name or password is incorrect.$';
     var invalidLoginDataRegexp = new RegExp(INVALID_LOGIN_DATA_PATTERN);
@@ -11,7 +11,7 @@ app.controller('LoginController', function ($scope, $rootScope,  $usersData, $no
     loginPageLoaded();
 
     $scope.login = function (loginData) {
-        $usersData.login(loginData)
+        usersData.login(loginData)
             .then(
                 function (data) {
                     var username = data['username'];
@@ -24,7 +24,7 @@ app.controller('LoginController', function ($scope, $rootScope,  $usersData, $no
                         permission = 'user';
                         window.location.href = "#/user/home";
                     }
-                    $usersData.saveUserData(username, accessToken, permission);
+                    usersData.saveUserData(username, accessToken, permission);
                 },
                 function (error) {
                     console.log(error);
