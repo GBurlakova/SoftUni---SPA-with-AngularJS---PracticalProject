@@ -1,12 +1,12 @@
-app.factory('usersData', function ($requester, BASE_URL) {
+app.factory('usersData', function (requester, BASE_URL) {
     var register = function (registerData) {
         var serviceUrl = BASE_URL + '/user/register';
-        return $requester.post(serviceUrl, null, registerData);
+        return requester.post(serviceUrl, null, registerData);
     };
 
     var login = function (loginData) {
         var serviceUrl = BASE_URL + '/user/login';
-        return $requester.post(serviceUrl, null, loginData);
+        return requester.post(serviceUrl, null, loginData);
     };
 
     var saveUserData = function (username, accessToken, permission) {
@@ -39,43 +39,43 @@ app.factory('usersData', function ($requester, BASE_URL) {
     var publishAd = function (newAdData) {
         var serviceUrl = BASE_URL + '/user/ads';
         var authorizationHeader = getAuthorizationHeader();
-        return $requester.post(serviceUrl, authorizationHeader, newAdData);
+        return requester.post(serviceUrl, authorizationHeader, newAdData);
     };
 
     var deactivateAd = function (adId) {
         var serviceUrl = BASE_URL + '/user/ads/deactivate/' + adId;
         var authorizationHeader = getAuthorizationHeader();
-        return $requester.put(serviceUrl, authorizationHeader, null);
+        return requester.put(serviceUrl, authorizationHeader, null);
     };
 
     var publishAdAgain = function (adId) {
         var serviceUrl = BASE_URL + '/user/ads/publishagain/' + adId;
         var authorizationHeader = getAuthorizationHeader();
-        return $requester.put(serviceUrl, authorizationHeader, null);
+        return requester.put(serviceUrl, authorizationHeader, null);
     };
 
     var deleteAd = function (adId) {
         var serviceUrl = BASE_URL + '/user/ads/' + adId;
         var authorizationHeader = getAuthorizationHeader();
-        return $requester.delete(serviceUrl, authorizationHeader, null);
+        return requester.delete(serviceUrl, authorizationHeader, null);
     };
 
     var getProfile = function () {
         var serviceUrl = BASE_URL + '/user/profile';
         var authorizationHeader = getAuthorizationHeader();
-        return $requester.get(serviceUrl, authorizationHeader, null);
+        return requester.get(serviceUrl, authorizationHeader, null);
     };
 
     var editProfile = function (updatedUserProfileData) {
         var serviceUrl = BASE_URL + '/user/profile';
         var authorizationHeader = getAuthorizationHeader();
-        return $requester.put(serviceUrl, authorizationHeader, updatedUserProfileData);
+        return requester.put(serviceUrl, authorizationHeader, updatedUserProfileData);
     };
 
     var changePassword = function (updatedUserPasswordData) {
         var serviceUrl = BASE_URL + '/user/changepassword';
         var authorizationHeader = getAuthorizationHeader();
-        return $requester.put(serviceUrl, authorizationHeader, updatedUserPasswordData);
+        return requester.put(serviceUrl, authorizationHeader, updatedUserPasswordData);
     };
 
     return{

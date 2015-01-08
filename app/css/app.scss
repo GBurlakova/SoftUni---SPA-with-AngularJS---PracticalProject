@@ -6,79 +6,94 @@ $darkGrey: rgba(139, 149, 150, 0.5);
 // Sizes
 $footerSize: 45px;
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   word-wrap: break-word;
 }
 
-html{
+html {
   font-size: 62.5%;
   width: 100%;
   height: 100%;
-  body{
+  body {
     width: 100%;
     height: 100%;
     background-color: $lightGrey;
     color: $blackFont;
-    #wrapper{
+    #wrapper {
       min-height:100%;
       margin-bottom: -$footerSize;
-      &:after{
+      &:after {
         content: "";
         display: block;
       }
-      header{
+      header {
         padding: 1%;
         margin-bottom: 4%;
-        &:after{
+        &:after {
           content: ".";
           visibility: hidden;
           display: block;
           height: 0;
           clear: both;
         }
-        .title{
+        .title {
           text-align: center;
           font-size: 3rem;
         }
-      }
-      .admin-header, .user-header{
-        .user-name, .logout{
+      } // common header
+      .admin-header, .user-header {
+        .user-name, .logout {
           font-size: 2rem;
         }
-        .logout{
+        .logout {
           a{
             text-decoration: none;
             color: $blackFont;
-            &:hover{
+            &:hover {
               color: $darkGrey;
             }
           }
         }
-      }
-      .user-header{
+      } // user and admin header
+      .user-header {
         color: $blackFont;
         background-color: rgb(255, 255, 255);
-      }
-      .admin-header{
+      } // user header
+      .admin-header {
         color: $lightGrey;
         background-color: $blue;
-      }// header
-      main{
+      }// admin header
+      main {
         background-color: rgb(255, 255, 255);
         padding: 2%;
         margin-bottom: 2%;
-        .result-message{
+        // common main classes
+        .result-message {
           font-size: 2.5rem;
           text-align: center;
         }
-        .loading-image{
+        .loading-image {
           display: block;
           margin: 0 auto;
         }
-        .ad{
+        .error-info {
+          color: red;
+          font-weight: bold;
+          font-size: 1.5rem;
+        }
+        .no-padding {
+          padding-left: 0;
+          padding-right: 0;
+        }
+        .main-button{
+          &:disabled{
+            background-color: rgb(187, 125, 122);
+          }
+        }
+        .ad {
           border: 1px solid $blue;
           margin-bottom: 2%;
           background-color: $lightGrey;
@@ -87,47 +102,45 @@ html{
           box-shadow: 1px 1px 1px 0 rgb(33, 33, 33);
           -moz-box-shadow:  1px 1px 1px 0 rgb(67,82,100);
           -webkit-shadow:  1px 1px 1px 0 rgb(67,82,100);
-          &:after{
+          &:after {
             content: ".";
             visibility: hidden;
             display: block;
             height: 0;
             clear: both;
           }
-          .ad-title{
+          .ad-title {
             margin-bottom: 4%;
             border-bottom: 1px solid $blue;
             font-size: 1.7rem;
             font-weight: bold;
-            &:after{
+            &:after {
               content: ".";
               visibility: hidden;
               display: block;
               height: 0;
               clear: both;
             }
-            div{
+            div {
               text-align: center;
             }
-          }
-          .ad-main-content{
-          }
-          .ad-image{
+          } // ad title
+          .ad-image {
             max-width: 100%;
             max-height: 100%;
           }
-          .ad-details{
-            div{
+          .ad-details {
+            div {
               margin-bottom: 2%;
             }
           }
-          .bordered{
+          .bordered {
             border: 1px solid $blue;
             background-color: rgb(210, 210, 210);
             padding: 2%;
             border-radius: 2px;
           }
-          .enabled-button{
+          .main-button {
             display: block;
             width: 50%;
             margin: 2% auto 0 auto;
@@ -138,10 +151,10 @@ html{
             -moz-box-shadow:  3px 3px 1px 0 $blue;
             -webkit-shadow:  3px 3px 1px 0 $blue;
             border: 1px solid $blackFont;
-            &:active, &:focus{
+            &:active, &:focus {
               outline: none;
             }
-            &:active{
+            &:active {
               position: relative;
               top: 3px;
               box-shadow: none;
@@ -154,8 +167,8 @@ html{
               text-decoration: none;
               color: inherit;
             }
-          }
-          .status{
+          } // main button
+          .status {
             width: 50%;
             padding: 2%;
             border: 2px solid $lightGrey;
@@ -163,7 +176,7 @@ html{
             margin: 0 auto 2% auto;
           }
         } // add
-        .form, .publish-new-ad-form{
+        .form, .publish-new-ad-form {
           border: 1px solid $blue;
           background-color: $lightGrey;
           border-radius: 2px;
@@ -184,7 +197,7 @@ html{
             border-bottom: 1px solid $blue;
             margin-bottom: 2%;
           }
-          .enabled-button, .change-button, .delete-button{
+          .main-button, .change-button, .delete-button {
             font-size: 2rem;
             height: 35px;
             border-radius: 3px;
@@ -192,7 +205,7 @@ html{
             -moz-box-shadow:  3px 3px 1px 0 $blue;
             -webkit-shadow:  3px 3px 1px 0 $blue;
             border: 1px solid $blackFont;
-            &:active, &:focus{
+            &:active, &:focus {
               outline: none;
             }
             &:active{
@@ -202,28 +215,19 @@ html{
               -moz-box-shadow: none;
               -webkit-shadow: none;
             }
-          }
-          .error-info{
-            color: red;
-            font-weight: bold;
-            font-size: 1.5rem;
-          }
-          .no-padding{
-            padding-left: 0;
-            padding-right: 0;
-          }
-          input, select{
+          } // main button - .form, .publish-new-ad-form
+          input, select {
             height: 35px;
           }
         }
-        .form{
+        .form {
           .left-half, .right-half{
             margin-bottom: 2%;
             label{
               margin-top: 2%;
             }
           }
-          .login{
+          .login {
             text-align: center;
             a{
               color: $blue;
@@ -248,39 +252,39 @@ html{
           }
         } // form
         .publish-new-ad-form{
-          .enabled-button{
+          .main-button{
             width: 150px;
             height: 50px;
             padding: 1%;
           }
-          .change-button, .delete-button{
+          .change-button, .delete-button {
             height: 50px;
             padding: 1%;
             font-size: 1.4rem;
             margin: 4% 0 10% 0;
             background-color: rgb(180, 180, 180);
           }
-          .ad-image{
+          .ad-image {
             img {
               max-width: 100%;
               max-height: 100%;
             }
           }
-          .error-info{
+          .error-info {
             margin-bottom: 2%;
           }
-          input, select, textarea{
+          input, select, textarea {
             margin-bottom: 2%;
           }
         }
-        .edit-user-profile-form{
-          .enabled-button{
+        .edit-user-profile-form {
+          .main-button {
             margin-top: 4%;
             font-size: 1.6rem;
           }
         }
-        .ad-to-be-deleted{
-          .enabled-button{
+        .ad-to-be-deleted {
+          .main-button {
             width: 45%;
             height: 40px;
             font-size: 1.8rem;
@@ -288,34 +292,34 @@ html{
           }
         }
       } // main
-      aside{
-        .sidebar-title, p{
+      aside {
+        .sidebar-title, p {
           border-bottom: 1px solid rgb(33, 33, 33);
           margin: 0 0 2% 0;
           text-align: center;
           border-left: 3px solid $blue
         }
-        .sidebar-title{
+        .sidebar-title {
           font-size: 2.5rem;
         }
-        p{
+        p {
           font-size: 1.7rem;
         }
-        ul{
+        ul {
           background-color: $darkGrey;
           border-left: 3px solid $blue;
           border-radius: 2px;
           padding: 4%;
-          li{
+          li {
             border-radius: 2px;
             padding: 2%;
             list-style-type: none;
             text-indent: 2%;
             font-size: 1.5rem;
-            &:hover{
+            &:hover {
               background-color: $lightGrey;
             }
-            a{
+            a {
               display: block;
               width: 100%;
               height: 100%;
@@ -324,19 +328,19 @@ html{
               color: $blackFont;
             }
           }
-          .active{
+          .active {
             background-color: $lightGrey;
           }
         }
-      }
-      .bold{
+      } // aside
+      .bold {
         font-weight: bold;
       }
     } // wrapper
     footer, #wrapper:after {
       height: $footerSize;
     }
-    footer{
+    footer {
       width:100%;
       position:fixed;
       bottom:0;

@@ -39,6 +39,7 @@
                     id="category"
                     ng-model="editedAdData.categoryId"
                     class="col-md-9 col-sm-12 col-xs-12">
+                <option value="null">Not specified</option>
                 <option ng-repeat="category in categories" value="{{category.id}}">{{category.name}}</option>
             </select>
         </div>
@@ -49,7 +50,7 @@
                     id="town"
                     ng-model="editedAdData.townId"
                     class="col-md-9 col-sm-12 col-xs-12">
-                <option value="{{null}}">Null</option>
+                <option value="null">Not specified</option>
                 <option ng-repeat="town in towns" value="{{town.id}}">{{town.name}}</option>
             </select>
         </div>
@@ -67,7 +68,7 @@
     </div>
     <div class="ad-image col-lg-4 text-center">
         <div id="ad-image">
-            <img src="images/loading.gif"  ng-show="adNotLoaded" alt=""/>
+            <img src="images/loading.gif" ng-show="adNotLoaded" alt=""/>
             <img alt="ad-image"
                  ng-src="{{editedAdData.imageDataUrl || defaultImage}}"
                  ng-show="!adNotLoaded"/>
@@ -80,11 +81,11 @@
         </div>
     </div>
     <div class="col-md-12 text-center">
-        <button class="enabled-button"
+        <button class="main-button"
                 ng-click="editAd(editedAdData)"
                 ng-disabled="editAdForm.title.$error.required ||
                 editAdForm.text.$error.required">Edit</button>
-        <button class="enabled-button"
+        <button class="main-button"
                 ng-click="cancel()">Cancel</button>
     </div>
 </form>

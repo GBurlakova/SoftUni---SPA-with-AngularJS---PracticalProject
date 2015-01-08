@@ -1,4 +1,4 @@
-app.controller('MainController', function ($scope, usersData, $location, $permissions) {
+app.controller('MainController', function ($scope, usersData, $location, permissions) {
     var ADMIN_HEADER_CLASS = 'admin-header';
     var USER_HEADER_CLASS = 'user-header';
     var userIsLogged;
@@ -21,6 +21,9 @@ app.controller('MainController', function ($scope, usersData, $location, $permis
         editUserProfile: 'Edit Profile'
     };
 
+    $scope.notSpecifiedTextData = 'Not specified';
+
+    // Events
     $scope.$on('$routeChangeStart', function(scope, next) {
         authorizeUserAccess(next);
         userIsLogged = usersData.getUserData()['username'];
@@ -69,6 +72,7 @@ app.controller('MainController', function ($scope, usersData, $location, $permis
         $scope.title = headerTitle.editUserProfile;
     });
 
+    // Scope functions
     $scope.setHeaderStyle = function () {
         var userIsAdmin = usersData.getUserData()['permission'] === 'admin';
         var headerStyle = '';
@@ -86,9 +90,10 @@ app.controller('MainController', function ($scope, usersData, $location, $permis
         usersData.clearUserData();
     };
 
+    // Private functions
     function authorizeUserAccess(next) {
         var permission = next.$$route.permission;
-        var unknownPermission = !$permissions.hasPermission(permission);
+        var unknownPermission = !permissions.hasPermission(permission);
         var forbiddenAccess = (permission !== usersData.getUserData()['permission']);
         var isUnauthorizedAccess =  unknownPermission || forbiddenAccess;
         if(isUnauthorizedAccess){

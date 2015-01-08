@@ -1,4 +1,4 @@
-app.factory('$requester', function ($q, $http) {
+app.factory('requester', function ($q, $http) {
     var makeRequest = function (method, url, headers, data) {
         var deferred = $q.defer();
 

@@ -1,15 +1,15 @@
-app.factory('$adsData', function ($requester, usersData, BASE_URL) {
+app.factory('adsData', function (requester, usersData, BASE_URL) {
     var get = function (urlParams){
         var serviceUrl = BASE_URL + '/ads?townid=' + urlParams.townId +
             '&categoryid=' + urlParams.categoryId +
             '&startPage=' + urlParams.startPage +
             '&pageSize=' + urlParams.pageSize;
-        return $requester.get(serviceUrl, null);
+        return requester.get(serviceUrl, null);
     };
 
     var getById = function (adId) {
         var serviceUrl = BASE_URL + '/ads/' + adId;
-        return $requester.get(serviceUrl, null);
+        return requester.get(serviceUrl, null);
     };
 
     var getUserAds = function (urlParams) {
@@ -17,19 +17,19 @@ app.factory('$adsData', function ($requester, usersData, BASE_URL) {
             '&startPage=' + urlParams.startPage +
             '&pageSize=' + urlParams.pageSize;
         var authenticationHeader = usersData.getAuthorizationHeader();
-        return $requester.get(serviceUrl, authenticationHeader);
+        return requester.get(serviceUrl, authenticationHeader);
     };
 
     var getUserAdById = function (adId) {
         var serviceUrl = BASE_URL + '/user/ads/' + adId;
         var authenticationHeader = usersData.getAuthorizationHeader();
-        return $requester.get(serviceUrl, authenticationHeader);
+        return requester.get(serviceUrl, authenticationHeader);
     };
 
     var editUserAd = function (adId, editedAdData) {
         var serviceUrl = BASE_URL + '/user/ads/' + adId;
         var authenticationHeader = usersData.getAuthorizationHeader();
-        return $requester.put(serviceUrl, authenticationHeader, editedAdData);
+        return requester.put(serviceUrl, authenticationHeader, editedAdData);
     };
 
     return {

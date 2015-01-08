@@ -1,8 +1,8 @@
-app.controller('CategoriesController', function CategoriesController($scope, $rootScope, $categoriesData) {
+app.controller('CategoriesController', function CategoriesController($scope, $rootScope, categoriesData) {
     var ACTIVE_CATEGORY_CLASS = 'active';
     var currentCategorySelected = 'all';
 
-    $categoriesData.getAll().then(
+    categoriesData.getAll().then(
         function (data, status, headers, config) {
             $scope.categories = data;
         },
@@ -10,6 +10,7 @@ app.controller('CategoriesController', function CategoriesController($scope, $ro
             console.log(error, status);
         });
 
+    // Scope functions
     $scope.categoryClicked = function (categoryClicked) {
         currentCategorySelected = categoryClicked;
         $rootScope.$broadcast('categoryFilterSelected', categoryClicked);

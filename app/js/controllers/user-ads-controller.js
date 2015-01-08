@@ -1,4 +1,4 @@
-app.controller('UserAdsController', function ($scope, $rootScope, $adsData, usersData, $notifications) {
+app.controller('UserAdsController', function ($scope, $rootScope, adsData, usersData, notifications) {
     var DEFAULT_AD_IMAGE = 'http://www.agetruck.com/truck_img/default.gif';
     var NO_RESULTS_MESSAGE = 'No results to display';
     var INITIAL_START_PAGE = 1;
@@ -13,11 +13,17 @@ app.controller('UserAdsController', function ($scope, $rootScope, $adsData, user
     userAdsPageLoaded();
     getUserAds();
 
+    // Events
+    $scope.$on('adStatusSelected', function (event, status) {
+        $scope.urlParams.status = status;
+        getUserAds();
+    });
+
     // Scope functions
     $scope.deactivateAd = function (adId) {
         usersData.deactivateAd(adId)
             .then(function () {
-                $notifications.success('Ad deactivated successfully');
+                notifications.success('Ad deactivated successfully');
                 getUserAds();
             }, function () {
 
@@ -27,7 +33,7 @@ app.controller('UserAdsController', function ($scope, $rootScope, $adsData, user
     $scope.publishAdAgain = function (adId) {
         usersData.publishAdAgain(adId)
             .then(function () {
-                $notifications.success('Ad published again successfully');
+                notifications.success('Ad published again successfully');
                 getUserAds();
             }, function () {
 
@@ -36,7 +42,7 @@ app.controller('UserAdsController', function ($scope, $rootScope, $adsData, user
 
     // Private functions
     function getUserAds() {
-        $adsData.getUsersAds($scope.urlParams)
+        adsData.getUsersAds($scope.urlParams)
             .then(
             function (data) {
                 $scope.ads = data.ads;
@@ -59,10 +65,4 @@ app.controller('UserAdsController', function ($scope, $rootScope, $adsData, user
             $scope.resultMessage = '';
         }
     }
-
-    // Events
-    $scope.$on('adStatusSelected', function (event, status) {
-        $scope.urlParams.status = status;
-        getUserAds();
-    })
 });

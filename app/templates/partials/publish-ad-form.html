@@ -4,11 +4,11 @@
     </div>
     <div class="col-lg-8">
         <div class="col-md-12">
-            <label for="adTitle"
+            <label for="title"
                    class="col-md-3">Title*</label>
             <input type="text"
-                   id="adTitle"
-                   name="adTitle"
+                   id="title"
+                   name="title"
                    ng-model="newAdData.title"
                    class="col-md-9"
                    required/>
@@ -19,10 +19,10 @@
             </div>
         </div>
         <div class="col-md-12">
-            <label for="adText"
+            <label for="text"
                    class="col-md-3">Text*</label>
-            <textarea name="adText"
-                      id="adText"
+            <textarea name="text"
+                      id="text"
                       ng-model="newAdData.text"
                       class="col-md-9"
                       required></textarea>
@@ -39,7 +39,7 @@
                     id="category"
                     ng-model="newAdData.categoryId"
                     class="col-md-9">
-                <option value="{{null}}">Null</option>
+                <option value="null">Not specified</option>s
                 <option ng-repeat="category in categories" value="{{category.id}}">{{category.name}}</option>
             </select>
         </div>
@@ -50,6 +50,7 @@
                     id="town"
                     ng-model="newAdData.townId"
                     class="col-md-9">
+                <option value="null">Not specified</option>
                 <option ng-repeat="town in towns" value="{{town.id}}">{{town.name}}</option>
             </select>
         </div>
@@ -69,7 +70,7 @@
              ng-src="{{adImage}}"/>
     </div>
     <div class="col-md-12 text-center">
-        <button class="enabled-button"
+        <button class="main-button"
                 ng-click="publish(newAdData)"
                 ng-disabled="newAdForm.title.$error.required ||
                 newAdForm.text.$error.required">Publish ad</button>

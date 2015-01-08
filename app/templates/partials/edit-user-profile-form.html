@@ -50,11 +50,11 @@
         <select name="town"
                 id="town"
                 ng-model="editedUserProfileData.townId">
-            <option value="">Null</option>
+            <option value="null">Not specified</option>
             <option ng-repeat="town in towns" value="{{town.id}}">{{town.name}}</option>
         </select>
         <div class="col-md-12">
-            <button class="enabled-button col-md-4 pull-left"
+            <button class="main-button col-md-4 pull-left"
                     name="edit"
                     ng-model="edit"
                     type="submit"
@@ -63,7 +63,7 @@
                     ng-click="editUserProfile(editedUserProfileData)">
                 Update
             </button>
-            <button class="enabled-button col-md-4 pull-right"
+            <button class="main-button col-md-4 pull-right"
                     ng-click="cancel()">Cancel</button>
         </div>
     </form>
@@ -115,7 +115,7 @@
             Confirm password do not match!
         </div>
         <div class="col-md-12">
-            <button class="enabled-button col-lg-7 pull-left"
+            <button class="main-button col-lg-7 pull-left"
                     name="register"
                     ng-model="register"
                     type="submit"
@@ -125,7 +125,7 @@
                     ng-click="editUserPassword(editedUserPassword)">
                 Change Password
             </button>
-            <button class="enabled-button col-lg-4 pull-right"
+            <button class="main-button col-lg-4 pull-right"
                     ng-click="cancel()">Cancel
             </button>
         </div>

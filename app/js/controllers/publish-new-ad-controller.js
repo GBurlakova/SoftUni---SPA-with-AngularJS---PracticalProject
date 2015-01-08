@@ -1,4 +1,4 @@
-app.controller('PublishNewAdController', function ($scope, $rootScope, $categoriesData, $townsData, usersData, $notifications) {
+app.controller('PublishNewAdController', function ($scope, $rootScope, categoriesData, townsData, usersData) {
     var DEFAULT_AD_IMAGE = 'http://www.agetruck.com/truck_img/default.gif';
 
     $scope.adImage = DEFAULT_AD_IMAGE;
@@ -13,7 +13,7 @@ app.controller('PublishNewAdController', function ($scope, $rootScope, $categori
 
     publishNewAdPageLoaded();
 
-    $townsData.getAll().then(
+    townsData.getAll().then(
         function (data, status, headers, config) {
             $scope.towns = data;
         },
@@ -21,7 +21,7 @@ app.controller('PublishNewAdController', function ($scope, $rootScope, $categori
             console.log(error, status);
         });
 
-    $categoriesData.getAll().then(
+    categoriesData.getAll().then(
         function (data, status, headers, config) {
             $scope.categories = data;
         },
@@ -29,6 +29,7 @@ app.controller('PublishNewAdController', function ($scope, $rootScope, $categori
             console.log(error, status);
         });
 
+    // Scope functions
     $scope.fileSelected = function(fileInputField) {
         delete $scope.newAdData.imageDataUrl;
         var file = fileInputField.files[0];
@@ -46,6 +47,7 @@ app.controller('PublishNewAdController', function ($scope, $rootScope, $categori
     };
 
     $scope.publish = function (newAdData) {
+        console.log(newAdData);
         usersData.publish(newAdData).then(function (data) {
             console.log(data);
         }, function (error) {
@@ -53,6 +55,7 @@ app.controller('PublishNewAdController', function ($scope, $rootScope, $categori
         });
     };
 
+    // Private functions
     function publishNewAdPageLoaded() {
         $rootScope.$broadcast('publishNewAdPageLoaded');
     }

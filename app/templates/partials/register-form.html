@@ -94,11 +94,12 @@
         <select name="town"
                id="town"
                ng-model="registerData.townId">
+            <option value="null">Not specified</option>
             <option ng-repeat="town in towns" value="{{town.id}}">{{town.name}}</option>
         </select>
     </div>
     <div class="col-md-12">
-        <button class="enabled-button col-md-3 pull-left"
+        <button class="main-button col-md-3 pull-left"
                 name="register"
                 ng-model="register"
                 type="submit"

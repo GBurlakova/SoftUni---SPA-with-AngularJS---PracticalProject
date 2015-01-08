@@ -12,6 +12,7 @@ app.controller('UserAdsNavigationController', function ($scope, $rootScope, $loc
         }
     });
 
+    // Scope functions
     $scope.selectAdStatus = function (adStatus) {
         $rootScope.$broadcast('adStatusSelected', adStatus);
         currentStatusSelected = adStatus;

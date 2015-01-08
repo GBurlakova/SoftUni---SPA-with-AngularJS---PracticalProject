@@ -62,6 +62,6 @@ app.config(function ($routeProvider) {
 
 app.constant('BASE_URL', 'http://softuni-ads.azurewebsites.net/api');
 
-app.run(function($permissions) {
-    $permissions.setPermissions(permissionList);
+app.run(function(permissions) {
+    permissions.setPermissions(permissionList);
 });

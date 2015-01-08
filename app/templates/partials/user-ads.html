@@ -12,9 +12,9 @@
             <div class="col-lg-7">
                 <div class="bordered">{{ad.text}}</div>
                 <div class="col-lg-6">Category:</div>
-                <div class="bordered text-center col-lg-6">{{ad.categoryName || 'Unknown'}}</div>
+                <div class="bordered text-center col-lg-6">{{ad.categoryName || notSpecifiedTextData}}</div>
                 <div class="col-lg-6">Town:</div>
-                <div class="bordered text-center col-lg-6">{{ad.townName || 'Unknown'}}</div>
+                <div class="bordered text-center col-lg-6">{{ad.townName || notSpecifiedTextData}}</div>
             </div>
         </div>
         <div class="col-lg-4">
@@ -23,15 +23,15 @@
             <div class="text-center">
                 <button ng-show="ad.status === 'WaitingApproval' ||ad.status === 'Published'"
                         ng-click="deactivateAd(ad.id)"
-                        class="enabled-button">Deactivate</button>
+                        class="main-button">Deactivate</button>
                 <button ng-show="ad.status === 'Inactive'"
-                        class="enabled-button">
+                        class="main-button">
                     <a ng-href="#/user/ads/edit/{{ad.id}}">Edit</a></button>
                 <button ng-show="ad.status === 'Inactive'"
                         ng-click="publishAdAgain(ad.id)"
-                        class="enabled-button">Publish again</button>
+                        class="main-button">Publish again</button>
                 <button ng-show="ad.status === 'Inactive'"
-                        class="enabled-button">
+                        class="main-button">
                     <a ng-href="#/user/ads/delete/{{ad.id}}">Delete</a></button>
             </div>
         </div>

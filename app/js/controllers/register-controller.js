@@ -1,4 +1,4 @@
-app.controller('RegisterController', function ($scope, $rootScope, $townsData, usersData, $notifications) {
+app.controller('RegisterController', function ($scope, $rootScope, $location, townsData, usersData) {
     var USER_REGISTERED_SUCCESSFULLY = 'Successfully created user profile';
     var EMAIL_IS_TAKEN_PATTERN = '^Email (.+) is already taken.$';
     var USERNAME_IS_TAKEN_PATTERN = '^Name (.+) is already taken.$';
@@ -21,7 +21,7 @@ app.controller('RegisterController', function ($scope, $rootScope, $townsData, u
 
     registerPageLoaded();
 
-    $townsData.getAll().then(
+    townsData.getAll().then(
         function (data, status, headers, config) {
             $scope.towns = data;
         },
@@ -29,6 +29,7 @@ app.controller('RegisterController', function ($scope, $rootScope, $townsData, u
             console.log(error, status);
         });
 
+    // Scope functions
     $scope.registerUser = function (registerData) {
         console.log(registerData);
         usersData.register(registerData)
@@ -45,7 +46,7 @@ app.controller('RegisterController', function ($scope, $rootScope, $townsData, u
                 }
                 usersData.saveUserData(username,accessToken, isAdmin);
                 setTimeout(function () {
-                    window.location.href = "#/user/home";
+                    $location.path("#/user/home");
                     logUser();
                 }, 4000);
             },
@@ -68,6 +69,7 @@ app.controller('RegisterController', function ($scope, $rootScope, $townsData, u
             });
     };
 
+    // Private functions
     function registerPageLoaded() {
         $rootScope.$broadcast('registerPageLoaded');
     }

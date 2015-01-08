@@ -1,4 +1,4 @@
-app.controller('LoginController', function ($scope, $rootScope,  usersData, $notifications) {
+app.controller('LoginController', function ($scope, $rootScope,  $location, usersData, notifications) {
     var INVALID_LOGIN_DATA_MESSAGE = 'Username or password is incorrect. Please try again!';
     var INVALID_LOGIN_DATA_PATTERN = '^The user name or password is incorrect.$';
     var invalidLoginDataRegexp = new RegExp(INVALID_LOGIN_DATA_PATTERN);
@@ -10,6 +10,7 @@ app.controller('LoginController', function ($scope, $rootScope,  usersData, $not
 
     loginPageLoaded();
 
+    // Scope functions
     $scope.login = function (loginData) {
         usersData.login(loginData)
             .then(
@@ -19,10 +20,10 @@ app.controller('LoginController', function ($scope, $rootScope,  usersData, $not
                     var permission;
                     if (data.hasOwnProperty('isAdmin')) {
                         permission = 'admin';
-                        window.location.href = "#/admin/home";
+                        $location.path("/admin/home");
                     }else {
                         permission = 'user';
-                        window.location.href = "#/user/home";
+                        $location.path("/user/home");
                     }
                     usersData.saveUserData(username, accessToken, permission);
                 },
@@ -31,7 +32,7 @@ app.controller('LoginController', function ($scope, $rootScope,  usersData, $not
                     var errorMessage = error.error_description;
                     var isInvalidLoginData = invalidLoginDataRegexp.test(errorMessage);
                     if (isInvalidLoginData) {
-                    	$notifications.error(INVALID_LOGIN_DATA_MESSAGE);
+                    	notifications.error(INVALID_LOGIN_DATA_MESSAGE);
                     }
                 });
     };
