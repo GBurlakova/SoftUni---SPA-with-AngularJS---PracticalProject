@@ -1,0 +1,28 @@
+<div ng-controller="DeleteAdController" class="text-center">
+    <img src="images/loading.gif"  ng-show="adNotLoaded" alt=""/>
+    <div class="ad ad-to-be-deleted" ng-show="!adNotLoaded">
+        <div class="ad-title col-lg-12">
+            <div class="col-lg-6">{{adToBeDeleted.title}}</div>
+            <div class="col-lg-6">{{adToBeDeleted.date | date: 'd-MMM-yyyy'}}</div>
+        </div>
+        <div class="ad-details col-lg-12">
+            <div class="col-lg-5">
+
+                <img class="ad-image" src="" alt="add-image"
+                     ng-src="{{adToBeDeleted.imageDataUrl || defaultImage}}"/>
+            </div>
+            <div class="col-lg-7">
+                <div class="bordered">{{adToBeDeleted.text}}</div>
+                <div class="col-lg-6">Category:</div>
+                <div class="bordered text-center col-lg-6">{{adToBeDeleted.categoryName || 'Unknown'}}</div>
+                <div class="col-lg-6">Town:</div>
+                <div class="bordered text-center col-lg-6">{{adToBeDeleted.townName || 'Unknown'}}</div>
+            </div>
+        </div>
+        <div class="col-lg-4 text-center col-lg-offset-4">
+            <button class="enabled-button pull-left" ng-click="deleteAd(adToBeDeleted.id)">Delete</button>
+            <button class="enabled-button pull-right"
+                    ng-click="cancel()">Cancel</button>
+        </div>
+    </div>
+</div>

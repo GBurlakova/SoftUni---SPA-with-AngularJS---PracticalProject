@@ -34,16 +34,6 @@ app.controller('UserAdsController', function ($scope, $rootScope, $adsData, user
             });
     };
 
-    $scope.deleteAd = function (adId) {
-        usersData.deleteAd(adId)
-            .then(function () {
-                $notifications.success('Ad deleted successfully');
-                getUserAds();
-            }, function () {
-
-            });
-    };
-
     // Private functions
     function getUserAds() {
         $adsData.getUsersAds($scope.urlParams)

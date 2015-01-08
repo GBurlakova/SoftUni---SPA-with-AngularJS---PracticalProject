@@ -16,7 +16,7 @@ app.controller('RegisterController', function ($scope, $rootScope, $townsData, u
         name: 'Maria',
         email: 'asdf@abv.bg',
         phone: '0855247145',
-        town: '1'
+        townId: ''
     };
 
     registerPageLoaded();
@@ -30,6 +30,7 @@ app.controller('RegisterController', function ($scope, $rootScope, $townsData, u
         });
 
     $scope.registerUser = function (registerData) {
+        console.log(registerData);
         usersData.register(registerData)
             .then(function (data, status, headers, config) {
                 showSuccessMessage(USER_REGISTERED_SUCCESSFULLY);

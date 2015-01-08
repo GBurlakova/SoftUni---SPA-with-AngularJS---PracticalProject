@@ -60,14 +60,20 @@ app.factory('usersData', function ($requester, BASE_URL) {
         return $requester.delete(serviceUrl, authorizationHeader, null);
     };
 
+    var getProfile = function () {
+        var serviceUrl = BASE_URL + '/user/profile';
+        var authorizationHeader = getAuthorizationHeader();
+        return $requester.get(serviceUrl, authorizationHeader, null);
+    };
+
     var editProfile = function (updatedUserProfileData) {
-        var serviceUrl = BASE_URL + 'user/profile';
+        var serviceUrl = BASE_URL + '/user/profile';
         var authorizationHeader = getAuthorizationHeader();
         return $requester.put(serviceUrl, authorizationHeader, updatedUserProfileData);
     };
 
     var changePassword = function (updatedUserPasswordData) {
-        var serviceUrl = BASE_URL + 'user/changepassword';
+        var serviceUrl = BASE_URL + '/user/changepassword';
         var authorizationHeader = getAuthorizationHeader();
         return $requester.put(serviceUrl, authorizationHeader, updatedUserPasswordData);
     };
@@ -83,6 +89,7 @@ app.factory('usersData', function ($requester, BASE_URL) {
         deactivateAd: deactivateAd,
         publishAdAgain: publishAdAgain,
         deleteAd: deleteAd,
+        getProfile: getProfile,
         editProfile: editProfile,
         changePassword: changePassword
     }

@@ -1,6 +1,6 @@
 <div ng-controller="EditUserProfileController">
     <!--Edit user profile form-->
-    <form action=""  name="editProfileForm" class="form col-lg-5 pull-left">
+    <form action="" name="editProfileForm" class="form edit-user-profile-form col-lg-5 pull-left">
         <div class="title">
             Edit Profile
         </div>
@@ -8,65 +8,68 @@
         <input type="text"
                name="name"
                id="name"
-               ng-model="registerData.name"
+               ng-model="editedUserProfileData.name"
                tabindex="3"
                required/>
-        <div ng-show="registerForm.name.$error.required &&
-         registerForm.name.$dirty"
+        <div ng-show="editProfileForm.name.$error.required &&
+         editProfileForm.name.$dirty"
              class="error-info">
             Name is required!
         </div>
         <label for="phone">Phone: </label>
         <input type="text"
                name="phone"
-               ng-model="registerData.phone"
+               ng-model="editedUserProfileData.phoneNumber"
                id="phone"
-               tabindex="4"/>
+        tabindex="4"/>
         <label for="email">Email: </label>
         <input type="email"
                name="email"
                id="email"
-               ng-model="registerData.email"
+               ng-model="editedUserProfileData.email"
                tabindex="6"
                required/>
-        <div ng-show="registerForm.email.$error.required &&
-         registerForm.email.$dirty"
+        <div ng-show="editProfileForm.email.$error.required &&
+         editProfileForm.email.$dirty"
              class="error-info">
             Email is required!
         </div>
         <div ng-show="emailIsTaken &&
-        !registerForm.email.$error.required &&
-        registerForm.email.$valid"
+        !editProfileForm.email.$error.required &&
+        editProfileForm.email.$valid"
              class="error-info">
             Email is already taken!
         </div>
-        <div ng-show="registerForm.email.$invalid &&
-         registerForm.email.$dirty &&
-         !registerForm.email.$error.required"
+        <div ng-show="editProfileForm.email.$invalid &&
+         editProfileForm.email.$dirty &&
+         !editProfileForm.email.$error.required"
              class="error-info">
             Email should be a valid one!
         </div>
         <label for="town">Town: </label>
         <select name="town"
                 id="town"
-                ng-model="registerData.town">
+                ng-model="editedUserProfileData.townId">
+            <option value="">Null</option>
             <option ng-repeat="town in towns" value="{{town.id}}">{{town.name}}</option>
         </select>
         <div class="col-md-12">
-            <button class="enabled-button col-md-3 pull-left"
-                    name="register"
-                    ng-model="register"
+            <button class="enabled-button col-md-4 pull-left"
+                    name="edit"
+                    ng-model="edit"
                     type="submit"
-                    ng-disabled="registerForm.email.$error.required ||
-                    registerForm.name.$error.required"
-                    ng-click="registerUser(registerData)">
+                    ng-disabled="editProfileForm.email.$error.required ||
+                    editProfileForm.name.$error.required"
+                    ng-click="editUserProfile(editedUserProfileData)">
                 Update
             </button>
+            <button class="enabled-button col-md-4 pull-right"
+                    ng-click="cancel()">Cancel</button>
         </div>
     </form>
 
     <!--Edit password form-->
-    <form action=""  name="editProfileForm" class="form col-lg-5 pull-right">
+    <form action="" name="editPasswordForm" class="form edit-user-profile-form col-lg-5 pull-right">
         <div class="title">
             Change Password
         </div>
@@ -74,11 +77,16 @@
         <input type="password"
                name="oldPassword"
                id="old-password"
-               ng-model="updatedUserPassword.oldPassword"
+               ng-model="editedUserPassword.oldPassword"
                tabindex="2"
                required/>
-        <div ng-show="registerForm.password.$error.required &&
-            registerForm.password.$dirty"
+        <div ng-show="isInvalidPassword &&
+        !editProfileForm.oldPassword.$error.required"
+             class="error-info">
+            Password is incorrect!
+        </div>
+        <div ng-show="editPasswordForm.password.$error.required &&
+            editPasswordForm.password.$dirty"
              class="error-info">
             Password is required!
         </div>
@@ -86,38 +94,39 @@
         <input type="password"
                name="password"
                id="password"
-               ng-model="updatedUserPassword.newPpassword"
+               ng-model="editedUserPassword.newPassword"
                tabindex="2"
                required/>
-        <div ng-show="registerForm.password.$error.required &&
-            registerForm.password.$dirty"
+        <div ng-show="editPasswordForm.password.$error.required &&
+            editPasswordForm.password.$dirty"
              class="error-info">
             Password is required!
         </div>
         <label for="confirm">Confirm password: </label>
         <input type="password"
                name="confirm"
-               ng-model="updatedUserPassword.confirmPassword"
+               ng-model="editedUserPassword.confirmPassword"
                id="confirm"
                tabindex="5"
                required
                confirm-password="password"/>
-        <div ng-show="registerForm.confirm.$error.passwordsNotMatch"
+        <div ng-show="editPasswordForm.confirm.$error.passwordsNotMatch"
              class="error-info">
             Confirm password do not match!
         </div>
         <div class="col-md-12">
-            <button class="enabled-button col-md-3 pull-left"
+            <button class="enabled-button col-lg-7 pull-left"
                     name="register"
                     ng-model="register"
                     type="submit"
-                    ng-disabled="registerForm.username.$error.required ||
-                    registerForm.password.$error.required ||
-                    registerForm.email.$error.required ||
-                    registerForm.name.$error.required ||
-                    registerForm.confirm.$error.passwordsNotMatch"
-                    ng-click="registerUser(registerData)">
-                Register
+                    ng-disabled="editPasswordForm.oldPassword.$error.required ||
+                    editPasswordForm.password.$error.required ||
+                    editPasswordForm.confirm.$error.passwordsNotMatch"
+                    ng-click="editUserPassword(editedUserPassword)">
+                Change Password
+            </button>
+            <button class="enabled-button col-lg-4 pull-right"
+                    ng-click="cancel()">Cancel
             </button>
         </div>
     </form>

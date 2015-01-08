@@ -42,6 +42,11 @@ app.config(function ($routeProvider) {
         controller: '',
         permission: 'user'
     });
+    $routeProvider.when('/user/ads/delete/:id', {
+        templateUrl: 'templates/user-screens/delete-ad.html',
+        controller: '',
+        permission: 'user'
+    });
     $routeProvider.when('/user/profile', {
         templateUrl: 'templates/user-screens/edit-user-profile.html',
         controller: '',

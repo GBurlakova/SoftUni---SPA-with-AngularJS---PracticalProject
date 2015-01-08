@@ -202,6 +202,14 @@ html {
           margin-bottom: 2%; }
         html body #wrapper main .publish-new-ad-form input, html body #wrapper main .publish-new-ad-form select, html body #wrapper main .publish-new-ad-form textarea {
           margin-bottom: 2%; }
+        html body #wrapper main .edit-user-profile-form .enabled-button {
+          margin-top: 4%;
+          font-size: 1.6rem; }
+        html body #wrapper main .ad-to-be-deleted .enabled-button {
+          width: 45%;
+          height: 40px;
+          font-size: 1.8rem;
+          display: inline-block; }
       html body #wrapper aside .sidebar-title, html body #wrapper aside p {
         border-bottom: 1px solid #212121;
         margin: 0 0 2% 0;

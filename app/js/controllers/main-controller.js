@@ -16,8 +16,9 @@ app.controller('MainController', function ($scope, usersData, $location, $permis
         // user
         publishNewAd: 'Publish New Ad',
         myAds: 'My Ads',
-        adittAd: 'EditAd',
-        editProfile: 'Edit Profile'
+        editAd: 'Edit Ad',
+        deleteAd: 'Delete Ad',
+        editUserProfile: 'Edit Profile'
     };
 
     $scope.$on('$routeChangeStart', function(scope, next) {
@@ -58,6 +59,14 @@ app.controller('MainController', function ($scope, usersData, $location, $permis
 
     $scope.$on('editAdPageLoaded', function () {
         $scope.title = headerTitle.editAd;
+    });
+
+    $scope.$on('deleteAdPageLoaded', function () {
+        $scope.title = headerTitle.deleteAd;
+    });
+
+    $scope.$on('editUserProfilePageLoaded', function () {
+        $scope.title = headerTitle.editUserProfile;
     });
 
     $scope.setHeaderStyle = function () {

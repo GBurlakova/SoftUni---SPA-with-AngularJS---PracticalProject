@@ -31,8 +31,8 @@
                         ng-click="publishAdAgain(ad.id)"
                         class="enabled-button">Publish again</button>
                 <button ng-show="ad.status === 'Inactive'"
-                        ng-click="deleteAd(ad.id)"
-                        class="enabled-button">Delete</button>
+                        class="enabled-button">
+                    <a ng-href="#/user/ads/delete/{{ad.id}}">Delete</a></button>
             </div>
         </div>
     </div>
