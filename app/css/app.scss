@@ -88,6 +88,16 @@ html {
           padding-left: 0;
           padding-right: 0;
         }
+        .margin-bottom{
+          margin-bottom: 2%;
+        }
+        .confirm-delete-ad-title{
+          font-size: 2.6rem;
+          text-align: center;
+          color: $blue;
+          margin-bottom: 3%;
+          border-bottom: 1px solid $blue;
+        }
         .main-button{
           display: block;
           width: 25%;
@@ -202,7 +212,7 @@ html {
             margin: 0 auto 2% auto;
           }
         } // add
-        .form, .publish-new-ad-form {
+        .form, .publish-new-ad-form, .edit-ad-form {
           border: 1px solid $blue;
           background-color: $lightGrey;
           border-radius: 2px;
@@ -241,7 +251,7 @@ html {
               -moz-box-shadow: none;
               -webkit-shadow: none;
             }
-          } // main button - .form, .publish-new-ad-form
+          } // main button - .form, .publish-new-ad-form, .edit-ad-form
           input, select {
             height: 35px;
           }
@@ -277,8 +287,8 @@ html {
             width: 100%;
           }
         } // form
-        .publish-new-ad-form{
-          .main-button{
+        .publish-new-ad-form, .edit-ad-form{
+          .main-button {
             width: 150px;
             height: 50px;
             padding: 1%;
@@ -303,10 +313,19 @@ html {
             margin-bottom: 2%;
           }
         }
+        .edit-ad-form{
+          .main-button{
+            display: inline-block;
+          }
+        }
         .edit-user-profile-form {
+          margin-bottom: 2%;
           .main-button {
             margin-top: 4%;
             font-size: 1.6rem;
+            width: 47%;
+            padding: 2px;
+            height: 40px;
           }
         }
         .ad-to-be-deleted {
@@ -317,6 +336,7 @@ html {
             display: inline-block;
           }
         }
+        // admin css
         .admin-ad{
           .admin-main-buttons {
             margin-top: 4%;

@@ -61,6 +61,14 @@ html {
         html body #wrapper main .no-padding {
           padding-left: 0;
           padding-right: 0; }
+        html body #wrapper main .margin-bottom {
+          margin-bottom: 2%; }
+        html body #wrapper main .confirm-delete-ad-title {
+          font-size: 2.6rem;
+          text-align: center;
+          color: #386091;
+          margin-bottom: 3%;
+          border-bottom: 1px solid #386091; }
         html body #wrapper main .main-button {
           display: block;
           width: 25%;
@@ -155,7 +163,7 @@ html {
             border: 2px solid #e3e3e3;
             border-bottom: 1px solid #386091;
             margin: 0 auto 2% auto; }
-        html body #wrapper main .form, html body #wrapper main .publish-new-ad-form {
+        html body #wrapper main .form, html body #wrapper main .publish-new-ad-form, html body #wrapper main .edit-ad-form {
           border: 1px solid #386091;
           background-color: #e3e3e3;
           border-radius: 2px;
@@ -163,18 +171,18 @@ html {
           box-shadow: 1px 1px 1px 0 #212121;
           -moz-box-shadow: 1px 1px 1px 0 #435264;
           -webkit-shadow: 1px 1px 1px 0 #435264; }
-          html body #wrapper main .form:after, html body #wrapper main .publish-new-ad-form:after {
+          html body #wrapper main .form:after, html body #wrapper main .publish-new-ad-form:after, html body #wrapper main .edit-ad-form:after {
             content: ".";
             visibility: hidden;
             display: block;
             height: 0;
             clear: both; }
-          html body #wrapper main .form .title, html body #wrapper main .publish-new-ad-form .title {
+          html body #wrapper main .form .title, html body #wrapper main .publish-new-ad-form .title, html body #wrapper main .edit-ad-form .title {
             text-align: center;
             font-size: 2rem;
             border-bottom: 1px solid #386091;
             margin-bottom: 2%; }
-          html body #wrapper main .form .main-button, html body #wrapper main .form .change-button, html body #wrapper main .form .delete-button, html body #wrapper main .publish-new-ad-form .main-button, html body #wrapper main .publish-new-ad-form .change-button, html body #wrapper main .publish-new-ad-form .delete-button {
+          html body #wrapper main .form .main-button, html body #wrapper main .form .change-button, html body #wrapper main .form .delete-button, html body #wrapper main .publish-new-ad-form .main-button, html body #wrapper main .publish-new-ad-form .change-button, html body #wrapper main .publish-new-ad-form .delete-button, html body #wrapper main .edit-ad-form .main-button, html body #wrapper main .edit-ad-form .change-button, html body #wrapper main .edit-ad-form .delete-button {
             font-size: 2rem;
             height: 35px;
             border-radius: 3px;
@@ -182,15 +190,15 @@ html {
             -moz-box-shadow: 3px 3px 1px 0 #386091;
             -webkit-shadow: 3px 3px 1px 0 #386091;
             border: 1px solid #2f383d; }
-            html body #wrapper main .form .main-button:active, html body #wrapper main .form .main-button:focus, html body #wrapper main .form .change-button:active, html body #wrapper main .form .change-button:focus, html body #wrapper main .form .delete-button:active, html body #wrapper main .form .delete-button:focus, html body #wrapper main .publish-new-ad-form .main-button:active, html body #wrapper main .publish-new-ad-form .main-button:focus, html body #wrapper main .publish-new-ad-form .change-button:active, html body #wrapper main .publish-new-ad-form .change-button:focus, html body #wrapper main .publish-new-ad-form .delete-button:active, html body #wrapper main .publish-new-ad-form .delete-button:focus {
+            html body #wrapper main .form .main-button:active, html body #wrapper main .form .main-button:focus, html body #wrapper main .form .change-button:active, html body #wrapper main .form .change-button:focus, html body #wrapper main .form .delete-button:active, html body #wrapper main .form .delete-button:focus, html body #wrapper main .publish-new-ad-form .main-button:active, html body #wrapper main .publish-new-ad-form .main-button:focus, html body #wrapper main .publish-new-ad-form .change-button:active, html body #wrapper main .publish-new-ad-form .change-button:focus, html body #wrapper main .publish-new-ad-form .delete-button:active, html body #wrapper main .publish-new-ad-form .delete-button:focus, html body #wrapper main .edit-ad-form .main-button:active, html body #wrapper main .edit-ad-form .main-button:focus, html body #wrapper main .edit-ad-form .change-button:active, html body #wrapper main .edit-ad-form .change-button:focus, html body #wrapper main .edit-ad-form .delete-button:active, html body #wrapper main .edit-ad-form .delete-button:focus {
               outline: none; }
-            html body #wrapper main .form .main-button:active, html body #wrapper main .form .change-button:active, html body #wrapper main .form .delete-button:active, html body #wrapper main .publish-new-ad-form .main-button:active, html body #wrapper main .publish-new-ad-form .change-button:active, html body #wrapper main .publish-new-ad-form .delete-button:active {
+            html body #wrapper main .form .main-button:active, html body #wrapper main .form .change-button:active, html body #wrapper main .form .delete-button:active, html body #wrapper main .publish-new-ad-form .main-button:active, html body #wrapper main .publish-new-ad-form .change-button:active, html body #wrapper main .publish-new-ad-form .delete-button:active, html body #wrapper main .edit-ad-form .main-button:active, html body #wrapper main .edit-ad-form .change-button:active, html body #wrapper main .edit-ad-form .delete-button:active {
               position: relative;
               top: 3px;
               box-shadow: none;
               -moz-box-shadow: none;
               -webkit-shadow: none; }
-          html body #wrapper main .form input, html body #wrapper main .form select, html body #wrapper main .publish-new-ad-form input, html body #wrapper main .publish-new-ad-form select {
+          html body #wrapper main .form input, html body #wrapper main .form select, html body #wrapper main .publish-new-ad-form input, html body #wrapper main .publish-new-ad-form select, html body #wrapper main .edit-ad-form input, html body #wrapper main .edit-ad-form select {
             height: 35px; }
         html body #wrapper main .form .left-half, html body #wrapper main .form .right-half {
           margin-bottom: 2%; }
@@ -211,26 +219,33 @@ html {
         html body #wrapper main .form label, html body #wrapper main .form input, html body #wrapper main .form select {
           display: block;
           width: 100%; }
-        html body #wrapper main .publish-new-ad-form .main-button {
+        html body #wrapper main .publish-new-ad-form .main-button, html body #wrapper main .edit-ad-form .main-button {
           width: 150px;
           height: 50px;
           padding: 1%; }
-        html body #wrapper main .publish-new-ad-form .change-button, html body #wrapper main .publish-new-ad-form .delete-button {
+        html body #wrapper main .publish-new-ad-form .change-button, html body #wrapper main .publish-new-ad-form .delete-button, html body #wrapper main .edit-ad-form .change-button, html body #wrapper main .edit-ad-form .delete-button {
           height: 50px;
           padding: 1%;
           font-size: 1.4rem;
           margin: 4% 0 10% 0;
           background-color: #b4b4b4; }
-        html body #wrapper main .publish-new-ad-form .ad-image img {
+        html body #wrapper main .publish-new-ad-form .ad-image img, html body #wrapper main .edit-ad-form .ad-image img {
           max-width: 100%;
           max-height: 100%; }
-        html body #wrapper main .publish-new-ad-form .error-info {
+        html body #wrapper main .publish-new-ad-form .error-info, html body #wrapper main .edit-ad-form .error-info {
           margin-bottom: 2%; }
-        html body #wrapper main .publish-new-ad-form input, html body #wrapper main .publish-new-ad-form select, html body #wrapper main .publish-new-ad-form textarea {
+        html body #wrapper main .publish-new-ad-form input, html body #wrapper main .publish-new-ad-form select, html body #wrapper main .publish-new-ad-form textarea, html body #wrapper main .edit-ad-form input, html body #wrapper main .edit-ad-form select, html body #wrapper main .edit-ad-form textarea {
           margin-bottom: 2%; }
-        html body #wrapper main .edit-user-profile-form .main-button {
-          margin-top: 4%;
-          font-size: 1.6rem; }
+        html body #wrapper main .edit-ad-form .main-button {
+          display: inline-block; }
+        html body #wrapper main .edit-user-profile-form {
+          margin-bottom: 2%; }
+          html body #wrapper main .edit-user-profile-form .main-button {
+            margin-top: 4%;
+            font-size: 1.6rem;
+            width: 47%;
+            padding: 2px;
+            height: 40px; }
         html body #wrapper main .ad-to-be-deleted .main-button {
           width: 45%;
           height: 40px;

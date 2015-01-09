@@ -1,5 +1,5 @@
-app.controller('DeleteAdController', function ($scope, $rootScope, $routeParams, $location,
-                                                adsData, usersData, notifications) {
+app.controller('DeleteAdminAdController', function ($scope, $rootScope, $routeParams, $location,
+                                               adsData, usersData, notifications) {
     var DEFAULT_AD_IMAGE = 'http://www.agetruck.com/truck_img/default.gif';
     var AD_DELETED_SUCCESSFULLY_MESSAGE = 'Ad deleted successfully.';
     var AD_CANNOT_BE_DELETED_MESSAGE = 'Ad cannot be deleted at the moment. Please try again later!';
@@ -12,21 +12,21 @@ app.controller('DeleteAdController', function ($scope, $rootScope, $routeParams,
 
     deleteAdPageLoaded();
 
-    adsData.getUserAdById(adToBeDeletedId)
+    adsData.getAdminAdById(adToBeDeletedId)
         .then(
-            function (data) {
-                console.log(data);
-                $scope.adToBeDeleted = data;
-                $scope.adNotLoaded = false;
-            },
-            function (error) {
-                console.log(error);
-            }
-        );
+        function (data) {
+            console.log(data);
+            $scope.adToBeDeleted = data;
+            $scope.adNotLoaded = false;
+        },
+        function (error) {
+            console.log(error);
+        }
+    );
 
     // Scope functions
     $scope.cancel = function () {
-        $location.path('/user/ads');
+        $location.path('/admin/ads');
     };
 
     $scope.deleteAd = function (adId) {
@@ -41,11 +41,11 @@ app.controller('DeleteAdController', function ($scope, $rootScope, $routeParams,
     }
 
     function executeDeleteAdCommand(adId) {
-        adsData.deleteAd(adId)
+        adsData.deleteAdminAd(adId)
             .then(function () {
                 notifications.success(AD_DELETED_SUCCESSFULLY_MESSAGE)
                     .then(function () {
-                        $location.path('/user/ads');
+                        $location.path('/admin/ads');
                     });
             }, function () {
                 notifications.error(AD_CANNOT_BE_DELETED_MESSAGE);

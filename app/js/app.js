@@ -63,6 +63,11 @@ app.config(function ($routeProvider) {
         controller: '',
         permission: 'admin'
     });
+    $routeProvider.when('/admin/ads/delete/:id', {
+        templateUrl: 'templates/admin-screens/admin-delete-ad.html',
+        controller: '',
+        permission: 'admin'
+    });
 });
 
 app.constant('BASE_URL', 'http://softuni-ads.azurewebsites.net/api');

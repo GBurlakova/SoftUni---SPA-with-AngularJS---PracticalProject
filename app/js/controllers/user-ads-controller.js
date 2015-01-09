@@ -43,7 +43,7 @@ app.controller('UserAdsController', function ($scope, $rootScope, adsData, users
     $scope.getUserAds();
 
     $scope.deactivateAd = function (adId) {
-        usersData.deactivateAd(adId)
+        adsData.deactivateAd(adId)
             .then(function () {
                 notifications.success(AD_DEACTIVATED_MESSAGE)
                     .then(function () {
@@ -55,7 +55,7 @@ app.controller('UserAdsController', function ($scope, $rootScope, adsData, users
     };
 
     $scope.publishAdAgain = function (adId) {
-        usersData.publishAdAgain(adId)
+        adsData.publishAdAgain(adId)
             .then(function () {
                 notifications.success(AD_PUBLISHED_AGAIN_MESSAGE)
                     .then(function () {
