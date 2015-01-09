@@ -2,29 +2,44 @@ app.controller('UserAdsController', function ($scope, $rootScope, adsData, users
     var DEFAULT_AD_IMAGE = 'http://www.agetruck.com/truck_img/default.gif';
     var NO_RESULTS_MESSAGE = 'No results to display';
     var INITIAL_START_PAGE = 1;
-    var PAGE_SIZE = 10;
+    var PAGE_SIZE = 2;
 
     $scope.defaultImage = DEFAULT_AD_IMAGE;
     $scope.urlParams = {
         status: '',
         startPage: INITIAL_START_PAGE,
         pageSize: PAGE_SIZE};
+    $scope.adsLoaded = false;
 
     userAdsPageLoaded();
-    getUserAds();
 
     // Events
     $scope.$on('adStatusSelected', function (event, status) {
         $scope.urlParams.status = status;
-        getUserAds();
+        $scope.getUserAds();
     });
 
     // Scope functions
+    $scope.getUserAds = function() {
+        adsData.getUsersAds($scope.urlParams)
+            .then(
+            function (data) {
+                $scope.ads = data;
+                $scope.adsLoaded = true;
+                checkForEmptyData(data.ads);
+            },
+            function (error) {
+                console.log(error);
+            });
+    };
+
+    $scope.getUserAds();
+
     $scope.deactivateAd = function (adId) {
         usersData.deactivateAd(adId)
             .then(function () {
                 notifications.success('Ad deactivated successfully');
-                getUserAds();
+                $scope.getUserAds();
             }, function () {
 
             });
@@ -34,26 +49,13 @@ app.controller('UserAdsController', function ($scope, $rootScope, adsData, users
         usersData.publishAdAgain(adId)
             .then(function () {
                 notifications.success('Ad published again successfully');
-                getUserAds();
+                $scope.getUserAds();
             }, function () {
 
             });
     };
 
     // Private functions
-    function getUserAds() {
-        adsData.getUsersAds($scope.urlParams)
-            .then(
-            function (data) {
-                $scope.ads = data.ads;
-                checkForEmptyData(data.ads);
-                console.log(data.ads);
-            },
-            function (error) {
-                console.log(error);
-            });
-    }
-
     function userAdsPageLoaded() {
         $rootScope.$broadcast('userAdsPageLoaded');
     }

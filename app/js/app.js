@@ -1,4 +1,4 @@
-var app = angular.module('adsApp', ['ngRoute', 'angular-loading-bar']);
+var app = angular.module('adsApp', ['ngRoute', 'angular-loading-bar', 'ui.bootstrap.pagination']);
 
 var permissionList = [
     'guest',

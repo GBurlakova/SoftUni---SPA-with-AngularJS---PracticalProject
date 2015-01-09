@@ -2,7 +2,7 @@ app.controller('EditAdController', function ($scope, $rootScope, $routeParams, $
                                              townsData, categoriesData, adsData, notifications) {
     var DEFAULT_AD_IMAGE = 'http://www.agetruck.com/truck_img/default.gif';
     var CANNOT_LOAD_AD_MESSAGE = 'The ad chosen cannot be loaded. Please try again later!';
-    var AD_SUCCESSFULLY_EDITED_MESSAGE = 'Ad successfully edited';
+    var AD_SUCCESSFULLY_EDITED_MESSAGE = 'Ad edited successfully';
     var AD_CANNOT_BE_EDITED_MESSAGE = 'Ad cannot be edited. Please try again later!';
     var CONFIRM_AD_EDIT_MESSAGE = 'Would you like to edit the ad?';
     var adToBeEditedId = $routeParams.id;

@@ -1,25 +1,24 @@
 app.controller('AllAdsController', function AllAdsController($scope, $rootScope, adsData) {
     var NO_RESULTS_MESSAGE = 'No results to display';
     var INITIAL_START_PAGE = 1;
-    var PAGE_SIZE = 10;
+    var PAGE_SIZE = 2;
 
     $scope.requestParams = {
         townId: '',
         categoryId: '',
         startPage: INITIAL_START_PAGE,
         pageSize: PAGE_SIZE};
-
     $scope.defaultImage = 'http://www.agetruck.com/truck_img/default.gif';
+    $scope.adsLoaded = false;
 
     homePageLoaded();
 
     // Scope functions
-    $scope.loadAds = function (adsRequestParams) {
-        adsData.get(adsRequestParams).then(
+    $scope.loadAds = function () {
+        adsData.get($scope.requestParams).then(
             function (data) {
-                $scope.ads = data.ads;
-                $scope.pagesArray = new Array(data.numPages);
-                $scope.showPager = data.numPages > 1;
+                $scope.ads = data;
+                $scope.adsLoaded = true;
                 checkForEmptyData(data.ads);
             },
             function (error, status, headers, config) {
@@ -27,7 +26,7 @@ app.controller('AllAdsController', function AllAdsController($scope, $rootScope,
             })
     };
 
-    $scope.loadAds($scope.requestParams);
+    $scope.loadAds();
 
     // Event handlers
     $scope.$on('townFilterSelected', function (event, townSelected) {

@@ -1,6 +1,8 @@
 app.controller('DeleteAdController', function ($scope, $rootScope, $routeParams, $location,
                                                 adsData, usersData, notifications) {
     var DEFAULT_AD_IMAGE = 'http://www.agetruck.com/truck_img/default.gif';
+    var AD_DELETED_SUCCESSFULLY_MESSAGE = 'Ad deleted successfully.';
+    var AD_CANNOT_BE_DELETED_MESSAGE = 'Ad cannot be deleted at the moment. Please try again later!';
     var CONFIRM_DELETE_MESSAGE = 'Would you like to delete the ad?';
     var adToBeDeletedId = $routeParams.id;
 
@@ -41,11 +43,12 @@ app.controller('DeleteAdController', function ($scope, $rootScope, $routeParams,
     function executeDeleteAdCommand(adId) {
         usersData.deleteAd(adId)
             .then(function () {
-                notifications.success('Ad deleted successfully').then(function () {
-                    $location.path('/user/ads');
-                });
+                notifications.success(AD_DELETED_SUCCESSFULLY_MESSAGE)
+                    .then(function () {
+                        $location.path('/user/ads');
+                    });
             }, function () {
-                notifications.success('Ad deleted successfully');
+                notifications.error(AD_CANNOT_BE_DELETED_MESSAGE);
             });
     }
 });

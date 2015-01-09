@@ -1,5 +1,6 @@
-app.controller('RegisterController', function ($scope, $rootScope, $location, townsData, usersData) {
+app.controller('RegisterController', function ($scope, $rootScope, $location, townsData, usersData, notifications) {
     var USER_REGISTERED_SUCCESSFULLY = 'Successfully created user profile';
+    var REGISTER_USER_CONFIRM_MESSAGE = 'Would you like to create a user profile?';
     var EMAIL_IS_TAKEN_PATTERN = '^Email (.+) is already taken.$';
     var USERNAME_IS_TAKEN_PATTERN = '^Name (.+) is already taken.$';
 
@@ -31,59 +32,64 @@ app.controller('RegisterController', function ($scope, $rootScope, $location, to
 
     // Scope functions
     $scope.registerUser = function (registerData) {
-        console.log(registerData);
-        usersData.register(registerData)
-            .then(function (data, status, headers, config) {
-                showSuccessMessage(USER_REGISTERED_SUCCESSFULLY);
-                console.log(data);
-                var username = data['username'];
-                var accessToken = data['access_token'];
-                var isAdmin;
-                if (data.hasOwnProperty('isAdmin')) {
-                	isAdmin = data['isAdmin'];
-                }else {
-                	isAdmin = false;
-                }
-                usersData.saveUserData(username,accessToken, isAdmin);
-                setTimeout(function () {
-                    $location.path("#/user/home");
-                    logUser();
-                }, 4000);
-            },
-            function (error, status, headers, config) {
-                console.log(error);
-                var errorModelState = error.modelState[""];
-                console.log(errorModelState);
-                for (var i = 0; i < errorModelState.length; i++) {
-                    var errorMessage = errorModelState[i];
-                    var emailTaken = emailRegex.test(errorMessage);
-                    var usernameTaken = usernameRegex.test(errorMessage);
-                    if (emailTaken) {
-                    	$scope.emailIsTaken = true;
-                    }
-
-                    if (usernameTaken) {
-                    	$scope.usernameIsTaken  = true;
-                    }
-                }
+        notifications.confirm(REGISTER_USER_CONFIRM_MESSAGE)
+            .then(
+                function () {
+                    executeRegisterUser(registerData);
             });
     };
 
     // Private functions
+    function executeRegisterUser(registerData) {
+        usersData.register(registerData)
+            .then(function (data, status, headers, config) {
+                saveUserData(data);
+                notifications.success(USER_REGISTERED_SUCCESSFULLY)
+                    .then(
+                        function () {
+                            $location.path("#/user/home");
+                            userLogged();
+                    });
+            },
+            function (error, status, headers, config) {
+                processRegisterError(error);
+            });
+    }
+
+    function saveUserData(data) {
+        var username = data['username'];
+        var accessToken = data['access_token'];
+        var isAdmin;
+        if (data.hasOwnProperty('isAdmin')) {
+            isAdmin = data['isAdmin'];
+        }else {
+            isAdmin = false;
+        }
+        usersData.saveUserData(username, accessToken, isAdmin);
+    }
+
+    function processRegisterError(error) {
+        var errorModelState = error.modelState[""];
+        console.log(errorModelState);
+        for (var i = 0; i < errorModelState.length; i++) {
+            var errorMessage = errorModelState[i];
+            var emailTaken = emailRegex.test(errorMessage);
+            var usernameTaken = usernameRegex.test(errorMessage);
+            if (emailTaken) {
+                $scope.emailIsTaken = true;
+            }
+
+            if (usernameTaken) {
+                $scope.usernameIsTaken  = true;
+            }
+        }
+    }
+
     function registerPageLoaded() {
         $rootScope.$broadcast('registerPageLoaded');
     }
 
-    function logUser() {
+    function userLogged() {
         $rootScope.$broadcast('userLogged');
-    }
-
-    function showSuccessMessage(msg) {
-        noty({
-                text: msg,
-                type: 'success',
-                layout: 'topCenter',
-                timeout: 2000}
-        );
     }
 });

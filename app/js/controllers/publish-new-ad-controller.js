@@ -1,5 +1,9 @@
-app.controller('PublishNewAdController', function ($scope, $rootScope, categoriesData, townsData, usersData) {
+app.controller('PublishNewAdController', function ($scope, $rootScope, categoriesData,
+                                                   townsData, usersData, notifications) {
     var DEFAULT_AD_IMAGE = 'http://www.agetruck.com/truck_img/default.gif';
+    var PUBLISH_AD_CONFIRM_MESSAGE = 'Would you like to publish the ad?';
+    var AD_PUBLISHED_SUCCESSFULLY_MESSAGE = 'Ad published successfully';
+    var AD_CANNOT_BE_PUBLISHED_MESSAGE = 'Ad cannot be published. Please try again later!';
 
     $scope.adImage = DEFAULT_AD_IMAGE;
 
@@ -47,16 +51,29 @@ app.controller('PublishNewAdController', function ($scope, $rootScope, categorie
     };
 
     $scope.publish = function (newAdData) {
-        console.log(newAdData);
-        usersData.publish(newAdData).then(function (data) {
-            console.log(data);
-        }, function (error) {
-            console.log(error);
-        });
+        notifications.confirm(PUBLISH_AD_CONFIRM_MESSAGE).then(function () {
+            executePublishAd(newAdData);
+        })
     };
 
     // Private functions
     function publishNewAdPageLoaded() {
         $rootScope.$broadcast('publishNewAdPageLoaded');
+    }
+
+    function executePublishAd(newAdData) {
+        usersData.publish(newAdData)
+            .then(
+            function () {
+                notifications.success(AD_PUBLISHED_SUCCESSFULLY_MESSAGE)
+                    .then(function () {
+                        $location.path('/user/ads');
+                    })
+            }, function () {
+                notifications.error(AD_CANNOT_BE_PUBLISHED_MESSAGE)
+                    .then(function () {
+                        $location.path('/user/ads');
+                    })
+            });
     }
 });

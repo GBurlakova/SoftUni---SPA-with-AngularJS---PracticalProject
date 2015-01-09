@@ -34,7 +34,7 @@ app.controller('EditUserProfileController', function ($scope, $rootScope, $route
             $scope.editedUserProfileData.townId = data.townId;
             console.log(data);
         }, function (error) {
-
+            console.log(error);
         });
 
     townsData.getAll().then(
