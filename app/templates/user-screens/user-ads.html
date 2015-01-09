@@ -1,7 +1,7 @@
 <div class="col-md-2">
     <aside ng-include="'templates/partials/user-main-navigation.html'"></aside>
-    <aside ng-include="'templates/partials/user-ads-navigation.html'"
-           ng-controller="UserAdsNavigationController"
-           ng-show="showUserAdsNavigation"></aside>
+    <aside ng-include="'templates/partials/ads-status-navigation.html'"
+           ng-controller="AdsStatusNavigationController"
+           ng-show="showAdsStatusNavigation"></aside>
 </div>
 <main ng-include="'templates/partials/user-ads.html'" class="col-md-8 col-md-offset-1"></main>

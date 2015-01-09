@@ -1,14 +1,14 @@
-app.controller('UserAdsNavigationController', function ($scope, $rootScope, $location) {
-    $scope.showUserAdsNavigation = true;
+app.controller('AdsStatusNavigationController', function ($scope, $rootScope, $location) {
+    $scope.showAdsStatusNavigation = true;
     var currentStatusSelected = 'All';
 
     $scope.$watch(function(){
         return $location.path();
     }, function(value){
         if (value === '/user/ads') {
-            $scope.showUserAdsNavigation = true;
+            $scope.showAdsStatusNavigation = true;
         } else {
-            $scope.showUserAdsNavigation = false;
+            $scope.showAdsStatusNavigation = false;
         }
     });
 

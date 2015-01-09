@@ -61,8 +61,32 @@ html {
         html body #wrapper main .no-padding {
           padding-left: 0;
           padding-right: 0; }
-        html body #wrapper main .main-button:disabled {
-          background-color: #bb7d7a; }
+        html body #wrapper main .main-button {
+          display: block;
+          width: 25%;
+          height: 40px;
+          margin: 2% auto 0 auto;
+          font-size: 2rem;
+          border-radius: 3px;
+          box-shadow: 3px 3px 1px 0 #386091;
+          -moz-box-shadow: 3px 3px 1px 0 #386091;
+          -webkit-shadow: 3px 3px 1px 0 #386091;
+          border: 1px solid #2f383d; }
+          html body #wrapper main .main-button:active, html body #wrapper main .main-button:focus {
+            outline: none; }
+          html body #wrapper main .main-button:active {
+            position: relative;
+            top: 3px;
+            box-shadow: none;
+            -moz-box-shadow: none;
+            -webkit-shadow: none; }
+          html body #wrapper main .main-button a {
+            display: block;
+            width: 100%;
+            text-decoration: none;
+            color: inherit; }
+          html body #wrapper main .main-button:disabled {
+            background-color: #bb7d7a; }
         html body #wrapper main .ad {
           border: 1px solid #386091;
           margin-bottom: 2%;
@@ -212,6 +236,33 @@ html {
           height: 40px;
           font-size: 1.8rem;
           display: inline-block; }
+        html body #wrapper main .admin-ad .admin-main-buttons {
+          margin-top: 4%;
+          border-top: 1px solid #386091; }
+          html body #wrapper main .admin-ad .admin-main-buttons .admin-main-button {
+            height: 40px;
+            margin: 2% auto 0 auto;
+            font-size: 2rem;
+            border-radius: 3px;
+            box-shadow: 3px 3px 1px 0 #386091;
+            -moz-box-shadow: 3px 3px 1px 0 #386091;
+            -webkit-shadow: 3px 3px 1px 0 #386091;
+            border: 1px solid #2f383d; }
+            html body #wrapper main .admin-ad .admin-main-buttons .admin-main-button:active, html body #wrapper main .admin-ad .admin-main-buttons .admin-main-button:focus {
+              outline: none; }
+            html body #wrapper main .admin-ad .admin-main-buttons .admin-main-button:active {
+              position: relative;
+              top: 3px;
+              box-shadow: none;
+              -moz-box-shadow: none;
+              -webkit-shadow: none; }
+            html body #wrapper main .admin-ad .admin-main-buttons .admin-main-button a {
+              display: block;
+              width: 100%;
+              text-decoration: none;
+              color: inherit; }
+            html body #wrapper main .admin-ad .admin-main-buttons .admin-main-button:disabled {
+              background-color: #bb7d7a; }
       html body #wrapper aside .sidebar-title, html body #wrapper aside p {
         border-bottom: 1px solid #212121;
         margin: 0 0 2% 0;

@@ -30,14 +30,14 @@
                 <button ng-show="ad.status === 'Inactive'"
                         ng-click="publishAdAgain(ad.id)"
                         class="main-button">Publish again</button>
-                <button ng-show="ad.status === 'Inactive'"
+                <button ng-show="ad.status === 'Inactive' || ad.status === 'Rejected'"
                         class="main-button">
                     <a ng-href="#/user/ads/delete/{{ad.id}}">Delete</a></button>
             </div>
         </div>
     </div>
 
-    <div class="text-center" ng-show="adsLoaded">
+    <div class="text-center" ng-show="adsLoaded && hasResults && hasPagesToBeShown">
         <pagination total-items="ads.numItems" ng-model="urlParams.startPage"
                     items-per-page="urlParams.pageSize" ng-change="getUserAds()"
                     max-size="9" boundary-links="true">

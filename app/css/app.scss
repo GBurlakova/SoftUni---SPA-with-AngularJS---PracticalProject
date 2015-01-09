@@ -89,6 +89,32 @@ html {
           padding-right: 0;
         }
         .main-button{
+          display: block;
+          width: 25%;
+          height: 40px;
+          margin: 2% auto 0 auto;
+          font-size: 2rem;
+          border-radius: 3px;
+          box-shadow: 3px 3px 1px 0 $blue;
+          -moz-box-shadow:  3px 3px 1px 0 $blue;
+          -webkit-shadow:  3px 3px 1px 0 $blue;
+          border: 1px solid $blackFont;
+          &:active, &:focus {
+            outline: none;
+          }
+          &:active {
+            position: relative;
+            top: 3px;
+            box-shadow: none;
+            -moz-box-shadow: none;
+            -webkit-shadow: none;
+          }
+          a{
+            display: block;
+            width: 100%;
+            text-decoration: none;
+            color: inherit;
+          }
           &:disabled{
             background-color: rgb(187, 125, 122);
           }
@@ -289,6 +315,41 @@ html {
             height: 40px;
             font-size: 1.8rem;
             display: inline-block;
+          }
+        }
+        .admin-ad{
+          .admin-main-buttons {
+            margin-top: 4%;
+            border-top: 1px solid $blue;
+            .admin-main-button {
+              height: 40px;
+              margin: 2% auto 0 auto;
+              font-size: 2rem;
+              border-radius: 3px;
+              box-shadow: 3px 3px 1px 0 $blue;
+              -moz-box-shadow:  3px 3px 1px 0 $blue;
+              -webkit-shadow:  3px 3px 1px 0 $blue;
+              border: 1px solid $blackFont;
+              &:active, &:focus {
+                outline: none;
+              }
+              &:active {
+                position: relative;
+                top: 3px;
+                box-shadow: none;
+                -moz-box-shadow: none;
+                -webkit-shadow: none;
+              }
+              a{
+                display: block;
+                width: 100%;
+                text-decoration: none;
+                color: inherit;
+              }
+              &:disabled{
+                background-color: rgb(187, 125, 122);
+              }
+            } // admin main button
           }
         }
       } // main

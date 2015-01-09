@@ -1,10 +1,47 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+<div ng-controller="AdminAdsController">
+    <div class="result-message bold">{{resultMessage}}</div>
+    <div ng-repeat="ad in ads.ads" class="ad admin-ad">
+        <div class="ad-title col-lg-12">
+            <div class="col-lg-6">{{ad.title}}</div>
+            <div class="col-lg-6">{{ad.date | date: 'd-MMM-yyyy'}}</div>
+        </div>
+        <div class="col-lg-4">
+            <img class="ad-image" src="" alt="add-image" ng-src="{{ad.imageDataUrl || defaultImage}}"/>
+            <div class="text-center status">Status:</div>
+            <div class="text-center bordered">{{ad.status}}</div>
+        </div>
+        <div class="ad-details col-lg-8">
+            <div class="bordered">{{ad.text}}</div>
+            <div class="col-lg-6">Username:</div>
+            <div class="bordered text-center col-lg-6">{{ad.ownerUsername || notSpecifiedTextData}}</div>
+            <div class="col-lg-6">Name:</div>
+            <div class="bordered text-center col-lg-6">{{ad.ownerName || notSpecifiedTextData}}</div>
+            <div class="col-lg-6">Email:</div>
+            <div class="bordered text-center col-lg-6">{{ad.ownerEmail || notSpecifiedTextData}}</div>
+            <div class="col-lg-6">Phone:</div>
+            <div class="bordered text-center col-lg-6">{{ad.ownerPhone || notSpecifiedTextData}}</div>
+            <div class="col-lg-6">Category:</div>
+            <div class="bordered text-center col-lg-6">{{ad.categoryName || notSpecifiedTextData}}</div>
+            <div class="col-lg-6">Town:</div>
+            <div class="bordered text-center col-lg-6">{{ad.townName || notSpecifiedTextData}}</div>
+        </div>
+        <div class="col-lg-10 col-lg-offset-1 text-center admin-main-buttons">
+            <button ng-click="approveAd(ad.id)"
+                    class="admin-main-button col-lg-3 col-sm-6 col-xs-12">Approve</button>
+            <button ng-click="rejectAd(ad.id)"
+                    class="admin-main-button col-lg-3 col-sm-6 col-xs-12">Reject</a></button>
+            <button ng-click="publishAdAgain(ad.id)"
+                    class="admin-main-button col-lg-3 col-sm-6 col-xs-12">Edit</button>
+            <button class="admin-main-button col-lg-3 col-sm-6 col-xs-12">
+                <a ng-href="#/user/ads/delete/{{ad.id}}">Delete</a></button>
+        </div>
+    </div>
 
-</body>
-</html>
+    <div class="text-center" ng-show="adsLoaded && hasResults && hasPagesToBeShown">
+        <pagination total-items="ads.numItems" ng-model="urlParams.startPage"
+                    items-per-page="urlParams.pageSize" ng-change="getAdminAds()"
+                    max-size="9" boundary-links="true">
+        </pagination>
+    </div>
+
+</div>

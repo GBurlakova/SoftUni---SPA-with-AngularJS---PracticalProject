@@ -1,7 +1,7 @@
 app.controller('AllAdsController', function AllAdsController($scope, $rootScope, adsData) {
     var NO_RESULTS_MESSAGE = 'No results to display';
     var INITIAL_START_PAGE = 1;
-    var PAGE_SIZE = 2;
+    var PAGE_SIZE = 5;
 
     $scope.requestParams = {
         townId: '',
@@ -10,6 +10,8 @@ app.controller('AllAdsController', function AllAdsController($scope, $rootScope,
         pageSize: PAGE_SIZE};
     $scope.defaultImage = 'http://www.agetruck.com/truck_img/default.gif';
     $scope.adsLoaded = false;
+    $scope.hasResults = false;
+    $scope.hasPagesToBeShown = false;
 
     homePageLoaded();
 
@@ -19,6 +21,8 @@ app.controller('AllAdsController', function AllAdsController($scope, $rootScope,
             function (data) {
                 $scope.ads = data;
                 $scope.adsLoaded = true;
+                $scope.hasResults = data.ads.length > 0;
+                $scope.hasPagesToBeShown = data.numPages > 1;
                 checkForEmptyData(data.ads);
             },
             function (error, status, headers, config) {

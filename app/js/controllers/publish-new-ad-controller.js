@@ -1,4 +1,4 @@
-app.controller('PublishNewAdController', function ($scope, $rootScope, categoriesData,
+app.controller('PublishNewAdController', function ($scope, $rootScope, $location, categoriesData,
                                                    townsData, usersData, notifications) {
     var DEFAULT_AD_IMAGE = 'http://www.agetruck.com/truck_img/default.gif';
     var PUBLISH_AD_CONFIRM_MESSAGE = 'Would you like to publish the ad?';

@@ -20,7 +20,7 @@ app.controller('LoginController', function ($scope, $rootScope,  $location, user
                     var permission;
                     if (data.hasOwnProperty('isAdmin')) {
                         permission = 'admin';
-                        $location.path("/admin/home");
+                        $location.path("/admin/ads");
                     }else {
                         permission = 'user';
                         $location.path("/user/home");

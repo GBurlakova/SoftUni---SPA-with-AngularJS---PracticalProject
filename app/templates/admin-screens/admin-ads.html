@@ -1,0 +1,11 @@
+<div class="col-lg-2">
+    <aside ng-include="'templates/partials/admin-main-navigation.html'"></aside>
+    <aside ng-include="'templates/partials/ads-status-navigation.html'"
+           ng-controller="AdsStatusNavigationController"
+           ng-show="showAdsStatusNavigation"></aside>
+</div>
+<main ng-include="'templates/partials/admin-ads.html'" class="col-lg-8"></main>
+<div class="col-lg-2">
+    <aside ng-include="'templates/partials/categories-sidebar.html'"></aside>
+    <aside ng-include="'templates/partials/towns-sidebar.html'"></aside>
+</div>

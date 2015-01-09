@@ -29,7 +29,7 @@
         </div>
     </div>
 
-    <div class="text-center" ng-show="adsLoaded">
+    <div class="text-center" ng-show="adsLoaded && hasResults && hasPagesToBeShown">
         <pagination total-items="ads.numItems" ng-model="requestParams.startPage"
                     items-per-page="requestParams.pageSize" ng-change="loadAds()"
                     max-size="9" boundary-links="true">

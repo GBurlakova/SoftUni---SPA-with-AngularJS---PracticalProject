@@ -1,6 +1,8 @@
-app.controller('MainController', function ($scope, usersData, $location, permissions) {
+app.controller('MainController', function ($scope, usersData, $location, permissions, notifications) {
     var ADMIN_HEADER_CLASS = 'admin-header';
     var USER_HEADER_CLASS = 'user-header';
+    var UNAUTHORIZED_ACCESS_MESSAGE = 'You do no have the permission needed to access this page.' +
+        'Please login and try again!';
     var userIsLogged;
     var headerTemplates = {
         headerPublic: 'templates/partials/header-public.html',
@@ -18,7 +20,9 @@ app.controller('MainController', function ($scope, usersData, $location, permiss
         myAds: 'My Ads',
         editAd: 'Edit Ad',
         deleteAd: 'Delete Ad',
-        editUserProfile: 'Edit Profile'
+        editUserProfile: 'Edit Profile',
+        // admin
+        adminAds: 'Ads administration'
     };
 
     $scope.notSpecifiedTextData = 'Not specified';
@@ -72,6 +76,10 @@ app.controller('MainController', function ($scope, usersData, $location, permiss
         $scope.title = headerTitle.editUserProfile;
     });
 
+    $scope.$on('adminAdsPageLoaded', function () {
+        $scope.title = headerTitle.adminAds;
+    });
+
     // Scope functions
     $scope.setHeaderStyle = function () {
         var userIsAdmin = usersData.getUserData()['permission'] === 'admin';
@@ -97,8 +105,8 @@ app.controller('MainController', function ($scope, usersData, $location, permiss
         var forbiddenAccess = (permission !== usersData.getUserData()['permission']);
         var isUnauthorizedAccess =  unknownPermission || forbiddenAccess;
         if(isUnauthorizedAccess){
-            $location.path('/');
             usersData.clearUserData();
+            $location.path('/unauthorized');
         }
     }
 });

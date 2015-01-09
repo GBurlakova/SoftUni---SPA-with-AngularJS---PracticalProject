@@ -1,8 +1,10 @@
 app.controller('UserAdsController', function ($scope, $rootScope, adsData, usersData, notifications) {
     var DEFAULT_AD_IMAGE = 'http://www.agetruck.com/truck_img/default.gif';
     var NO_RESULTS_MESSAGE = 'No results to display';
+    var AD_PUBLISHED_AGAIN_MESSAGE = 'Ad published again successfully';
+    var AD_DEACTIVATED_MESSAGE = 'Ad deactivated successfully';
     var INITIAL_START_PAGE = 1;
-    var PAGE_SIZE = 2;
+    var PAGE_SIZE = 5;
 
     $scope.defaultImage = DEFAULT_AD_IMAGE;
     $scope.urlParams = {
@@ -10,6 +12,9 @@ app.controller('UserAdsController', function ($scope, $rootScope, adsData, users
         startPage: INITIAL_START_PAGE,
         pageSize: PAGE_SIZE};
     $scope.adsLoaded = false;
+    $scope.adsLoaded = false;
+    $scope.hasResults = false;
+    $scope.hasPagesToBeShown = false;
 
     userAdsPageLoaded();
 
@@ -26,6 +31,8 @@ app.controller('UserAdsController', function ($scope, $rootScope, adsData, users
             function (data) {
                 $scope.ads = data;
                 $scope.adsLoaded = true;
+                $scope.hasResults = data.ads.length > 0;
+                $scope.hasPagesToBeShown = data.numPages > 1;
                 checkForEmptyData(data.ads);
             },
             function (error) {
@@ -38,8 +45,10 @@ app.controller('UserAdsController', function ($scope, $rootScope, adsData, users
     $scope.deactivateAd = function (adId) {
         usersData.deactivateAd(adId)
             .then(function () {
-                notifications.success('Ad deactivated successfully');
-                $scope.getUserAds();
+                notifications.success(AD_DEACTIVATED_MESSAGE)
+                    .then(function () {
+                        $scope.getUserAds();
+                    });
             }, function () {
 
             });
@@ -48,8 +57,10 @@ app.controller('UserAdsController', function ($scope, $rootScope, adsData, users
     $scope.publishAdAgain = function (adId) {
         usersData.publishAdAgain(adId)
             .then(function () {
-                notifications.success('Ad published again successfully');
-                $scope.getUserAds();
+                notifications.success(AD_PUBLISHED_AGAIN_MESSAGE)
+                    .then(function () {
+                        $scope.getUserAds();
+                    });
             }, function () {
 
             });

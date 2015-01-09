@@ -1,0 +1,9 @@
+<h2 class="sidebar-title">
+    Navigation
+</h2>
+<ul ng-controller="UserMainNavigationController">
+    <li ng-class="getClass('/admin/ads')"><a href="#/admin/ads">Ads</a></li>
+    <li ng-class="getClass('/user/ads')"><a href="#/user/ads">Users</a></li>
+    <li ng-class="getClass('/user/ads/publish')"><a href="#/user/ads/publish">Categories</a></li>
+    <li ng-class="getClass('/user/profile')"><a href="#/user/profile">Towns</a></li>
+</ul>

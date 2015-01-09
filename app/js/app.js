@@ -20,6 +20,11 @@ app.config(function ($routeProvider) {
         templateUrl: 'templates/public-screens/register.html',
         permission: 'guest'
     });
+    $routeProvider.when('/unauthorized', {
+        templateUrl: 'templates/public-screens/unauthorized.html',
+        controller: '',
+        permission: 'guest'
+    });
 
     // user screens
     $routeProvider.when('/user/home', {
@@ -53,8 +58,8 @@ app.config(function ($routeProvider) {
         permission: 'user'
     });
     // admin screens
-    $routeProvider.when('/admin/home', {
-        templateUrl: 'templates/admin-screens/admin-home.html',
+    $routeProvider.when('/admin/ads', {
+        templateUrl: 'templates/admin-screens/admin-ads.html',
         controller: '',
         permission: 'admin'
     });
@@ -62,6 +67,7 @@ app.config(function ($routeProvider) {
 
 app.constant('BASE_URL', 'http://softuni-ads.azurewebsites.net/api');
 
-app.run(function(permissions) {
+app.run(function(permissions, usersData) {
     permissions.setPermissions(permissionList);
+//    usersData.clearUserData();
 });
