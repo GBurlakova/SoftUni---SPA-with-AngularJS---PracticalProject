@@ -1,0 +1,96 @@
+<form action="" name="editAdForm" class="edit-ad-form">
+    <div class="title">
+        Edit Ad
+    </div>
+    <div class="col-lg-8">
+        <div class="col-md-12">
+            <label for="title"
+                   class="col-md-3">Title*</label>
+            <input type="text"
+                   id="title"
+                   name="title"
+                   ng-model="editedAdData.title"
+                   class="col-md-9 col-sm-12 col-xs-12"
+                   required/>
+            <div class="error-info col-md-9 col-md-offset-3 no-padding"
+                 ng-show="editAdForm.title.$error.required &&
+                 editAdForm.title.$dirty">
+                Title is required
+            </div>
+        </div>
+        <div class="col-md-12">
+            <label for="text"
+                   class="col-md-3">Text*</label>
+            <textarea name="text"
+                      id="text"
+                      ng-model="editedAdData.text"
+                      class="col-md-9 col-sm-12 col-xs-12"
+                      required></textarea>
+            <div class="error-info col-md-9 col-md-offset-3 no-padding"
+                 ng-show="editAdForm.text.$error.required &&
+                 editAdForm.text.$dirty">
+                Text is required
+            </div>
+        </div>
+        <div class="col-md-12">
+            <label for="category"
+                   class="col-md-3 col-sm-12 col-xs-12">Category: </label>
+            <select name="category"
+                    id="category"
+                    ng-model="editedAdData.categoryId"
+                    class="col-md-9 col-sm-12 col-xs-12">
+                <option value="null">Not specified</option>
+                <option ng-repeat="category in categories" value="{{category.id}}">{{category.name}}</option>
+            </select>
+        </div>
+        <div class="col-md-12">
+            <label for="town"
+                   class="col-md-3 col-sm-12 col-xs-12">Town: </label>
+            <select name="town"
+                    id="town"
+                    ng-model="editedAdData.townId"
+                    class="col-md-9 col-sm-12 col-xs-12">
+                <option value="null">Not specified</option>
+                <option ng-repeat="town in towns" value="{{town.id}}">{{town.name}}</option>
+            </select>
+        </div>
+        <div class="col-md-12"
+            ng-show="changeImageFunctionSelected">
+            <label for="imageUrl"
+                   class="col-md-3">Image: </label>
+            <input type="file"
+                   id="imageUrl"
+                   name="imageUrl"
+                   ng-model="editedAdData.imageDataUrl"
+                   class="col-md-9"
+                   onchange="angular.element(this).scope().fileSelected(this)"/>
+        </div>
+        <div class="error-info col-md-9 col-md-offset-3 no-padding"
+             ng-show="editAdForm.date.$error.required &&
+                 editAdForm.date.$dirty">
+            Date is required
+        </div>
+    </div>
+    <div class="ad-image col-lg-4 text-center">
+        <div id="ad-image">
+            <img src="images/loading.gif" ng-show="adNotLoaded" alt=""/>
+            <img alt="ad-image"
+                 ng-src="{{editedAdData.imageDataUrl || defaultImage}}"
+                 ng-show="!adNotLoaded"/>
+        </div>
+        <div class="text-center">
+            <button class="change-button pull-left"
+                    ng-click="showImageFileInput()">Change image</button>
+            <button class="delete-button pull-right"
+                    ng-click="deleteImage()">Delete image</button>
+        </div>
+    </div>
+    <div class="col-md-12 text-center">
+        <button class="main-button"
+                ng-click="editAd(editedAdData)"
+                ng-disabled="editAdForm.title.$error.required ||
+                editAdForm.text.$error.required">Edit</button>
+        <button class="main-button"
+                ng-click="cancel()">Cancel</button>
+    </div>
+</form>

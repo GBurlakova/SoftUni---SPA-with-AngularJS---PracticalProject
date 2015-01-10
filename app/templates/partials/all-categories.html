@@ -1,0 +1,25 @@
+<div ng-controller="AllCategoriesController" class="text-center">
+    <table class="table col-lg-10">
+        <thead>
+        <tr>
+            <th>Category</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="category in categories.categories">
+            <td>{{category.username}}</td>
+            <td class="actions">
+                <a href="#/admin/categories/edit/{{category.username}}">Edit</a>
+                <a href="#/admin/categories/delete/{{category.id}}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="text-center" ng-show="categoriesLoaded && hasResults && hasPagesToBeShown">
+        <pagination total-items="categories.numItems" ng-model="urlParams.startPage"
+                    items-per-page="urlParams.pageSize" ng-change="getCategories()"
+                    max-size="9" boundary-links="true">
+        </pagination>
+    </div>
+</div>

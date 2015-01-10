@@ -1,5 +1,7 @@
 <div ng-controller="DeleteAdminAdController">
-    <img src="images/loading.gif"  ng-show="adNotLoaded" alt=""/>
+    <div class="text-center" ng-show="adNotLoaded">
+        <img src="images/loading.gif"   alt=""/>
+    </div>
     <div class="ad ad-to-be-deleted" ng-show="!adNotLoaded">
         <div class="confirm-delete-ad-title col-lg-4 col-lg-offset-4">
             Confirm delete ad?

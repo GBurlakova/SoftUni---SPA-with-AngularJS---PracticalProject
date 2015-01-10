@@ -337,7 +337,7 @@ html {
           }
         }
         // admin css
-        .admin-ad{
+        .admin-ad {
           .admin-main-buttons {
             margin-top: 4%;
             border-top: 1px solid $blue;
@@ -360,18 +360,55 @@ html {
                 -moz-box-shadow: none;
                 -webkit-shadow: none;
               }
-              a{
+              a {
                 display: block;
                 width: 100%;
                 text-decoration: none;
                 color: inherit;
               }
-              &:disabled{
+              &:disabled {
                 background-color: rgb(187, 125, 122);
               }
             } // admin main button
           }
         }
+        .table {
+          margin-bottom: 5%;
+          border: 1px solid $blackFont;
+          border-collapse: collapse;
+          tr, td, th{
+            border: 1px solid $blackFont;
+          }
+          thead {
+            background-color: $blue;
+            font-size: 1.7rem;
+            color: #ffffff;
+            tr {
+              height: 30px;
+              th{
+                text-align: center;
+              }
+            }
+          } // thead
+          tbody{
+            color: $blackFont;
+            font-size: 1.5rem;
+            tr{
+              td{
+                height: 30px;
+                padding: 0 1%;
+              }
+            }
+            .actions{
+              width: 100px;
+              text-align: center;
+              a{
+                color: $blue;
+                display: block;
+              }
+            }
+          } // tbody
+        } // .users-table
       } // main
       aside {
         .sidebar-title, p {

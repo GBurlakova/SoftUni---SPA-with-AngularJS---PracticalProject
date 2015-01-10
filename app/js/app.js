@@ -73,11 +73,41 @@ app.config(function ($routeProvider) {
         controller: 'AdminEditAdController',
         permission: 'admin'
     });
+    $routeProvider.when('/admin/users', {
+        templateUrl: 'templates/admin-screens/users.html',
+        controller: '',
+        permission: 'admin'
+    });
+    $routeProvider.when('/admin/users/delete/:username', {
+        templateUrl: 'templates/admin-screens/delete-user.html',
+        controller: '',
+        permission: 'admin'
+    });
+    $routeProvider.when('/admin/categories', {
+        templateUrl: 'templates/admin-screens/categories.html',
+        controller: '',
+        permission: 'admin'
+    });
+    $routeProvider.when('/admin/towns', {
+        templateUrl: 'templates/admin-screens/towns.html',
+        controller: '',
+        permission: 'admin'
+    });
+    $routeProvider.otherwise({redirectTo: '/'});
 });
 
 app.constant('BASE_URL', 'http://softuni-ads.azurewebsites.net/api');
 
-app.run(function(permissions, usersData) {
+app.run(function($location, permissions, usersData) {
     permissions.setPermissions(permissionList);
-//    usersData.clearUserData();
+    if (usersData.hasUserLogged()) {
+    	if (usersData.isAdmin()) {
+    		$location.path('/admin/ads');
+    	} else {
+            $location.path('/user/home');
+    	}
+    } else {
+        $location.path('/');
+        usersData.clearUserData();
+    }
 });

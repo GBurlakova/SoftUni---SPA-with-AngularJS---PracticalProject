@@ -278,6 +278,32 @@ html {
               color: inherit; }
             html body #wrapper main .admin-ad .admin-main-buttons .admin-main-button:disabled {
               background-color: #bb7d7a; }
+        html body #wrapper main .table {
+          margin-bottom: 5%;
+          border: 1px solid #2f383d;
+          border-collapse: collapse; }
+          html body #wrapper main .table tr, html body #wrapper main .table td, html body #wrapper main .table th {
+            border: 1px solid #2f383d; }
+          html body #wrapper main .table thead {
+            background-color: #386091;
+            font-size: 1.7rem;
+            color: #ffffff; }
+            html body #wrapper main .table thead tr {
+              height: 30px; }
+              html body #wrapper main .table thead tr th {
+                text-align: center; }
+          html body #wrapper main .table tbody {
+            color: #2f383d;
+            font-size: 1.5rem; }
+            html body #wrapper main .table tbody tr td {
+              height: 30px;
+              padding: 0 1%; }
+            html body #wrapper main .table tbody .actions {
+              width: 100px;
+              text-align: center; }
+              html body #wrapper main .table tbody .actions a {
+                color: #386091;
+                display: block; }
       html body #wrapper aside .sidebar-title, html body #wrapper aside p {
         border-bottom: 1px solid #212121;
         margin: 0 0 2% 0;

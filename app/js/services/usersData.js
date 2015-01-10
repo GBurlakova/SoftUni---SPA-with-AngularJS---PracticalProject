@@ -74,6 +74,20 @@ app.factory('usersData', function (requester, BASE_URL) {
         return requester.put(serviceUrl, authorizationHeader, updatedUserPasswordData);
     };
 
+    var getUsers = function (urlParams) {
+        var serviceUrl = BASE_URL + '/admin/users?sortBy=' + urlParams.orderBy +
+            '&startPage=' + urlParams.startPage +
+            '&pageSize=' + urlParams.pageSize;
+        var authorizationHeader = getAuthorizationHeader();
+        return requester.get(serviceUrl, authorizationHeader, null);
+    };
+
+    var getUserByUsername = function (userId) {
+        var serviceUrl = BASE_URL + '/admin/users/' + userId;
+        var authorizationHeader = getAuthorizationHeader();
+        return requester.get(serviceUrl, authorizationHeader, null);
+    };
+
     return{
         register: register,
         login: login,
@@ -85,6 +99,8 @@ app.factory('usersData', function (requester, BASE_URL) {
         getAuthorizationHeader: getAuthorizationHeader,
         getProfile: getProfile,
         editProfile: editProfile,
-        changePassword: changePassword
+        changePassword: changePassword,
+        getUsers: getUsers,
+        getUserByUsername: getUserByUsername
     }
 });

@@ -1,0 +1,31 @@
+<div ng-controller="AllUsersController" class="text-center">
+    <table class="table col-lg-10">
+        <thead>
+        <tr>
+            <th>Username</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="user in users.users">
+            <td>{{user.username}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.phoneNumber}}</td>
+            <td class="actions"><a href="#/admin/users/edit/{{user.username}}">Edit</a>
+                <a
+                    href="#/admin/users/delete/{{user.username}}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="text-center" ng-show="usersLoaded && hasResults && hasPagesToBeShown">
+        <pagination total-items="users.numItems" ng-model="urlParams.startPage"
+                    items-per-page="urlParams.pageSize" ng-change="getUsers()"
+                    max-size="9" boundary-links="true">
+        </pagination>
+    </div>
+</div>

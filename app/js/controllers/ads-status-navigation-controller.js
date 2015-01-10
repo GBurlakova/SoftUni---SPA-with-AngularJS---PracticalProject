@@ -5,7 +5,7 @@ app.controller('AdsStatusNavigationController', function ($scope, $rootScope, $l
     $scope.$watch(function(){
         return $location.path();
     }, function(value){
-        if (value === '/user/ads') {
+        if (value === '/user/ads' || value === '/admin/ads') {
             $scope.showAdsStatusNavigation = true;
         } else {
             $scope.showAdsStatusNavigation = false;

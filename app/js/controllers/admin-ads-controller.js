@@ -40,6 +40,12 @@ app.controller('AdminAdsController', function ($scope, $rootScope, adsData, user
         $scope.getAdminAds();
     });
 
+    // Events
+    $scope.$on('adStatusSelected', function (event, status) {
+        $scope.urlParams.status = status;
+        $scope.getAdminAds();
+    });
+
     // Scope functions
     $scope.getAdminAds = function() {
         adsData.getAdminAds($scope.urlParams)
@@ -91,8 +97,8 @@ app.controller('AdminAdsController', function ($scope, $rootScope, adsData, user
     function executeApproveAd(adId) {
         adsData.approveAd(adId)
             .then(function () {
-                notifications.success().then(function () {
-                    $scope.getAdminAds(AD_APPROVED_SUCCESSFULLY_MESSAGE);
+                notifications.success(AD_APPROVED_SUCCESSFULLY_MESSAGE).then(function () {
+                    $scope.getAdminAds();
                 })
             },
             function () {
@@ -103,8 +109,8 @@ app.controller('AdminAdsController', function ($scope, $rootScope, adsData, user
     function executeRejectAd(adId) {
         adsData.rejectAd(adId)
             .then(function () {
-                notifications.success().then(function () {
-                    $scope.getAdminAds(AD_REJECTED_SUCCESSFULLY_MESSAGE);
+                notifications.success(AD_REJECTED_SUCCESSFULLY_MESSAGE).then(function () {
+                    $scope.getAdminAds();
                 })
             },
             function () {

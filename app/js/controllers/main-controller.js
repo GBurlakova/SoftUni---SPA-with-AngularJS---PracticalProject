@@ -22,7 +22,10 @@ app.controller('MainController', function ($scope, usersData, $location, permiss
         deleteAd: 'Delete Ad',
         editUserProfile: 'Edit Profile',
         // admin
-        adminAds: 'Ads administration'
+        adminAds: 'Ads administration',
+        adminDeleteAd: 'Delete Ad',
+        adminEditAd: 'Edit ad',
+        users: 'Users'
     };
 
     $scope.notSpecifiedTextData = 'Not specified';
@@ -30,7 +33,7 @@ app.controller('MainController', function ($scope, usersData, $location, permiss
     // Events
     $scope.$on('$routeChangeStart', function(scope, next) {
         authorizeUserAccess(next);
-        userIsLogged = usersData.getUserData()['username'];
+        userIsLogged = usersData.hasUserLogged();
         if (userIsLogged) {
             var username = usersData.getUserData()['username'];
             $scope.username = username;
@@ -82,7 +85,7 @@ app.controller('MainController', function ($scope, usersData, $location, permiss
 
     // Scope functions
     $scope.setHeaderStyle = function () {
-        var userIsAdmin = usersData.getUserData()['permission'] === 'admin';
+        var userIsAdmin = usersData.isAdmin();
         var headerStyle = '';
         if (userIsAdmin) {
         	headerStyle = ADMIN_HEADER_CLASS;
@@ -101,12 +104,14 @@ app.controller('MainController', function ($scope, usersData, $location, permiss
     // Private functions
     function authorizeUserAccess(next) {
         var permission = next.$$route.permission;
-        var unknownPermission = !permissions.hasPermission(permission);
-        var forbiddenAccess = (permission !== usersData.getUserData()['permission']);
-        var isUnauthorizedAccess =  unknownPermission || forbiddenAccess;
-        if(isUnauthorizedAccess){
-            usersData.clearUserData();
-            $location.path('/unauthorized');
+        if (permission !== undefined) {
+            var unknownPermission = !permissions.hasPermission(permission);
+            var forbiddenAccess = (permission !== usersData.getUserData()['permission']);
+            var isUnauthorizedAccess =  unknownPermission || forbiddenAccess;
+            if(isUnauthorizedAccess){
+                usersData.clearUserData();
+                $location.path('/unauthorized');
+            }
         }
     }
 });

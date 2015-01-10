@@ -55,7 +55,7 @@
             </select>
         </div>
         <div class="col-md-12"
-            ng-show="changeImageFunctionSelected">
+             ng-show="changeImageFunctionSelected">
             <label for="imageUrl"
                    class="col-md-3">Image: </label>
             <input type="file"
@@ -76,7 +76,7 @@
                    class="col-md-9 col-sm-12 col-xs-12"/>
         </div>
         <div class="col-md-12"
-                ng-show="isAdmin">
+             ng-show="isAdmin">
             <label for="status"
                    class="col-md-3 col-sm-12 col-xs-12">Status: </label>
             <select name="status"
@@ -128,7 +128,6 @@
                 ng-click="editAd(editedAdData)"
                 ng-disabled="editAdForm.title.$error.required ||
                 editAdForm.text.$error.required ||
-                editAdForm.date.$error.required ||
                 editAdForm.status.$error.required">Edit</button>
         <button class="main-button"
                 ng-click="cancel()">Cancel</button>

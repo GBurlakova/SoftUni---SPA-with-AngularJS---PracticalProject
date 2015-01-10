@@ -47,7 +47,7 @@ app.controller('RegisterController', function ($scope, $rootScope, $location, to
                 notifications.success(USER_REGISTERED_SUCCESSFULLY)
                     .then(
                         function () {
-                            $location.path("#/user/home");
+                            $location.path("/user/home");
                             userLogged();
                     });
             },
@@ -59,13 +59,13 @@ app.controller('RegisterController', function ($scope, $rootScope, $location, to
     function saveUserData(data) {
         var username = data['username'];
         var accessToken = data['access_token'];
-        var isAdmin;
+        var permission;
         if (data.hasOwnProperty('isAdmin')) {
-            isAdmin = data['isAdmin'];
+            permission = 'admin';
         }else {
-            isAdmin = false;
+            permission = 'user';
         }
-        usersData.saveUserData(username, accessToken, isAdmin);
+        usersData.saveUserData(username, accessToken, permission);
     }
 
     function processRegisterError(error) {
