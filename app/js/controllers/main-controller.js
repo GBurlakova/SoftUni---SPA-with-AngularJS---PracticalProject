@@ -25,7 +25,15 @@ app.controller('MainController', function ($scope, usersData, $location, permiss
         adminAds: 'Ads administration',
         adminDeleteAd: 'Delete Ad',
         adminEditAd: 'Edit ad',
-        users: 'Users'
+        users: 'Users',
+        categories: 'Categories',
+        editCategory: 'Edit Category',
+        deleteCategory: 'Delete Category',
+        createCategory: 'Create Category',
+        towns: 'Towns',
+        editTown: 'Edit Town',
+        deleteTown: 'Delete Town',
+        createTown: 'Create Town'
     };
 
     $scope.notSpecifiedTextData = 'Not specified';
@@ -79,8 +87,44 @@ app.controller('MainController', function ($scope, usersData, $location, permiss
         $scope.title = headerTitle.editUserProfile;
     });
 
+    $scope.$on('allUsersPageLoaded', function () {
+        $scope.title = headerTitle.users;
+    });
+
     $scope.$on('adminAdsPageLoaded', function () {
         $scope.title = headerTitle.adminAds;
+    });
+
+    $scope.$on('allCategoriesPageLoaded', function () {
+        $scope.title = headerTitle.categories;
+    });
+
+    $scope.$on('createCategoryPageLoaded', function () {
+        $scope.title = headerTitle.createCategory;
+    });
+
+    $scope.$on('deleteCategoryPageLoaded', function () {
+        $scope.title = headerTitle.deleteCategory;
+    });
+
+    $scope.$on('editCategoryPageLoaded', function () {
+        $scope.title = headerTitle.editCategory;
+    });
+
+    $scope.$on('allTownsPageLoaded', function () {
+        $scope.title = headerTitle.towns;
+    });
+
+    $scope.$on('createTownPageLoaded', function () {
+        $scope.title = headerTitle.createTown;
+    });
+
+    $scope.$on('deleteTownPageLoaded', function () {
+        $scope.title = headerTitle.deleteTown;
+    });
+
+    $scope.$on('editTownPageLoaded', function () {
+        $scope.title = headerTitle.editTown;
     });
 
     // Scope functions
