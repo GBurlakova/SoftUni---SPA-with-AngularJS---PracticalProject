@@ -93,6 +93,26 @@ app.config(function ($routeProvider) {
         controller: '',
         permission: 'admin'
     });
+    $routeProvider.when('/admin/categories/create', {
+        templateUrl: 'templates/admin-screens/new-category.html',
+        controller: '',
+        permission: 'admin'
+    });
+    $routeProvider.when('/admin/towns/create', {
+        templateUrl: 'templates/admin-screens/new-town.html',
+        controller: '',
+        permission: 'admin'
+    });
+    $routeProvider.when('/admin/categories/delete/:id/:name', {
+        templateUrl: 'templates/admin-screens/delete-category.html',
+        controller: '',
+        permission: 'admin'
+    });
+    $routeProvider.when('/admin/towns/delete/:id/:name', {
+        templateUrl: 'templates/admin-screens/delete-town.html',
+        controller: '',
+        permission: 'admin'
+    });
     $routeProvider.otherwise({redirectTo: '/'});
 });
 

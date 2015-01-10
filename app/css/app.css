@@ -69,9 +69,13 @@ html {
           color: #386091;
           margin-bottom: 3%;
           border-bottom: 1px solid #386091; }
+        html body #wrapper main .bordered {
+          border: 1px solid #386091;
+          background-color: #d2d2d2;
+          padding: 2%;
+          border-radius: 2px; }
         html body #wrapper main .main-button {
           display: block;
-          width: 25%;
           height: 40px;
           margin: 2% auto 0 auto;
           font-size: 2rem;
@@ -278,6 +282,9 @@ html {
               color: inherit; }
             html body #wrapper main .admin-ad .admin-main-buttons .admin-main-button:disabled {
               background-color: #bb7d7a; }
+        html body #wrapper main .create-button, html body #wrapper main .cancel-button {
+          display: inline-block;
+          margin-top: 6%; }
         html body #wrapper main .table {
           margin-bottom: 5%;
           border: 1px solid #2f383d;
@@ -304,6 +311,14 @@ html {
               html body #wrapper main .table tbody .actions a {
                 color: #386091;
                 display: block; }
+        html body #wrapper main .delete-category-form .title {
+          margin-bottom: 2%;
+          font-size: 2rem; }
+        html body #wrapper main .delete-category-form .sub-title {
+          margin-bottom: 4%;
+          font-size: 1.8rem; }
+        html body #wrapper main .delete-category-form .bordered {
+          font-size: 2rem; }
       html body #wrapper aside .sidebar-title, html body #wrapper aside p {
         border-bottom: 1px solid #212121;
         margin: 0 0 2% 0;

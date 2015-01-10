@@ -98,9 +98,15 @@ html {
           margin-bottom: 3%;
           border-bottom: 1px solid $blue;
         }
+        .bordered {
+          border: 1px solid $blue;
+          background-color: rgb(210, 210, 210);
+          padding: 2%;
+          border-radius: 2px;
+        }
         .main-button{
           display: block;
-          width: 25%;
+//          width: 25%;
           height: 40px;
           margin: 2% auto 0 auto;
           font-size: 2rem;
@@ -372,6 +378,10 @@ html {
             } // admin main button
           }
         }
+        .create-button, .cancel-button{
+          display: inline-block;
+          margin-top: 6%;
+        }
         .table {
           margin-bottom: 5%;
           border: 1px solid $blackFont;
@@ -399,16 +409,29 @@ html {
                 padding: 0 1%;
               }
             }
-            .actions{
+            .actions {
               width: 100px;
               text-align: center;
-              a{
+              a {
                 color: $blue;
                 display: block;
               }
             }
           } // tbody
         } // .users-table
+        .delete-category-form {
+          .title {
+            margin-bottom: 2%;
+            font-size: 2rem;
+          }
+          .sub-title{
+            margin-bottom: 4%;
+            font-size: 1.8rem;
+          }
+          .bordered {
+            font-size: 2rem;
+          }
+        }
       } // main
       aside {
         .sidebar-title, p {

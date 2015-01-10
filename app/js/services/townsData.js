@@ -12,8 +12,29 @@ app.factory('townsData', function (requester, BASE_URL, usersData) {
         return requester.get(serviceUrl, authorizationHeader, null);
     };
 
+    var createTown= function (town) {
+        var serviceUrl = BASE_URL + '/admin/towns';
+        var authorizationHeader = usersData.getAuthorizationHeader();
+        return requester.post(serviceUrl, authorizationHeader, town);
+    };
+
+    var deleteTown = function (townId) {
+        var serviceUrl = BASE_URL + '/admin/towns/' + townId;
+        var authorizationHeader = usersData.getAuthorizationHeader();
+        return requester.delete(serviceUrl, authorizationHeader);
+    };
+
+    var editTown = function (townId, town) {
+        var serviceUrl = BASE_URL + '/admin/towns/' + categoryId;
+        var authorizationHeader = usersData.getAuthorizationHeader();
+        return requester.put(serviceUrl, authorizationHeader, town);
+    };
+
     return {
         getAll: getAll,
-        getAdminTowns: getAdminTowns
+        getAdminTowns: getAdminTowns,
+        createTown: createTown,
+        deleteTown: deleteTown,
+        editTown: editTown
     }
 });

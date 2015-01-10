@@ -11,11 +11,14 @@
             <td>{{town.username}}</td>
             <td class="actions">
                 <a href="#/admin/edit/{{town.username}}">Edit</a>
-                <a href="#/admin/delete/{{town.id}}">Delete</a>
+                <a href="#/admin/towns/delete/{{town.id}}/{{town.username}}">Delete</a>
             </td>
         </tr>
         </tbody>
     </table>
+    <div class="text-center">
+        <button class="main-button"><a href="#/admin/towns/create">Create New Town</a></button>
+    </div>
     <div class="text-center" ng-show="townsLoaded && hasResults && hasPagesToBeShown">
         <pagination total-items="towns.numItems" ng-model="urlParams.startPage"
                     items-per-page="urlParams.pageSize" ng-change="getTowns()"
