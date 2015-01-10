@@ -44,7 +44,7 @@ app.config(function ($routeProvider) {
     });
     $routeProvider.when('/user/ads/edit/:id', {
         templateUrl: 'templates/user-screens/edit-ad.html',
-        controller: '',
+        controller: 'UserEditAdController',
         permission: 'user'
     });
     $routeProvider.when('/user/ads/delete/:id', {
@@ -66,6 +66,11 @@ app.config(function ($routeProvider) {
     $routeProvider.when('/admin/ads/delete/:id', {
         templateUrl: 'templates/admin-screens/admin-delete-ad.html',
         controller: '',
+        permission: 'admin'
+    });
+    $routeProvider.when('/admin/ads/edit/:id', {
+        templateUrl: 'templates/admin-screens/admin-edit-ad.html',
+        controller: 'AdminEditAdController',
         permission: 'admin'
     });
 });

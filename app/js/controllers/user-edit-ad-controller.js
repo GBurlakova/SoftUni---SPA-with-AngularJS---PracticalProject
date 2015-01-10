@@ -1,4 +1,4 @@
-app.controller('EditAdController', function ($scope, $rootScope, $routeParams, $location,
+app.controller('UserEditAdController', function ($scope, $rootScope, $routeParams, $location,
                                              townsData, categoriesData, adsData, notifications) {
     var DEFAULT_AD_IMAGE = 'http://www.agetruck.com/truck_img/default.gif';
     var CANNOT_LOAD_AD_MESSAGE = 'The ad chosen cannot be loaded. Please try again later!';
@@ -10,6 +10,7 @@ app.controller('EditAdController', function ($scope, $rootScope, $routeParams, $
     $scope.defaultImage = DEFAULT_AD_IMAGE;
     $scope.changeImageFunctionSelected = false;
     $scope.adNotLoaded = true;
+    $scope.isAdmin = false;
 
     $scope.editedAdData = {
         title: '',

@@ -9,6 +9,26 @@ app.factory('usersData', function (requester, BASE_URL) {
         return requester.post(serviceUrl, null, loginData);
     };
 
+    var isAdmin = function () {
+        var userLoggedPermission = localStorage.getItem('permission');
+        var userIsAdmin = false;
+        if (userLoggedPermission == 'admin') {
+            userIsAdmin = true;
+        }
+
+        return userIsAdmin;
+    };
+
+    var hasUserLogged = function () {
+        var accessToken = localStorage.getItem('accessToken');
+        var hasUserLogged = false;
+        if (accessToken) {
+        	hasUserLogged = true;
+        }
+
+        return hasUserLogged;
+    };
+
     var saveUserData = function (username, accessToken, permission) {
         localStorage.clear();
         localStorage.setItem('username', username);
@@ -57,6 +77,8 @@ app.factory('usersData', function (requester, BASE_URL) {
     return{
         register: register,
         login: login,
+        isAdmin: isAdmin,
+        hasUserLogged: hasUserLogged,
         saveUserData: saveUserData,
         clearUserData: clearUserData,
         getUserData: getUserData,

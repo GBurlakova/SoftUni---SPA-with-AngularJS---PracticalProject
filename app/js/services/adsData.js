@@ -94,6 +94,12 @@ app.factory('adsData', function (requester, usersData, BASE_URL) {
         return requester.delete(serviceUrl, authenticationHeader, null);
     };
 
+    var editAdminAd = function (adId, editedAdData) {
+        var serviceUrl = BASE_URL + '/admin/ads/' + adId;
+        var authenticationHeader = usersData.getAuthorizationHeader();
+        return requester.put(serviceUrl, authenticationHeader, editedAdData);
+    };
+
     return {
         // public ads
         get: get,
@@ -111,6 +117,7 @@ app.factory('adsData', function (requester, usersData, BASE_URL) {
         getAdminAdById: getAdminAdById,
         approveAd: approveAd,
         rejectAd: rejectAd,
-        deleteAdminAd: deleteAdminAd
+        deleteAdminAd: deleteAdminAd,
+        editAdminAd: editAdminAd
     }
 });
