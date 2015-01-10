@@ -34,7 +34,7 @@ app.factory('categoriesData', function (requester, BASE_URL, usersData) {
         getAll: getAll,
         getAdminCategories: getAdminCategories,
         createCategory: createCategory,
-        deleteTown: deleteCategory,
-        editCategory: editCategory
+        deleteCategory: deleteCategory,
+        editTown: editCategory
     }
 });

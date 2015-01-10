@@ -113,6 +113,16 @@ app.config(function ($routeProvider) {
         controller: '',
         permission: 'admin'
     });
+    $routeProvider.when('/admin/towns/edit/:id/:name', {
+        templateUrl: 'templates/admin-screens/edit-town.html',
+        controller: '',
+        permission: 'admin'
+    });
+    $routeProvider.when('/admin/categories/edit/:id/:name', {
+        templateUrl: 'templates/admin-screens/edit-category.html',
+        controller: '',
+        permission: 'admin'
+    });
     $routeProvider.otherwise({redirectTo: '/'});
 });
 

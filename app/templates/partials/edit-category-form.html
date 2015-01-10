@@ -1,0 +1,28 @@
+<form action="" class="form" name="editCategoryForm" ng-controller="EditCategoryController">
+    <div class="title">
+        Edit Category
+    </div>
+    <div class="col-lg-6 col-lg-offset-3">
+        <div class="text-center">
+            <label for="category">Category:</label>
+        </div>
+        <input type="text"
+               name="category"
+               id="category"
+               ng-model="category.name"
+               required="">
+    </div>
+    <div class="error-info col-lg-12 text-center"
+         ng-show="editCategoryForm.category.$error.required &&
+            editCategoryForm.category.$dirty">
+        Category name is required
+    </div>
+    <div class="col-lg-6 text-center col-lg-offset-3">
+        <button ng-disabled="editCategoryForm.category.$error.required"
+                class="main-button create-button col-lg-5 pull-left"
+                ng-click="editCategory()">Edit</button>
+        <button class="main-button cancel-button col-lg-5 pull-right">
+            <a href="#/admin/categories">Cancel</a>
+        </button>
+    </div>
+</form>

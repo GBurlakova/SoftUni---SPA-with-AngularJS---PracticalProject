@@ -10,7 +10,7 @@
         <tr ng-repeat="town in towns.towns">
             <td>{{town.username}}</td>
             <td class="actions">
-                <a href="#/admin/edit/{{town.username}}">Edit</a>
+                <a href="#/admin/towns/edit/{{town.id}}/{{town.username}}">Edit</a>
                 <a href="#/admin/towns/delete/{{town.id}}/{{town.username}}">Delete</a>
             </td>
         </tr>

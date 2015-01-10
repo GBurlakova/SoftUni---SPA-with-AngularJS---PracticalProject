@@ -25,7 +25,7 @@ app.factory('townsData', function (requester, BASE_URL, usersData) {
     };
 
     var editTown = function (townId, town) {
-        var serviceUrl = BASE_URL + '/admin/towns/' + categoryId;
+        var serviceUrl = BASE_URL + '/admin/towns/' + townId;
         var authorizationHeader = usersData.getAuthorizationHeader();
         return requester.put(serviceUrl, authorizationHeader, town);
     };

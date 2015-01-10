@@ -1,0 +1,20 @@
+<form action="" class="form delete-category-form" name="newCategoryForm" ng-controller="DeleteCategoryController">
+    <div class="title">
+        Delete Category
+    </div>
+    <div class="col-lg-6 col-lg-offset-3">
+        <div class="text-center sub-title">
+            Category:
+        </div>
+        <div class="bordered text-center">
+            {{category}}
+        </div>
+    </div>
+    <div class="col-lg-6 text-center col-lg-offset-3">
+        <button class="main-button create-button col-lg-5 pull-left"
+                ng-click="deleteCategory()">Delete</button>
+        <button class="main-button cancel-button col-lg-5 pull-right">
+            <a href="#/admin/categories">Cancel</a>
+        </button>
+    </div>
+</form>
