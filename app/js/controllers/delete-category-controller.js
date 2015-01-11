@@ -9,7 +9,7 @@ app.controller('DeleteCategoryController', function ($scope, $rootScope, $routeP
 
     deleteCategoryPageLoaded();
 
-    $scope.deleteTown = function () {
+    $scope.deleteCategory = function () {
         notifications.confirm(CATEGORY_DELETE_CONFIRM_MESSAGE).then(function () {
             executeDeleteCategory();
         });

@@ -35,6 +35,6 @@ app.factory('categoriesData', function (requester, BASE_URL, usersData) {
         getAdminCategories: getAdminCategories,
         createCategory: createCategory,
         deleteCategory: deleteCategory,
-        editTown: editCategory
+        editCategory: editCategory
     }
 });

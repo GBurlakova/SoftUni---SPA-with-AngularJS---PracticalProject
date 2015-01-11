@@ -12,7 +12,7 @@ app.controller('EditCategoryController', function ($scope, $rootScope, $routePar
 
     editCategoryPageLoaded();
 
-    $scope.editTown = function () {
+    $scope.editCategory = function () {
         notifications.confirm(CATEGORY_EDIT_CONFIRM_MESSAGE).then(function () {
             executeEditCategory();
         });
@@ -24,7 +24,7 @@ app.controller('EditCategoryController', function ($scope, $rootScope, $routePar
     }
 
     function executeEditCategory() {
-        categoriesData.editTown(categoryToBeEditedId)
+        categoriesData.editCategory(categoryToBeEditedId)
             .then(
             function () {
                 notifications.success(CATEGORY_EDIT_SUCCESSFULLY_MESSAGE).then(function () {

@@ -127,8 +127,8 @@ app.controller('AdminEditAdController', function ($scope, $rootScope, $routePara
 
     function executeEditAd(adToBeEditedId, editedAdData) {
         var date = new Date(editedAdData.date);
-        var dateToISO = date.toISOString();
-        editedAdData.date = dateToISO;
+        //var dateToISO = date.toISOString();
+        editedAdData.date = date;
 
         adsData.editAdminAd(adToBeEditedId, editedAdData)
             .then(
